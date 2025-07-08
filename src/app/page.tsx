@@ -4,9 +4,9 @@ import GlassButton from "../components/GlassButton";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-b from-white via-[#f3f3f3] to-[#d1d1d1] overflow-hidden outline outline-1 outline-black outline-offset-[-1px] flex flex-col items-center">
+    <div className="relative min-h-[200vh] w-full bg-gradient-to-b from-white via-[#f3f3f3] to-[#d1d1d1] overflow-hidden flex flex-col items-center">
       {/* Navigation Bar - Sticky */}
-      <div className="sticky top-4 w-full flex justify-center z-50 px-6">
+      <div className="fixed top-6 left-0 right-0 w-full flex justify-center z-50 px-6">
         <GlassPanel 
           variant="navbar" 
           className="flex items-center w-[700px] max-w-full h-[48px] px-6 py-2 gap-4" 
@@ -37,22 +37,20 @@ export default function Home() {
             </svg>
           </div>
           <div className="flex gap-2">
-            <GlassButton className="w-[100px]" style={{height: 28}} variant="secondary" gradient shadow border>Våra Tjänster</GlassButton>
-            <GlassButton className="w-[80px]" style={{height: 28}} variant="secondary" gradient shadow border>Om oss</GlassButton>
-            <GlassButton className="w-[110px]" style={{height: 28}} variant="secondary" gradient shadow border>Kontakta oss</GlassButton>
-            <GlassButton className="w-[60px]" style={{height: 28}} variant="secondary" gradient shadow border>FAQ</GlassButton>
+            <GlassButton className="w-[100px]" style={{height: 28}} variant="secondary">Våra Tjänster</GlassButton>
+            <GlassButton className="w-[80px]" style={{height: 28}} variant="secondary">Om oss</GlassButton>
+            <GlassButton className="w-[110px]" style={{height: 28}} variant="secondary">Kontakta oss</GlassButton>
+            <GlassButton className="w-[60px]" style={{height: 28}} variant="secondary">FAQ</GlassButton>
           </div>
           <div className="flex-1 flex justify-end">
             <GlassButton 
               className="w-[200px] ml-4" 
               style={{
                 height: 28,
-                boxShadow: '0 0 20px 4px rgba(0,255,136,0.3), 0 4px 16px 0 rgba(0,0,0,0.25), inset 0 1px 0 0 rgba(255,255,255,0.5)'
+                background: 'rgba(0,255,136,0.7)',
+                boxShadow: '0 0 20px 4px rgba(0,255,136,0.3)'
               }} 
-              variant="primary" 
-              gradient 
-              shadow 
-              border
+              variant="primary"
             >
               Boka kostnadsfri konsultation
             </GlassButton>
@@ -61,7 +59,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <div className="mt-24 w-full flex flex-col items-center z-10">
+      <div className="pt-32 w-full flex flex-col items-center z-10">
         <h1 className="text-[44px] font-urbanist font-extrabold leading-[1.1] text-black text-center max-w-2xl">
           Känner du att <span className="text-glassGreen">ekonomin</span> tar mer <span className="text-glassGreen">tid</span> än den ger?
         </h1>
@@ -71,17 +69,15 @@ export default function Home() {
           Vi tror på långsiktiga relationer, personlig service och skräddarsydda lösningar som passar för just dig och din verksamhet.
         </p>
         <div className="flex gap-6 mt-8 justify-center">
-          <GlassButton className="w-[110px]" style={{height: 32}} variant="secondary" gradient shadow border>Läs mer</GlassButton>
+          <GlassButton className="w-[110px]" style={{height: 32}} variant="secondary">Läs mer</GlassButton>
           <GlassButton 
             className="w-[220px]" 
             style={{
               height: 32,
-              boxShadow: '0 0 28px 6px rgba(0,255,136,0.4), 0 4px 16px 0 rgba(0,0,0,0.25), inset 0 1px 0 0 rgba(255,255,255,0.5)'
+              background: 'rgba(0,255,136,0.7)',
+              boxShadow: '0 0 28px 6px rgba(0,255,136,0.4)'
             }} 
-            variant="primary" 
-            gradient 
-            shadow 
-            border
+            variant="primary"
           >
             Boka kostnadsfri konsultation
           </GlassButton>
@@ -97,8 +93,59 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Extra Content for Scrolling Test */}
+      <div className="w-full flex flex-col items-center mt-32 space-y-16 z-10">
+        <div className="text-center">
+          <h2 className="text-3xl font-urbanist font-bold text-black mb-4">Våra Tjänster</h2>
+          <p className="text-black text-base font-montserrat max-w-2xl">
+            Vi erbjuder omfattande ekonomiska tjänster som hjälper ditt företag att växa och utvecklas.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl px-6">
+          <GlassPanel className="p-6 h-[200px]" variant="default">
+            <h3 className="text-xl font-urbanist font-semibold text-black mb-3">Bokföring</h3>
+            <p className="text-black text-sm font-montserrat">Professional bokföring som säkerställer att din ekonomi alltid är uppdaterad och korrekt.</p>
+          </GlassPanel>
+          
+          <GlassPanel className="p-6 h-[200px]" variant="default">
+            <h3 className="text-xl font-urbanist font-semibold text-black mb-3">Lönehantering</h3>
+            <p className="text-black text-sm font-montserrat">Komplett lönehantering som säkerställer att dina anställda får rätt lön i tid.</p>
+          </GlassPanel>
+          
+          <GlassPanel className="p-6 h-[200px]" variant="default">
+            <h3 className="text-xl font-urbanist font-semibold text-black mb-3">Rådgivning</h3>
+            <p className="text-black text-sm font-montserrat">Strategisk ekonomisk rådgivning för att optimera din verksamhets lönsamhet.</p>
+          </GlassPanel>
+        </div>
+
+        <div className="text-center mt-24">
+          <h2 className="text-3xl font-urbanist font-bold text-black mb-8">Varför välja ReRedo?</h2>
+          <div className="max-w-4xl">
+            <GlassPanel className="p-8" variant="default">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div>
+                  <h4 className="text-lg font-urbanist font-semibold text-black mb-3">Personlig Service</h4>
+                  <p className="text-black text-sm font-montserrat mb-6">Du får alltid kontakt med samma person som känner ditt företag.</p>
+                  
+                  <h4 className="text-lg font-urbanist font-semibold text-black mb-3">Modern Teknik</h4>
+                  <p className="text-black text-sm font-montserrat">Vi använder de senaste verktygen för att effektivisera din ekonomihantering.</p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-urbanist font-semibold text-black mb-3">Snabb Respons</h4>
+                  <p className="text-black text-sm font-montserrat mb-6">Vi svarar alltid inom 24 timmar på dina frågor.</p>
+                  
+                  <h4 className="text-lg font-urbanist font-semibold text-black mb-3">Transparenta Priser</h4>
+                  <p className="text-black text-sm font-montserrat">Inga dolda kostnader - du vet alltid vad du betalar för.</p>
+                </div>
+              </div>
+            </GlassPanel>
+          </div>
+        </div>
+      </div>
+
       {/* Glass Panel Section */}
-      <div className="flex-1 flex flex-col justify-end w-full">
+      <div className="flex-1 flex flex-col justify-end w-full mt-32">
         <div className="relative w-[90%] max-w-4xl mx-auto mb-16">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-[62px] h-[46px] relative">
@@ -109,16 +156,13 @@ export default function Home() {
           </div>
           <GlassPanel 
             className="w-full h-[200px]" 
-            variant="default" 
-            gradient 
-            shadow 
-            border 
+            variant="default"
           />
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="w-full text-center pb-4 text-white text-[12px] font-urbanist font-semibold z-30">
+      <footer className="w-full text-center pb-4 text-black text-[12px] font-urbanist font-semibold z-30">
         @2025 ReRedo AB. Alla rättigheter förbehållna.
       </footer>
     </div>

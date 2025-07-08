@@ -5,9 +5,6 @@ interface GlassPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   style?: React.CSSProperties;
   variant?: "default" | "navbar";
-  gradient?: boolean;
-  shadow?: boolean;
-  border?: boolean;
 }
 
 const GlassPanel: React.FC<GlassPanelProps> = ({
@@ -15,27 +12,20 @@ const GlassPanel: React.FC<GlassPanelProps> = ({
   className = "",
   style,
   variant = "default",
-  gradient = true,
-  shadow = true,
-  border = true,
   ...props
 }) => {
   const baseClasses = "backdrop-blur-xl";
   
   const variantClasses = {
     default: `
-      bg-white/[0.08] 
-      ${gradient ? "bg-glass-gradient" : ""}
-      ${shadow ? "shadow-glass" : ""}
-      ${border ? "border border-white/[0.18]" : ""}
-      rounded-glass
+      bg-white/[0.15] 
+      rounded-2xl
+      shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]
     `,
     navbar: `
-      bg-white/[0.12] 
-      ${gradient ? "bg-glass-navbar-gradient" : ""}
-      ${shadow ? "shadow-glass-navbar" : ""}
-      ${border ? "border border-white/[0.25]" : ""}
+      bg-white/[0.20] 
       rounded-full
+      shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]
     `,
   };
 
@@ -46,8 +36,9 @@ const GlassPanel: React.FC<GlassPanelProps> = ({
       className={combinedClasses} 
       style={{
         ...style,
-        backdropFilter: 'blur(40px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+        backdropFilter: 'blur(16px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+        border: '1px solid rgba(255, 255, 255, 0.18)',
       }} 
       {...props}
     >

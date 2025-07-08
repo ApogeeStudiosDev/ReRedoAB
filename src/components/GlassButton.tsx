@@ -5,9 +5,6 @@ interface GlassButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
   className?: string;
   style?: React.CSSProperties;
   variant?: "primary" | "secondary";
-  gradient?: boolean;
-  shadow?: boolean;
-  border?: boolean;
 }
 
 const GlassButton: React.FC<GlassButtonProps> = ({
@@ -15,9 +12,6 @@ const GlassButton: React.FC<GlassButtonProps> = ({
   className = "",
   style,
   variant = "secondary",
-  gradient = true,
-  shadow = true,
-  border = true,
   ...props
 }) => {
   const baseClasses = `
@@ -25,25 +19,20 @@ const GlassButton: React.FC<GlassButtonProps> = ({
     font-urbanist font-semibold text-[10px] 
     transition-all duration-300 
     focus:outline-none
-    backdrop-blur-lg
     hover:scale-[1.02]
     active:scale-[0.98]
   `;
 
   const variantClasses = {
     primary: `
-      bg-glassGreen/80 text-white 
+      bg-glassGreen text-white 
       hover:bg-glassGreen/90
-      ${gradient ? "bg-glass-button-gradient" : ""}
-      ${shadow ? "shadow-glass-button" : ""}
-      ${border ? "border border-white/30" : ""}
+      shadow-[0_4px_16px_0_rgba(0,0,0,0.25)]
     `,
     secondary: `
-      bg-white/[0.15] text-black 
-      hover:bg-white/[0.25]
-      ${gradient ? "bg-glass-button-gradient" : ""}
-      ${shadow ? "shadow-glass-button" : ""}
-      ${border ? "border border-white/[0.25]" : ""}
+      bg-white/[0.20] text-black 
+      hover:bg-white/[0.30]
+      shadow-[0_4px_16px_0_rgba(0,0,0,0.15)]
     `,
   };
 
@@ -54,8 +43,9 @@ const GlassButton: React.FC<GlassButtonProps> = ({
       className={combinedClasses}
       style={{
         ...style,
-        backdropFilter: 'blur(20px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+        backdropFilter: 'blur(12px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+        border: variant === 'secondary' ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
       }}
       {...props}
     >
