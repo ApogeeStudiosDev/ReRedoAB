@@ -9,10 +9,7 @@ export default function Home() {
       <div className="fixed top-6 left-0 right-0 w-full flex justify-center z-50 px-6">
         <GlassPanel 
           variant="navbar" 
-          className="flex items-center w-[700px] max-w-full h-[48px] px-6 py-2 gap-4" 
-          gradient 
-          shadow 
-          border
+          className="flex items-center w-[700px] max-w-full h-[48px] px-6 py-2 gap-4"
         >
           <div className="flex items-center gap-2 mr-4">
             {/* Logo - Using the Vector SVG */}
