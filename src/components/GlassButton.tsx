@@ -20,21 +20,43 @@ const GlassButton: React.FC<GlassButtonProps> = ({
   border = true,
   ...props
 }) => {
-  const base =
-    "px-6 py-1 h-[23px] rounded-pill font-urbanist font-semibold text-[10px] transition-all duration-200 focus:outline-none" +
-    (gradient ? " bg-gradient-to-b from-white/20 to-glassGreen/30" : "") +
-    (shadow ? " shadow-glass" : "") +
-    (border ? " border border-white/20" : "");
-  const variants = {
-    primary:
-      "bg-glassGreen text-white hover:bg-glassGreen/80",
-    secondary:
-      "bg-white/10 text-black backdrop-blur-sm hover:bg-white/20",
+  const baseClasses = `
+    px-6 py-1 h-[23px] rounded-full 
+    font-urbanist font-semibold text-[10px] 
+    transition-all duration-300 
+    focus:outline-none
+    backdrop-blur-lg
+    hover:scale-[1.02]
+    active:scale-[0.98]
+  `;
+
+  const variantClasses = {
+    primary: `
+      bg-glassGreen/80 text-white 
+      hover:bg-glassGreen/90
+      ${gradient ? "bg-glass-button-gradient" : ""}
+      ${shadow ? "shadow-glass-button" : ""}
+      ${border ? "border border-white/30" : ""}
+    `,
+    secondary: `
+      bg-white/[0.15] text-black 
+      hover:bg-white/[0.25]
+      ${gradient ? "bg-glass-button-gradient" : ""}
+      ${shadow ? "shadow-glass-button" : ""}
+      ${border ? "border border-white/[0.25]" : ""}
+    `,
   };
+
+  const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className}`.trim();
+
   return (
     <button
-      className={`${base} ${variants[variant]} ${className}`}
-      style={style}
+      className={combinedClasses}
+      style={{
+        ...style,
+        backdropFilter: 'blur(20px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+      }}
       {...props}
     >
       {children}

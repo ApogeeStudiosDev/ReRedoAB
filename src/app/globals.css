@@ -1,6 +1,10 @@
+/* Suppress @tailwind warnings */
+/* stylelint-disable at-rule-no-unknown */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
 @import "@fontsource/urbanist/latin.css";
 @import "@fontsource/montserrat/latin.css";
 
