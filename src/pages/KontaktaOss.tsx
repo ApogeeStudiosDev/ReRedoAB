@@ -1,138 +1,184 @@
-import ScrollNavigation from "@/components/ScrollNavigation";
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import LiquidGlassFilters from "@/components/LiquidGlassFilters";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import FloatingMenu from "@/components/FloatingMenu";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, Clock, Shield, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const KontaktaOss = () => {
+  const navigate = useNavigate();
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: "E-post",
+      value: "info@reredo.se",
+      href: "mailto:info@reredo.se"
+    },
+    {
+      icon: Phone,
+      title: "Telefon",
+      value: "031-123 456 78",
+      href: "tel:031123456"
+    },
+    {
+      icon: MapPin,
+      title: "Adress",
+      value: "Centrala Göteborg",
+      href: null
+    }
+  ];
+
+  const consultationPoints = [
+    "Vi lär känna dig och din verksamhet",
+    "Vi går igenom dina behov och utmaningar",
+    "Vi diskuterar möjliga lösningar utifrån dina behov"
+  ];
+
   return (
-    <div className="min-h-screen">
-      <LiquidGlassFilters />
-      <ScrollNavigation />
-      <FloatingMenu />
-      
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-6 pt-32">
-        <div className="max-w-6xl mx-auto">
-          {/* Main Headline */}
-          <h1 className="font-urbanist font-bold text-5xl md:text-7xl leading-tight mb-12 text-center">
-            <span className="text-foreground">Kontakta</span>{" "}
-            <span className="gradient-diamond-enhanced-static">ReRedo</span>
-          </h1>
+    <div className="min-h-screen bg-white">
+      <Navigation />
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="font-urbanist font-bold text-2xl text-foreground mb-6">
-                  Bakom varje framgångsrikt företag finns en stabil ekonomi.
-                </h2>
-                <p className="font-montserrat text-lg text-foreground/80 mb-8">
-                  Vi hjälper dig få struktur och flyt i företagets ekonomi – från löpande hantering till smarta lösningar som frigör din tid.
-                </p>
-                <p className="font-montserrat text-lg text-foreground/80 mb-8">
-                  Välkommen att boka en kostnadsfri konsultation och upptäck hur vi kan förenkla din vardag.
-                </p>
-              </div>
+      {/* Hero Section - White */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="font-sora font-bold text-6xl md:text-7xl lg:text-8xl text-black mb-12 tracking-tight leading-[1.1]">
+              Kontakta ReRedo
+            </h1>
+          </motion.div>
+        </div>
+      </section>
 
-              <div>
-                <h3 className="font-urbanist font-bold text-xl text-foreground mb-6">
-                  Så här når du oss
-                </h3>
-                <div className="space-y-6">
-                  <div className="bg-card/40 backdrop-blur-sm rounded-xl p-6 border border-border/20">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
-                        <Mail className="w-6 h-6 text-accent" />
+      {/* Main Content Section - White */}
+      <section className="pb-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
+          {/* Left Column - Content */}
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="font-sora font-bold text-3xl md:text-4xl text-black mb-6"
+            >
+              Bakom varje framgångsrikt företag finns en fungerande ekonomi.
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="font-inter text-lg text-black/70 mb-12 leading-relaxed"
+            >
+              Vi hjälper dig skapa struktur och trygghet – oavsett om du behöver hjälp med den löpande redovisningen eller implementera ekonomistyrning. Boka en kostnadsfri konsultation och se hur siffrorna kan bli ditt bästa beslutsstöd.
+            </motion.p>
+
+            <div className="space-y-6">
+              {contactInfo.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="border-2 border-black/10 rounded-2xl p-6 hover:border-black hover:shadow-xl transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-urbanist font-bold text-foreground">E-post</h4>
-                        <p className="font-montserrat text-foreground/80">info@reredo.se</p>
+                        <div className="font-sora font-semibold text-sm text-black/60 mb-1">
+                          {item.title}
+                        </div>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            className="font-inter text-lg text-black hover:text-black/70 transition-colors"
+                          >
+                            {item.value}
+                          </a>
+                        ) : (
+                          <div className="font-inter text-lg text-black">
+                            {item.value}
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
-
-                  <div className="bg-card/40 backdrop-blur-sm rounded-xl p-6 border border-border/20">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
-                        <Phone className="w-6 h-6 text-accent" />
-                      </div>
-                      <div>
-                        <h4 className="font-urbanist font-bold text-foreground">Telefon</h4>
-                        <p className="font-montserrat text-foreground/80">031-123 456 78</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-card/40 backdrop-blur-sm rounded-xl p-6 border border-border/20">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-accent" />
-                      </div>
-                      <div>
-                        <h4 className="font-urbanist font-bold text-foreground">Adress</h4>
-                        <p className="font-montserrat text-foreground/80">
-                          Centrala Göteborg
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            {/* CTA Section */}
-            <div className="bg-card/60 backdrop-blur-sm rounded-2xl p-8 border border-border/20">
-              <h2 className="font-urbanist font-bold text-2xl text-foreground mb-6">
-                Kostnadsfri konsultation
-              </h2>
-              
-              <p className="font-montserrat text-lg text-foreground/80 mb-8">
-                Mötet sker digitalt och äger rum på Teams. Vi träffas för att lära känna varandra och varandras företag. Därefter diskuterar vi ditt företags eventuella behov och jag presenterar lösningar i form av hur jag kan bistå med hjälp.
-              </p>
-
-              <div className="space-y-4">
-                <Link to="/boka-konsultation">
-                  <Button className="glass-button-dark-green-cta text-white font-urbanist font-semibold px-8 py-3 rounded-full text-lg border-none w-full">
-                    Boka kostnadsfri konsultation
-                  </Button>
-                </Link>
-                
-                <div className="text-center">
-                  <p className="font-montserrat text-sm text-foreground/60">
-                    30-45 minuters möte • Utan förpliktelser • Inga större förberedelser • Transparent prissättning
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-border/20">
-                <h3 className="font-urbanist font-bold text-lg text-foreground mb-4">
-                  Vad händer under konsultationen?
-                </h3>
-                <ul className="space-y-2 font-montserrat text-foreground/80">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Vi lär känna varandra och era företag</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Diskuterar era specifika behov och utmaningar</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Presenterar skräddarsydda lösningar</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Transparent information om prissättning</span>
-                  </li>
-                </ul>
-              </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
+
+          {/* Right Column - CTA Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-black rounded-2xl p-8 lg:p-10 text-white h-fit lg:sticky lg:top-32"
+          >
+            <h3 className="font-sora font-bold text-3xl mb-6">
+              Kostnadsfri konsultation
+            </h3>
+
+            <p className="font-inter text-white/80 mb-8 leading-relaxed">
+              Mötet sker digitalt (Teams) och tar 30 – 45 minuter. Fokus ligger på att förstå din verksamhet, dina behov och dina mål. Därefter pratar vi om hur vi kan skapa värde i din ekonomihantering.
+            </p>
+
+            <Button
+              onClick={() => navigate('/boka-konsultation')}
+              size="lg"
+              className="w-full font-inter font-semibold rounded-full text-base px-8 bg-white text-black hover:bg-white/90 transition-all duration-300 group mb-8"
+            >
+              Boka kostnadsfri konsultation
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+
+            <div className="grid grid-cols-2 gap-4 mb-8 text-sm">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-white/60" />
+                <span className="text-white/80">30-45 minuters möte</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-white/60" />
+                <span className="text-white/80">Kostnadsfritt & kravlöst</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-white/60" />
+                <span className="text-white/80">Ingen förberedelse krävs</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-white/60" />
+                <span className="text-white/80">Transparent prissättning</span>
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 pt-6">
+              <h4 className="font-sora font-semibold text-lg mb-4">
+                Vad händer under konsultationen?
+              </h4>
+              <ul className="space-y-3">
+                {consultationPoints.map((point, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-white/60 rounded-full mt-2 flex-shrink-0" />
+                    <span className="font-inter text-white/80 text-sm leading-relaxed">
+                      {point}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
         </div>
       </section>
 

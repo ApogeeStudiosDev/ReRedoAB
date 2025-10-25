@@ -1,13 +1,15 @@
-import { useState, useMemo } from "react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import ScrollNavigation from "@/components/ScrollNavigation";
+import { useState } from "react";
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import LiquidGlassFilters from "@/components/LiquidGlassFilters";
-import FloatingMenu from "@/components/FloatingMenu";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const FAQ = () => {
+  const navigate = useNavigate();
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   const faqs = [
     {
       question: "Vad kostar era tjänster?",
@@ -43,85 +45,130 @@ const FAQ = () => {
     }
   ];
 
-  const [query, setQuery] = useState("");
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return faqs;
-    return faqs.filter((f) => f.question.toLowerCase().includes(q) || f.answer.toLowerCase().includes(q));
-  }, [faqs, query]);
-
   return (
-    <div className="min-h-screen">
-      <LiquidGlassFilters />
-      <ScrollNavigation />
-      <FloatingMenu />
+    <div className="min-h-screen bg-white">
+      <Navigation />
 
-      <section className="min-h-screen flex flex-col justify-center px-6 pt-32">
-        <div className="max-w-5xl mx-auto w-full">
-          {/* Heading */}
-          <h1 className="font-urbanist font-bold text-5xl md:text-7xl leading-tight mb-6 text-center">
-            <span className="text-foreground">Vanliga</span>{" "}
-            <span className="gradient-diamond-enhanced-static">frågor</span>
-          </h1>
-          <p className="font-montserrat text-foreground/80 text-center mb-10">
+      {/* Hero Section - White */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="font-sora font-bold text-6xl md:text-7xl lg:text-8xl text-black mb-8 tracking-tight leading-[1.1]">
+              Vanliga frågor
+            </h1>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="font-inter text-xl text-black/70 leading-relaxed"
+          >
             Sök bland frågor eller kontakta oss om du inte hittar svaret.
-          </p>
+          </motion.p>
+        </div>
+      </section>
 
-          {/* Search */}
-          <div className="max-w-xl mx-auto mb-8">
-            <input
-              type="text"
-              placeholder="Sök i frågor..."
-              className="w-full rounded-full border border-border/30 bg-card/60 px-5 py-3 outline-none focus:border-primary transition-colors"
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </div>
-
-          {/* FAQ grid */}
-          <div className="grid lg:grid-cols-2 gap-6">
-            {[0,1].map((col) => (
-              <div key={col} className="space-y-4">
-                <Accordion type="multiple" defaultValue={["item-0"]} className="space-y-4">
-                  {filtered
-                    .filter((_, i) => i % 2 === col)
-                    .map((faq, index) => (
-                      <AccordionItem key={`${col}-${index}`} value={`item-${col}-${index}`} className="border-border/20">
-                        <AccordionTrigger className="font-urbanist font-semibold text-left text-foreground hover:text-accent transition-colors">
-                          {faq.question}
-                        </AccordionTrigger>
-                        <AccordionContent className="font-montserrat text-foreground/80 leading-relaxed">
+      {/* FAQ Section - White */}
+      <section className="pb-24 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="border-2 border-black/10 rounded-2xl overflow-hidden hover:border-black/20 transition-all duration-300"
+              >
+                <button
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                  className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-black/5 transition-colors duration-300"
+                >
+                  <span className="font-sora font-bold text-xl text-black pr-4">
+                    {faq.question}
+                  </span>
+                  <ChevronDown
+                    className={`w-6 h-6 text-black flex-shrink-0 transition-transform duration-300 ${
+                      openIndex === index ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-8 pb-6">
+                        <p className="font-inter text-black/70 leading-relaxed">
                           {faq.answer}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                </Accordion>
-              </div>
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* CTA */}
-          <div className="mt-10 text-center">
-            <p className="font-montserrat text-lg text-foreground/80 mb-6">
-              Fick du inte svar på din fråga?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/boka-konsultation">
-                <Button className="glass-button-dark-green-cta text-white font-urbanist font-semibold px-8 py-3 rounded-full text-lg border-none">
-                  Boka kostnadsfri konsultation
-                </Button>
-              </Link>
-              <Link to="/kontakta-oss">
-                <Button variant="outline" className="font-urbanist font-semibold px-8 py-3 rounded-full text-lg">
-                  Kontakta oss direkt
-                </Button>
-              </Link>
-            </div>
-            <div className="mt-8 pt-6 border-t border-border/20">
-              <p className="font-montserrat text-sm text-foreground/60">
-                Redo att få ordning på ekonomin? Kontakta oss idag för en kostnadsfri konsultation.
-              </p>
-            </div>
-          </div>
+      {/* CTA Section - Black */}
+      <section className="py-24 px-6 bg-black">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="font-sora font-bold text-4xl md:text-5xl text-white mb-6"
+          >
+            Fick du inte svar på din fråga?
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+          >
+            <Button
+              onClick={() => navigate('/boka-konsultation')}
+              size="lg"
+              className="font-inter font-semibold rounded-full text-base px-8 bg-white text-black hover:bg-white/90 transition-all duration-300 group"
+            >
+              Boka kostnadsfri konsultation
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <Button
+              onClick={() => navigate('/kontakta-oss')}
+              variant="outline"
+              size="lg"
+              className="font-inter font-semibold rounded-full text-base px-8 border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300"
+            >
+              Kontakta oss direkt
+            </Button>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="font-inter text-white/70"
+          >
+            Redo att få ordning på ekonomin? Kontakta oss idag för en kostnadsfri konsultation.
+          </motion.p>
         </div>
       </section>
 

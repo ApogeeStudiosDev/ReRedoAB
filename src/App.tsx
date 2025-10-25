@@ -12,6 +12,7 @@ import FAQ from "./pages/FAQ";
 import BokaKonsultation from "./pages/BokaKonsultation";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import PricingPackages from "./pages/PricingPackages";
 
 import NotFound from "./pages/NotFound";
 
@@ -31,9 +32,10 @@ const App = () => (
             <Route path="/kontakta-oss" element={<KontaktaOss />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/boka-konsultation" element={<BokaKonsultation />} />
+            <Route path="/priser" element={<PricingPackages />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
-            
+
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

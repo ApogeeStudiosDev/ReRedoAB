@@ -242,7 +242,7 @@ const Index = () => {
               <h3 className="font-sora font-bold text-2xl text-white mb-3">Jag driver Aktiebolag</h3>
               <p className="font-inter text-white/70 mb-6">5 anpassade paket att välja mellan</p>
               <span className="font-inter font-semibold text-white flex items-center group-hover:translate-x-2 transition-transform">
-                Visa AB-paket <ArrowRight className="ml-2 w-5 h-5" />
+                Visa AB-paket <Arrow Right className="ml-2 w-5 h-5" />
               </span>
             </motion.button>
             <motion.button

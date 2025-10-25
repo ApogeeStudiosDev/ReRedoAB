@@ -1,8 +1,10 @@
-
-@import '@fontsource/dm-sans/400.css';
-@import '@fontsource/dm-sans/500.css';
-@import '@fontsource/dm-sans/600.css';
-@import '@fontsource/dm-sans/700.css';
+@import '@fontsource/sora/400.css';
+@import '@fontsource/sora/500.css';
+@import '@fontsource/sora/600.css';
+@import '@fontsource/sora/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
 
 @tailwind base;
 @tailwind components;
@@ -84,6 +86,8 @@ All colors MUST be HSL.
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     --shadow-glow: 0 0 20px hsl(var(--primary) / 0.3);
     --shadow-colored: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-premium: 0 20px 40px -10px rgb(0 0 0 / 0.15), 0 8px 20px -5px hsl(var(--primary) / 0.1);
+    --shadow-professional: 0 25px 50px -12px rgb(0 0 0 / 0.25), 0 12px 30px -8px hsl(var(--primary) / 0.15);
 
     /* Enhanced gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--green-glow)));
@@ -179,9 +183,13 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply text-foreground font-montserrat;
+    @apply text-foreground font-inter;
     background: #ffffff;
     min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sora;
   }
 }
 
@@ -313,10 +321,60 @@ All colors MUST be HSL.
   .hover-magnetic {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .hover-magnetic:hover {
     transform: translateY(-2px) scale(1.02);
     box-shadow: var(--shadow-glow);
+  }
+
+  /* Professional Card Styles */
+  .card-premium {
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card)/0.95) 100%);
+    border: 1px solid hsl(var(--primary)/0.15);
+    box-shadow: 0 8px 30px -10px hsl(var(--primary)/0.15),
+                0 4px 20px -5px hsl(var(--primary)/0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-premium:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 50px -15px hsl(var(--primary)/0.25),
+                0 10px 30px -10px hsl(var(--primary)/0.15);
+    border-color: hsl(var(--primary)/0.3);
+  }
+
+  /* Enhanced gradient backgrounds */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at center, hsl(var(--primary)/0.1) 0%, transparent 70%);
+  }
+
+  /* Improved pricing card animations */
+  .pricing-card-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-card-glow::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+      hsl(var(--primary)/0.3) 0%,
+      hsl(var(--primary)/0.1) 25%,
+      hsl(var(--primary)/0.3) 50%,
+      hsl(var(--primary)/0.1) 75%,
+      hsl(var(--primary)/0.3) 100%);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .pricing-card-glow:hover::before {
+    opacity: 1;
   }
 
   .hover-glow {
@@ -436,24 +494,84 @@ All colors MUST be HSL.
     border: 1px solid hsl(var(--primary));
     transition: all 0.3s ease;
   }
-  
+
   .btn-primary:hover {
     background: hsl(var(--primary) / 0.9);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px hsl(var(--primary) / 0.3);
   }
-  
+
   .btn-outline {
     background: transparent;
     color: hsl(var(--primary));
     border: 1px solid hsl(var(--primary));
     transition: all 0.3s ease;
   }
-  
+
   .btn-outline:hover {
     background: hsl(var(--primary));
     color: white;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px hsl(var(--primary) / 0.3);
+  }
+
+  /* Enhanced gradient button styles */
+  .btn-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--green-glow)) 100%);
+    color: white;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-gradient:hover::before {
+    left: 100%;
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 30px -5px hsl(var(--primary) / 0.4);
+  }
+
+  /* Package selection feedback */
+  .package-selected {
+    animation: package-select-pulse 0.6s ease-out;
+  }
+
+  @keyframes package-select-pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
+    }
+    70% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px transparent;
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+
+  /* Professional backdrop blur effects */
+  .backdrop-blur-premium {
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .dark .backdrop-blur-premium {
+    background: rgba(0, 0, 0, 0.85);
   }
 }

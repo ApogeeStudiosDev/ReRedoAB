@@ -37,35 +37,33 @@ const FloatingMenu = () => {
 
   return (
     <>
-      {/* Floating button */}
-      <div className="fixed bottom-6 right-6 z-[60]">
-        <Button
-          aria-label={open ? "Stäng meny" : "Öppna meny"}
-          onClick={() => setOpen((v) => !v)}
-          size="lg"
-          className="rounded-full px-6 shadow-lg bg-foreground text-background hover:bg-foreground/90 hover:scale-105 transition-all duration-300"
-        >
-          {open ? "Stäng" : "Meny"}
-        </Button>
-      </div>
+      {/* Floating button - only show when menu is closed */}
+      {!open && (
+        <div className="fixed bottom-6 right-6 z-[100]">
+          <Button
+            aria-label="Öppna meny"
+            onClick={() => setOpen(true)}
+            size="lg"
+            className="rounded-full px-6 shadow-lg bg-foreground text-background hover:bg-foreground/90 hover:scale-105 transition-all duration-300"
+          >
+            Meny
+          </Button>
+        </div>
+      )}
 
       {/* Fullscreen overlay menu */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="w-screen h-screen max-w-none p-0 m-0 border-none bg-transparent">
           {/* Background overlay that can be clicked to close */}
-          <div 
-            className="absolute inset-0 bg-background/80 backdrop-blur-sm cursor-pointer animate-in fade-in duration-300" 
+          <div
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm cursor-pointer"
             onClick={close}
           />
 
-          <nav aria-label="Huvudmeny" className="absolute inset-0 flex items-center justify-center animate-in slide-in-from-top duration-500">
+          <nav aria-label="Huvudmeny" className="absolute inset-0 flex items-center justify-center">
             <ul className="w-full max-w-3xl px-8 space-y-6 text-center">
-              {links.map((l, index) => (
-                <li 
-                  key={l.to}
-                  className="animate-in slide-in-from-left duration-500"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
+              {links.map((l) => (
+                <li key={l.to}>
                   <Link
                     to={l.to}
                     onClick={close}

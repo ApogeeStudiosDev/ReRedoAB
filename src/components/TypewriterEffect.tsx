@@ -49,7 +49,7 @@ const TypewriterEffect: React.FC<TypewriterEffectProps> = ({ words, className = 
 
   return (
     <div className={`font-urbanist font-bold text-4xl md:text-6xl ${className}`}>
-      <span className="gradient-diamond-enhanced">{currentText}</span>
+      <span className="text-foreground">{currentText}</span>
       <span className={`text-foreground transition-opacity duration-100 ${showCursor ? 'opacity-100' : 'opacity-0'}`}>
         |
       </span>

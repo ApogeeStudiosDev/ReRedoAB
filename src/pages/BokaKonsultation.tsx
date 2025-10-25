@@ -1,128 +1,202 @@
-
-import ScrollNavigation from "@/components/ScrollNavigation";
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import LiquidGlassFilters from "@/components/LiquidGlassFilters";
 import BookingForm from "@/components/BookingForm";
-import FloatingMenu from "@/components/FloatingMenu";
-import { Clock, Users, Shield, Calculator } from "lucide-react";
+import { Clock, Shield, Users, Calculator } from "lucide-react";
+import { motion } from "framer-motion";
 
 const BokaKonsultation = () => {
+  const meetingDetails = [
+    {
+      icon: Clock,
+      title: "30-45 minuter",
+      description: "Digitalt möte på Teams där vi träffas för att lära känna varandra och varandras företag."
+    },
+    {
+      icon: Shield,
+      title: "Utan förpliktelser",
+      description: "Kostnadsfritt möte utan några förpliktelser eller krav på er sida."
+    },
+    {
+      icon: Users,
+      title: "Du behöver inte förbereda något",
+      description: "Vi står för förberedelsen – ni behöver bara delta"
+    },
+    {
+      icon: Calculator,
+      title: "Transparent prissättning",
+      description: "Vi diskuterar öppet om priser och lösningar - inga dolda kostnader."
+    }
+  ];
+
+  const trustPoints = [
+    "Personlig service och nära samarbete – vi lär känna din verksamhet på djupet",
+    "Ekonomi som styrmedel – tydliga rapporter och analyser för kloka beslut",
+    "Transparens i allt – tydliga processer och klara priser utan dolda kostnader"
+  ];
+
+  const consultationProcess = [
+    "Du berättar om din verksamhet och dina utmaningar",
+    "Vi ställer frågor för att förstå era behov",
+    "Vi diskuterar möjliga lösningar och hur vi kan hjälpa er"
+  ];
+
   return (
-    <div className="min-h-screen">
-      <LiquidGlassFilters />
-      <ScrollNavigation />
-      <FloatingMenu />
-      
-      {/* Hero Section with Title */}
-      <section className="pt-32 pb-6 px-4 md:px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="font-urbanist font-bold text-4xl md:text-5xl lg:text-6xl mb-4">
-            <span className="gradient-diamond-enhanced-slow">Boka kostnadsfri</span>
-            <br />
-            <span className="text-foreground">konsultation</span>
-          </h1>
-          <p className="font-montserrat text-lg text-foreground/80 max-w-2xl mx-auto">
-            Träffa oss för ett 30-45 minuters digitalt möte där vi lär känna varandra och diskuterar hur vi kan hjälpa ditt företag.
-          </p>
+    <div className="min-h-screen bg-white">
+      <Navigation />
+
+      {/* Hero Section - White */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="font-sora font-bold text-6xl md:text-7xl lg:text-8xl text-black mb-8 tracking-tight leading-[1.1]">
+              Boka en kostnadsfri konsultation
+            </h1>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="font-inter text-xl text-black/70 max-w-3xl mx-auto leading-relaxed"
+          >
+            Lär känna din nya ekonomipartner – med lösningar som ger dig kontroll och trygghet
+          </motion.p>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="pb-8 px-4 md:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            
-            {/* Left Column - Consultation Information */}
-            <div className="space-y-5">
-              {/* Meeting Details Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-3">
-                <div className="bg-card/40 backdrop-blur-sm rounded-xl p-4 border border-border/20">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <Clock className="w-5 h-5 text-accent" />
-                    <h3 className="font-urbanist font-semibold text-base">30-45 minuter</h3>
+      {/* Meeting Details Section - Black */}
+      <section className="py-24 px-6 bg-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {meetingDetails.map((detail, index) => {
+              const Icon = detail.icon;
+              return (
+                <motion.div
+                  key={detail.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <p className="text-foreground/70 font-montserrat text-sm">
-                    Digitalt möte på Teams där vi träffas för att lära känna varandra och varandras företag.
+                  <h3 className="font-sora font-bold text-lg text-white mb-2">
+                    {detail.title}
+                  </h3>
+                  <p className="font-inter text-white/70 text-sm leading-relaxed">
+                    {detail.description}
                   </p>
-                </div>
-                
-                <div className="bg-card/40 backdrop-blur-sm rounded-xl p-4 border border-border/20">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <Shield className="w-5 h-5 text-accent" />
-                    <h3 className="font-urbanist font-semibold text-base">Utan förpliktelser</h3>
-                  </div>
-                  <p className="text-foreground/70 font-montserrat text-sm">
-                    Kostnadsfritt möte utan några förpliktelser eller krav på er sida.
-                  </p>
-                </div>
-                
-                <div className="bg-card/40 backdrop-blur-sm rounded-xl p-4 border border-border/20">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <Users className="w-5 h-5 text-accent" />
-                    <h3 className="font-urbanist font-semibold text-base">Inga förberedelser</h3>
-                  </div>
-                  <p className="text-foreground/70 font-montserrat text-sm">
-                    Ni behöver inte förbereda något speciellt - vi lär känna varandra under mötet.
-                  </p>
-                </div>
-                
-                <div className="bg-card/40 backdrop-blur-sm rounded-xl p-4 border border-border/20">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <Calculator className="w-5 h-5 text-accent" />
-                    <h3 className="font-urbanist font-semibold text-base">Transparent prissättning</h3>
-                  </div>
-                  <p className="text-foreground/70 font-montserrat text-sm">
-                    Vi diskuterar öppet om priser och lösningar - inga dolda kostnader.
-                  </p>
-                </div>
-              </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-              {/* What Happens During the Meeting */}
-              <div className="bg-card/30 backdrop-blur-sm rounded-xl p-5 border border-border/20">
-                <h3 className="font-urbanist font-bold text-lg mb-3">
-                  Vad händer under mötet?
-                </h3>
-                <div className="space-y-2 text-foreground/80 font-montserrat text-sm">
-                  <p className="leading-relaxed">
-                    Mötet sker digitalt på Teams där vi träffas för att lära känna varandra och 
-                    varandras företag. Vi diskuterar ditt företags eventuella behov och jag 
-                    presenterar lösningar för hur jag kan bistå med hjälp.
-                  </p>
-                  <p className="leading-relaxed">
-                    Under konsultationen går vi igenom era nuvarande processer, identifierar 
-                    förbättringsområden och diskuterar hur ReRedo kan hjälpa er att effektivisera 
-                    er ekonomihantering.
-                  </p>
-                </div>
-              </div>
+      {/* Main Content Section - White */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left Column - Info */}
+          <div className="space-y-12">
+            <div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="font-sora font-bold text-3xl md:text-4xl text-black mb-6"
+              >
+                Vad händer under mötet?
+              </motion.h2>
 
-              {/* Trust Signals */}
-              <div className="bg-accent/5 backdrop-blur-sm rounded-xl p-4 border border-accent/20">
-                <h4 className="font-urbanist font-semibold text-base mb-3 text-center">
-                  Varför välja ReRedo?
-                </h4>
-                <div className="space-y-2 text-sm font-montserrat text-foreground/80">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Personlig service och direktkontakt med erfarna ekonomer</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Skräddarsydda lösningar för just ert företags behov</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Transparent kommunikation och prissättning</span>
-                  </div>
-                </div>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="font-inter text-lg text-black/70 mb-6 leading-relaxed"
+              >
+                Under mötet går vi igenom din situation och vad som är viktigt för dig just nu. Du kan ställa frågor, berätta om din verksamhet, dina utmaningar och mål.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="font-inter text-lg text-black/70 mb-8 leading-relaxed"
+              >
+                Du får en första känsla för hur ett samarbete med oss fungerar och vilket värde det kan ge dig framåt.
+              </motion.p>
+
+              <div className="space-y-4">
+                {consultationProcess.map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center flex-shrink-0 font-sora font-bold text-sm">
+                      {index + 1}
+                    </div>
+                    <p className="font-inter text-black/80 pt-1 leading-relaxed">
+                      {step}
+                    </p>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
-            {/* Right Column - Booking Form */}
-            <div className="lg:sticky lg:top-32 lg:h-fit">
-              <BookingForm />
+            <div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="font-sora font-bold text-3xl md:text-4xl text-black mb-6"
+              >
+                Varför välja ReRedo?
+              </motion.h2>
+
+              <div className="space-y-4">
+                {trustPoints.map((point, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-2 h-2 bg-black rounded-full mt-2.5 flex-shrink-0" />
+                    <p className="font-inter text-lg text-black/70 leading-relaxed">
+                      {point}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
+
+          {/* Right Column - Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="lg:sticky lg:top-32"
+          >
+            <BookingForm />
+          </motion.div>
         </div>
       </section>
 

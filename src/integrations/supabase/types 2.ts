@@ -194,7 +194,6 @@ export type Database = {
           organization_number: string
           phone: string | null
           priority: Database["public"]["Enums"]["priority_level"] | null
-          selected_package_id: string | null
           status: Database["public"]["Enums"]["booking_status"] | null
           updated_at: string | null
         }
@@ -221,7 +220,6 @@ export type Database = {
           organization_number: string
           phone?: string | null
           priority?: Database["public"]["Enums"]["priority_level"] | null
-          selected_package_id?: string | null
           status?: Database["public"]["Enums"]["booking_status"] | null
           updated_at?: string | null
         }
@@ -248,7 +246,6 @@ export type Database = {
           organization_number?: string
           phone?: string | null
           priority?: Database["public"]["Enums"]["priority_level"] | null
-          selected_package_id?: string | null
           status?: Database["public"]["Enums"]["booking_status"] | null
           updated_at?: string | null
         }
@@ -265,13 +262,6 @@ export type Database = {
             columns: ["client_id"]
             isOneToOne: false
             referencedRelation: "clients"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "fk_bookings_selected_package"
-            columns: ["selected_package_id"]
-            isOneToOne: false
-            referencedRelation: "pricing_packages"
             referencedColumns: ["id"]
           },
         ]
@@ -470,63 +460,6 @@ export type Database = {
         }
         Relationships: []
       }
-      pricing_packages: {
-        Row: {
-          annual_price: number | null
-          company_type: Database["public"]["Enums"]["company_type"]
-          created_at: string | null
-          description: string | null
-          display_order: number | null
-          features: Json | null
-          id: string
-          included_services: string[] | null
-          is_active: boolean | null
-          max_employees: number | null
-          max_transactions: number | null
-          monthly_price: number
-          name: string
-          package_tier: Database["public"]["Enums"]["package_tier"]
-          support_level: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          annual_price?: number | null
-          company_type: Database["public"]["Enums"]["company_type"]
-          created_at?: string | null
-          description?: string | null
-          display_order?: number | null
-          features?: Json | null
-          id?: string
-          included_services?: string[] | null
-          is_active?: boolean | null
-          max_employees?: number | null
-          max_transactions?: number | null
-          monthly_price: number
-          name: string
-          package_tier: Database["public"]["Enums"]["package_tier"]
-          support_level?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          annual_price?: number | null
-          company_type?: Database["public"]["Enums"]["company_type"]
-          created_at?: string | null
-          description?: string | null
-          display_order?: number | null
-          features?: Json | null
-          id?: string
-          included_services?: string[] | null
-          is_active?: boolean | null
-          max_employees?: number | null
-          max_transactions?: number | null
-          monthly_price?: number
-          name?: string
-          package_tier?: Database["public"]["Enums"]["package_tier"]
-          support_level?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
       time_slots: {
         Row: {
           buffer_minutes: number | null
@@ -668,8 +601,6 @@ export type Database = {
         | "completed"
         | "inactive"
         | "churned"
-      company_type: "AB" | "EF"
-      package_tier: "basic" | "standard" | "professional" | "premium" | "enterprise"
       priority_level: "low" | "medium" | "high" | "urgent"
     }
     CompositeTypes: {
@@ -820,8 +751,6 @@ export const Constants = {
         "follow_up",
       ],
       client_status: ["prospect", "active", "completed", "inactive", "churned"],
-      company_type: ["AB", "EF"],
-      package_tier: ["basic", "standard", "professional", "premium", "enterprise"],
       priority_level: ["low", "medium", "high", "urgent"],
     },
   },
