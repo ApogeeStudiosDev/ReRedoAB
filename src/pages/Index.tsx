@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Monitor, Target, Users, Zap, DollarSign, Smartphone, ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
@@ -43,6 +44,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Hem - Digital Redovisningsbyrå i Göteborg"
+        description="Digital redovisningsbyrå i Göteborg. Vi erbjuder löpande bokföring, ekonomistyrning, rapporter och rådgivning för AB och enskilda firmor. Baspaket från 700 kr/mån. Boka kostnadsfri konsultation idag."
+        keywords="redovisningsbyrå göteborg, digital redovisning, ekonomistyrning, bokföring, fortnox redovisning, extern ekonomiavdelning, skatterådgivning, löpande bokföring, aktiebolag redovisning, enskild firma bokföring"
+        canonical="/"
+      />
       <Navigation />
 
       {/* Hero Section */}

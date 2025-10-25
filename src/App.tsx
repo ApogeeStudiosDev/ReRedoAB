@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
+import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import VaraTjanster from "./pages/VaraTjanster";
 import OmOss from "./pages/OmOss";
@@ -19,30 +20,32 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/vara-tjanster" element={<VaraTjanster />} />
-            <Route path="/om-oss" element={<OmOss />} />
-            <Route path="/kontakta-oss" element={<KontaktaOss />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/boka-konsultation" element={<BokaKonsultation />} />
-            <Route path="/priser" element={<PricingPackages />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin" element={<AdminDashboard />} />
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/vara-tjanster" element={<VaraTjanster />} />
+              <Route path="/om-oss" element={<OmOss />} />
+              <Route path="/kontakta-oss" element={<KontaktaOss />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/boka-konsultation" element={<BokaKonsultation />} />
+              <Route path="/priser" element={<PricingPackages />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminDashboard />} />
 
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider>
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

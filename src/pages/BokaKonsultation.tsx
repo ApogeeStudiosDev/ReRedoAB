@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import BookingForm from "@/components/BookingForm";
 import { Clock, Shield, Users, Calculator } from "lucide-react";
 import { motion } from "framer-motion";
@@ -42,6 +43,12 @@ const BokaKonsultation = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Boka Konsultation - Kostnadsfri Rådgivning"
+        description="Boka en kostnadsfri konsultation med ReRedo AB. 30-45 minuters digitalt möte utan förpliktelser. Vi diskuterar dina behov och presenterar skräddarsydda lösningar för din ekonomihantering."
+        keywords="boka konsultation redovisning, kostnadsfri ekonomikonsultation, bokföring rådgivning göteborg, gratis bokföringsmöte, boka redovisningsmöte"
+        canonical="/boka-konsultation"
+      />
       <Navigation />
 
       {/* Hero Section - White */}

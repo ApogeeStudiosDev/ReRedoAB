@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Monitor, Target, Users, Zap, ArrowRight, Check } from "lucide-react";
 import { motion } from "framer-motion";
@@ -105,6 +106,12 @@ const VaraTjanster = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Våra Tjänster - Bokföring & Ekonomistyrning"
+        description="Komplett ekonomihantering för AB och enskild firma. Löpande bokföring, moms, årsredovisning, löner, ekonomistyrning och rådgivning. Vi är din externa ekonomiavdelning."
+        keywords="bokföring göteborg, löpande bokföring, ekonomistyrning, årsredovisning, momsredovisning, lönehantering, fortnox bokföring, extern ekonomiavdelning, redovisningskonsult"
+        canonical="/vara-tjanster"
+      />
       <Navigation />
 
       {/* Hero Section - White */}

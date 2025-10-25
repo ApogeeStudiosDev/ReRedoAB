@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -110,6 +111,12 @@ const PricingPackages = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Priser - Baspaket från 700 kr/mån"
+        description="Transparenta priser för redovisningstjänster. AB-paket från 1,200 kr/mån, enskild firma från 700 kr/mån. Fasta månadskostnader utan dolda avgifter. Boka kostnadsfri konsultation."
+        keywords="redovisning pris, bokföring kostnad, aktiebolag redovisning pris, enskild firma bokföring pris, redovisningsbyrå göteborg priser, fast månadsavgift redovisning"
+        canonical="/priser"
+      />
       <Navigation />
 
       {/* Hero Section - White */}

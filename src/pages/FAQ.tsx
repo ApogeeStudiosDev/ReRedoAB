@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -47,6 +48,12 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Vanliga Frågor (FAQ) - ReRedo AB"
+        description="Svar på vanliga frågor om våra redovisningstjänster. Läs om priser, onboarding, digitala lösningar, säkerhet och hur vi arbetar. Hittar du inte svaret? Kontakta oss för kostnadsfri konsultation."
+        keywords="faq redovisning, vanliga frågor bokföring, redovisningsbyrå frågor, bokföring kostnad, digital redovisning frågor, fortnox frågor"
+        canonical="/faq"
+      />
       <Navigation />
 
       {/* Hero Section - White */}

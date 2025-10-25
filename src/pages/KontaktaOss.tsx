@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, ArrowRight, Clock, Shield, Users } from "lucide-react";
 import { motion } from "framer-motion";
@@ -37,6 +38,12 @@ const KontaktaOss = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Kontakta Oss - ReRedo AB"
+        description="Kontakta oss för en kostnadsfri konsultation. E-post: info@reredo.se, Telefon: 031-123 456 78. Vi svarar inom 24h och hjälper dig komma igång med din ekonomihantering."
+        keywords="kontakta reredo, redovisningsbyrå kontakt, bokföring göteborg kontakt, kostnadsfri konsultation ekonomi, boka redovisning"
+        canonical="/kontakta-oss"
+      />
       <Navigation />
 
       {/* Hero Section - White */}

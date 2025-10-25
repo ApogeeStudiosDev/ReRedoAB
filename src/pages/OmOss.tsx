@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Heart, Shield, TrendingUp, Zap, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -33,6 +34,12 @@ const OmOss = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Om Oss - Digital Redovisningsbyrå i Göteborg"
+        description="ReRedo AB grundades 2024 av Salomo Holmgren, auktoriserad redovisningsekonom. Vi är en modern, digital redovisningsbyrå med fokus på ekonomistyrning och nära kundrelationer."
+        keywords="om reredo, salomo holmgren, redovisningsekonom göteborg, digital redovisningsbyrå, modern ekonomistyrning, redovisning göteborg"
+        canonical="/om-oss"
+      />
       <Navigation />
 
       {/* Hero Section - White */}
