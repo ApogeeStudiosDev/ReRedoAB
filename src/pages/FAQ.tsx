@@ -13,6 +13,14 @@ const FAQ = () => {
 
   const faqs = [
     {
+      question: "Tar ni emot kunder från hela Sverige?",
+      answer: "Ja, vi arbetar digitalt och har kunder runt om i landet. Alla möten och avstämningar sker smidigt via Teams, telefon eller mejl."
+    },
+    {
+      question: "Hjälper ni till med rådgivning också?",
+      answer: "Förutom löpande redovisning bistår vi gärna med rådgivning inom ekonomi, struktur och rutiner. Vi lägger stor vikt vid att du som kund ska förstå siffrorna och känna kontroll över ekonomin."
+    },
+    {
       question: "Vad kostar era tjänster?",
       answer: "Våra priser varierar beroende på omfattning och komplexitet. Vi erbjuder både fasta månadsavgifter och projektbaserad prissättning. Kontakta oss för en skräddarsydd offert."
     },
