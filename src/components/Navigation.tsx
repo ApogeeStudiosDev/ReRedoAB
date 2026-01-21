@@ -21,7 +21,7 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-32">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-70 transition-opacity">
             <img src="/reredo-logo.svg" alt="ReRedo" className="h-24" />

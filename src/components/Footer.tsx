@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-1">
             <div className="flex items-center mb-6">
-              <img src="/reredo-logo.svg" alt="ReRedo" className="h-10 invert" />
+              <img src="/reredo-logo.svg" alt="ReRedo" className="h-20 invert" />
             </div>
             <p className="font-inter text-white/70 mb-6 leading-relaxed">
               Digital redovisningsbyrå i Göteborg. Grundad 2024 av Salomo Holmgren med visionen att förenkla ekonomin för företagare.
