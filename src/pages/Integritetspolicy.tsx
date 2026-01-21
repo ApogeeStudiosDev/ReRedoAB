@@ -51,162 +51,248 @@ const Integritetspolicy = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="prose prose-lg max-w-none"
           >
-            <div className="space-y-12">
-              {/* Personuppgiftsansvarig */}
+            <div className="space-y-8">
+              {/* 1. Inledning */}
               <div className="border-2 border-black/10 rounded-2xl p-8">
                 <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Personuppgiftsansvarig
+                  1. Inledning
                 </h2>
                 <p className="font-inter text-black/70 leading-relaxed mb-4">
-                  ReRedo AB (org.nr 559497-7554) är personuppgiftsansvarig för behandlingen av dina personuppgifter.
+                  Vi värnar om din personliga integritet och behandlar alla personuppgifter i enlighet med gällande dataskyddsregler, inklusive EU:s dataskyddsförordning (GDPR) och kompletterande svensk lagstiftning. Dataskydd handlar om att skydda personuppgifter och därmed din personliga integritet när vi behandlar uppgifter om dig.
                 </p>
-                <div className="font-inter text-black/70">
-                  <p><strong>Adress:</strong> Baldersgatan 3, Göteborg</p>
-                  <p><strong>E-post:</strong> info@reredo.se</p>
-                  <p><strong>Telefon:</strong> +46 72-886 95 01</p>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  Syftet med denna integritetspolicy är att förklara hur vi samlar in, använder, lagrar och skyddar personuppgifter samt vilka rättigheter du har.
+                </p>
+              </div>
+
+              {/* 2. Personuppgiftsansvarig */}
+              <div className="border-2 border-black/10 rounded-2xl p-8">
+                <h2 className="font-sora font-bold text-2xl text-black mb-4">
+                  2. Personuppgiftsansvarig
+                </h2>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  Personuppgiftsansvarig för den behandling av personuppgifter som beskrivs i denna policy är:
+                </p>
+                <div className="font-inter text-black/70 mb-4 bg-black/5 p-4 rounded-xl">
+                  <p><strong>ReRedo AB</strong></p>
+                  <p>Organisationsnummer: 559497-7554</p>
+                  <p>Adress: Baldersgatan 3, Göteborg</p>
+                  <p>E-post: info@reredo.se</p>
+                  <p>Telefon: +46 72-886 95 01</p>
                 </div>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  Det är vi som bestämmer ändamålen med och medlen för behandlingen av personuppgifter i vår verksamhet.
+                </p>
               </div>
 
-              {/* Vilka uppgifter vi samlar in */}
+              {/* 3. Vilka personuppgifter vi behandlar */}
               <div className="border-2 border-black/10 rounded-2xl p-8">
                 <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Vilka personuppgifter samlar vi in?
+                  3. Vilka personuppgifter vi behandlar
                 </h2>
                 <p className="font-inter text-black/70 leading-relaxed mb-4">
-                  Vi samlar in och behandlar följande typer av personuppgifter:
+                  Vi behandlar endast de personuppgifter som är nödvändiga för att bedriva vår verksamhet och fullgöra våra avtal och rättsliga skyldigheter. Exempel på personuppgifter vi kan behandla:
+                </p>
+                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside mb-4">
+                  <li><strong>Kontaktuppgifter:</strong> namn, adress, e-postadress, telefonnummer</li>
+                  <li><strong>Identifikationsuppgifter:</strong> personnummer, samordningsnummer, organisationsnummer</li>
+                  <li><strong>Företagsrelaterade uppgifter:</strong> uppgifter om ditt företag, företrädare, firmatecknare m.m.</li>
+                  <li><strong>Ekonomiska uppgifter:</strong> löneuppgifter, kontonummer, bokföringsunderlag, fakturor, deklarationsunderlag</li>
+                  <li><strong>Uppgifter om anställda hos våra kunder:</strong> namn, personnummer, lön, förmåner, frånvaro, semester, m.m. i samband med löne- och HR-administration</li>
+                  <li><strong>Kommunikationsuppgifter:</strong> e-post, meddelanden och annan korrespondens med oss</li>
+                </ul>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  Vi behandlar inte känsliga personuppgifter om dig mer än när det är nödvändigt och motiverat (t.ex. vissa uppgifter i lönesystem kopplat till sjukfrånvaro), och då med särskilt skydd och restriktiv hantering.
+                </p>
+              </div>
+
+              {/* 4. Varifrån vi får personuppgifter */}
+              <div className="border-2 border-black/10 rounded-2xl p-8">
+                <h2 className="font-sora font-bold text-2xl text-black mb-4">
+                  4. Varifrån vi får personuppgifter
+                </h2>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  Vi samlar in personuppgifter framför allt:
                 </p>
                 <ul className="font-inter text-black/70 space-y-2 list-disc list-inside">
-                  <li>Kontaktuppgifter (namn, e-postadress, telefonnummer)</li>
-                  <li>Företagsinformation (företagsnamn, organisationsnummer)</li>
-                  <li>Kommunikation via kontaktformulär och e-post</li>
-                  <li>Bokningsinformation för konsultationer</li>
-                  <li>Teknisk data (IP-adress, webbläsarinformation) via cookies</li>
+                  <li>Direkt från dig</li>
+                  <li>Från ditt företag som är vår kund</li>
+                  <li>Från offentliga register och myndigheter (t.ex. Skatteverket och Bolagsverket)</li>
+                  <li>Från systemleverantörer när det krävs för att tillhandahålla våra tjänster</li>
                 </ul>
               </div>
 
-              {/* Ändamål */}
+              {/* 5. Ändamål med behandlingen */}
               <div className="border-2 border-black/10 rounded-2xl p-8">
                 <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Varför behandlar vi dina uppgifter?
+                  5. Ändamål med behandlingen
                 </h2>
                 <p className="font-inter text-black/70 leading-relaxed mb-4">
-                  Vi behandlar dina personuppgifter för följande ändamål:
+                  Vi behandlar personuppgifter för följande ändamål:
                 </p>
-                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside">
-                  <li>För att kunna kontakta dig och besvara förfrågningar</li>
-                  <li>För att boka och genomföra konsultationer</li>
-                  <li>För att leverera våra redovisningstjänster</li>
-                  <li>För att uppfylla rättsliga förpliktelser (bokföringslagen)</li>
-                  <li>För att förbättra vår webbplats och tjänster</li>
+                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside mb-4">
+                  <li>För att ingå och fullgöra avtal om redovisning, bokföring, lön, rådgivning och relaterade tjänster</li>
+                  <li>För att uppfylla rättsliga skyldigheter, t.ex. enligt bokföringslagen, skattelagstiftning, penningtvättsregler m.m.</li>
+                  <li>För att administrera kundrelationer, t.ex. fakturering, kundkommunikation och support</li>
+                  <li>För att administrera löner och andra HR-relaterade uppgifter för kunder som anlitar oss för lönehantering</li>
+                  <li>För att skydda våra och våra kunders rättigheter, t.ex. vid tvister eller krav</li>
+                  <li>För att utveckla och förbättra våra tjänster, t.ex. genom intern uppföljning och kvalitetsarbete, i den mån detta är förenligt med dataskyddsreglerna</li>
+                </ul>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  Vi behandlar inte personuppgifter för ändamål som är oförenliga med de ovan angivna.
+                </p>
+              </div>
+
+              {/* 6. Rättslig grund för behandlingen */}
+              <div className="border-2 border-black/10 rounded-2xl p-8">
+                <h2 className="font-sora font-bold text-2xl text-black mb-4">
+                  6. Rättslig grund för behandlingen
+                </h2>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  Vi behandlar personuppgifter med stöd av följande rättsliga grunder:
+                </p>
+                <ul className="font-inter text-black/70 space-y-3 list-disc list-inside">
+                  <li><strong>Avtal</strong> – när behandlingen är nödvändig för att ingå eller fullgöra avtal med dig eller ditt företag</li>
+                  <li><strong>Rättslig förpliktelse</strong> – när vi enligt lag är skyldiga att behandla uppgifter, t.ex. enligt bokföringslag, skattelagstiftning och penningtvättsregler</li>
+                  <li><strong>Berättigat intresse</strong> – när vi har ett berättigat intresse av att behandla personuppgifter som inte väger tyngre än den registrerades integritetsintresse (t.ex. för kundadministration, uppföljning, enklare marknadskommunikation till befintliga kunder)</li>
+                  <li><strong>Samtycke</strong> – i de fall där varken avtal, rättslig förpliktelse eller berättigat intresse räcker, inhämtar vi samtycke och då kan samtycke alltid återkallas</li>
                 </ul>
               </div>
 
-              {/* Rättslig grund */}
+              {/* 7. Hur länge vi sparar personuppgifter */}
               <div className="border-2 border-black/10 rounded-2xl p-8">
                 <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Rättslig grund för behandlingen
+                  7. Hur länge vi sparar personuppgifter
                 </h2>
                 <p className="font-inter text-black/70 leading-relaxed mb-4">
-                  Vi behandlar dina personuppgifter baserat på följande rättsliga grunder:
+                  Vi sparar personuppgifter endast så länge det behövs för de ändamål som de behandlas för eller så länge som krävs enligt lag.
                 </p>
-                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside">
-                  <li><strong>Samtycke:</strong> När du fyller i kontaktformulär eller bokar konsultation</li>
-                  <li><strong>Avtal:</strong> För att fullgöra våra åtaganden som redovisningsbyrå</li>
-                  <li><strong>Rättslig förpliktelse:</strong> För att uppfylla krav enligt bokföringslagen</li>
-                  <li><strong>Berättigat intresse:</strong> För att förbättra våra tjänster och webbplats</li>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  <strong>Exempel:</strong>
+                </p>
+                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside mb-4">
+                  <li>Bokföringsmaterial och underlag sparas enligt bokföringslagens krav under minst den lagstadgade tiden (7 år)</li>
+                  <li>Underlag till deklarationer och lönehantering sparas så länge det krävs av skattelagstiftningen</li>
+                  <li>Uppgifter som behandlas med stöd av samtycke raderas när samtycket återkallas eller inte längre behövs för ändamålet</li>
                 </ul>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  När personuppgifterna inte längre behövs eller vi inte längre har laglig grund för att behandla dem, raderas eller anonymiseras de på ett säkert sätt.
+                </p>
               </div>
 
-              {/* Lagringstid */}
+              {/* 8. Säkerhet och skydd av personuppgifter */}
               <div className="border-2 border-black/10 rounded-2xl p-8">
                 <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Hur länge sparar vi dina uppgifter?
+                  8. Säkerhet och skydd av personuppgifter
+                </h2>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  Vi arbetar systematiskt med informationssäkerhet för att skydda personuppgifter mot oavsiktlig eller olaglig förstöring, förlust, ändring, obehörigt röjande eller obehörig åtkomst.
+                </p>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  <strong>Exempel på säkerhetsåtgärder:</strong>
+                </p>
+                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside mb-4">
+                  <li>Tekniska skyddsåtgärder som behörighetsstyrning, lösenordshantering, kryptering där det behövs och loggning i relevanta system</li>
+                  <li>Rutiner för att endast de personer som behöver tillgång till uppgifter för sina arbetsuppgifter ska ha det</li>
+                  <li>Avtal och instruktioner med personal, leverantörer och samarbetspartners kring hantering av personuppgifter</li>
+                  <li>Löpande risk- och sårbarhetsbedömningar kopplat till vår behandling av personuppgifter</li>
+                </ul>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  Vi strävar efter att ha en säkerhetsnivå som är lämplig med hänsyn till de risker som behandlingen innebär och vilken typ av personuppgifter som behandlas.
+                </p>
+              </div>
+
+              {/* 9. Delning av personuppgifter */}
+              <div className="border-2 border-black/10 rounded-2xl p-8">
+                <h2 className="font-sora font-bold text-2xl text-black mb-4">
+                  9. Delning av personuppgifter
+                </h2>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  Vi säljer inte dina personuppgifter. Däremot kan vi komma att dela personuppgifter med:
+                </p>
+                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside mb-4">
+                  <li><strong>Leverantörer och personuppgiftsbiträden</strong> som tillhandahåller t.ex. bokföringssystem, lönesystem, molntjänster, IT-drift, revisions- eller juriststöd, under förutsättning att de endast behandlar uppgifter enligt våra instruktioner och genom personuppgiftsbiträdesavtal</li>
+                  <li><strong>Myndigheter</strong> såsom Skatteverket, Kronofogden, Försäkringskassan, Arbetsförmedlingen eller andra myndigheter när vi är skyldiga enligt lag eller myndighetsbeslut att lämna ut uppgifter</li>
+                  <li><strong>Banker och betalningsförmedlare</strong> i samband med löneutbetalningar, utbetalningar och fakturahantering</li>
+                </ul>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  Om personuppgifter överförs till land utanför EU/EES görs det endast om det finns laglig grund och tillräcklig skyddsnivå enligt GDPR, t.ex. genom EU:s standardavtalsklausuler eller beslut om adekvat skyddsnivå.
+                </p>
+              </div>
+
+              {/* 10. Dina rättigheter */}
+              <div className="border-2 border-black/10 rounded-2xl p-8">
+                <h2 className="font-sora font-bold text-2xl text-black mb-4">
+                  10. Dina rättigheter
+                </h2>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  Som registrerad har du ett antal rättigheter enligt dataskyddsreglerna. Dessa rättigheter syftar till att ge dig insyn och kontroll över hur dina personuppgifter behandlas.
+                </p>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  <strong>Du har bland annat rätt att:</strong>
+                </p>
+                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside mb-4">
+                  <li><strong>Få information</strong> om hur dina personuppgifter behandlas</li>
+                  <li><strong>Begära registerutdrag</strong> – få en bekräftelse på om personuppgifter om dig behandlas samt ta del av dessa uppgifter</li>
+                  <li><strong>Begära rättelse</strong> – få felaktiga eller ofullständiga uppgifter korrigerade</li>
+                  <li><strong>Begära radering</strong> ("rätten att bli bortglömd") – i vissa fall få personuppgifter raderade, t.ex. om uppgifterna inte längre behövs för ändamålet och vi inte har laglig skyldighet att spara dem</li>
+                  <li><strong>Begära begränsning av behandling</strong> – i vissa situationer få behandlingen begränsad</li>
+                  <li><strong>Invända mot viss behandling</strong> – t.ex. behandling som grundar sig på berättigat intresse</li>
+                  <li><strong>Återkalla samtycke</strong> – om behandlingen bygger på samtycke kan du när som helst återkalla detta för framtida behandling</li>
+                </ul>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  Observera att vissa rättigheter är begränsade när vi är skyldiga enligt annan lagstiftning att behandla personuppgifter (t.ex. bokföringslagen eller skattelagstiftning). I sådana fall kan vi inte alltid radera eller begränsa behandlingen även om du begär det.
+                </p>
+              </div>
+
+              {/* 11. Klagomål */}
+              <div className="border-2 border-black/10 rounded-2xl p-8">
+                <h2 className="font-sora font-bold text-2xl text-black mb-4">
+                  11. Klagomål
+                </h2>
+                <p className="font-inter text-black/70 leading-relaxed mb-4">
+                  Om du anser att vi behandlar dina personuppgifter i strid med gällande dataskyddsregler ber vi dig i första hand kontakta oss så att vi kan reda ut situationen.
+                </p>
+                <p className="font-inter text-black/70 leading-relaxed">
+                  Du har också rätt att lämna klagomål till tillsynsmyndigheten för dataskydd:<br />
+                  <strong>Integritetsskyddsmyndigheten (IMY)</strong><br />
+                  Webbplats: <a href="https://www.imy.se" target="_blank" rel="noopener noreferrer" className="text-black underline hover:text-black/70">www.imy.se</a>
+                </p>
+              </div>
+
+              {/* 12. Personuppgiftsincidenter */}
+              <div className="border-2 border-black/10 rounded-2xl p-8">
+                <h2 className="font-sora font-bold text-2xl text-black mb-4">
+                  12. Personuppgiftsincidenter
                 </h2>
                 <p className="font-inter text-black/70 leading-relaxed">
-                  Vi sparar dina personuppgifter endast så länge som det är nödvändigt för de ändamål de samlades in för.
-                  Kontaktuppgifter från förfrågningar sparas i upp till 24 månader om inget kundförhållande uppstår.
-                  Bokföringsmaterial sparas enligt bokföringslagen i 7 år. Efter dessa perioder raderas eller anonymiseras uppgifterna.
+                  Vi har rutiner för att upptäcka, hantera och dokumentera eventuella personuppgiftsincidenter. Vid en incident som innebär risk för dina rättigheter och friheter kommer vi, när det krävs enligt lag, att anmäla incidenten till Integritetsskyddsmyndigheten och i förekommande fall informera de registrerade.
                 </p>
               </div>
 
-              {/* Delning av uppgifter */}
+              {/* 13. Ändringar i denna policy */}
               <div className="border-2 border-black/10 rounded-2xl p-8">
                 <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Vilka delar vi uppgifter med?
-                </h2>
-                <p className="font-inter text-black/70 leading-relaxed mb-4">
-                  Vi delar endast dina personuppgifter med:
-                </p>
-                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside">
-                  <li>Systemleverantörer (t.ex. Fortnox) för att leverera våra tjänster</li>
-                  <li>Myndigheter när det krävs enligt lag (t.ex. Skatteverket)</li>
-                  <li>IT-leverantörer som hjälper oss driva vår webbplats</li>
-                </ul>
-                <p className="font-inter text-black/70 leading-relaxed mt-4">
-                  Vi säljer aldrig dina personuppgifter till tredje part.
-                </p>
-              </div>
-
-              {/* Cookies */}
-              <div className="border-2 border-black/10 rounded-2xl p-8">
-                <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Cookies
-                </h2>
-                <p className="font-inter text-black/70 leading-relaxed mb-4">
-                  Vår webbplats använder cookies för att förbättra din upplevelse. Cookies är små textfiler som lagras på din enhet.
-                </p>
-                <p className="font-inter text-black/70 leading-relaxed mb-4">
-                  Vi använder följande typer av cookies:
-                </p>
-                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside">
-                  <li><strong>Nödvändiga cookies:</strong> Krävs för att webbplatsen ska fungera</li>
-                  <li><strong>Analytiska cookies:</strong> Hjälper oss förstå hur besökare använder webbplatsen</li>
-                </ul>
-                <p className="font-inter text-black/70 leading-relaxed mt-4">
-                  Du kan hantera cookies i din webbläsares inställningar.
-                </p>
-              </div>
-
-              {/* Dina rättigheter */}
-              <div className="border-2 border-black/10 rounded-2xl p-8">
-                <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Dina rättigheter
-                </h2>
-                <p className="font-inter text-black/70 leading-relaxed mb-4">
-                  Enligt GDPR har du följande rättigheter:
-                </p>
-                <ul className="font-inter text-black/70 space-y-2 list-disc list-inside">
-                  <li><strong>Rätt till tillgång:</strong> Du kan begära information om vilka uppgifter vi har om dig</li>
-                  <li><strong>Rätt till rättelse:</strong> Du kan begära att felaktiga uppgifter korrigeras</li>
-                  <li><strong>Rätt till radering:</strong> Du kan begära att dina uppgifter raderas</li>
-                  <li><strong>Rätt till begränsning:</strong> Du kan begära att behandlingen begränsas</li>
-                  <li><strong>Rätt till dataportabilitet:</strong> Du kan begära att få ut dina uppgifter i ett strukturerat format</li>
-                  <li><strong>Rätt att invända:</strong> Du kan invända mot behandling baserad på berättigat intresse</li>
-                </ul>
-                <p className="font-inter text-black/70 leading-relaxed mt-4">
-                  Kontakta oss på info@reredo.se för att utöva dina rättigheter.
-                </p>
-              </div>
-
-              {/* Klagomål */}
-              <div className="border-2 border-black/10 rounded-2xl p-8">
-                <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Klagomål
+                  13. Ändringar i denna policy
                 </h2>
                 <p className="font-inter text-black/70 leading-relaxed">
-                  Om du anser att vi behandlar dina personuppgifter i strid med GDPR har du rätt att lämna klagomål till
-                  Integritetsskyddsmyndigheten (IMY). Besök <a href="https://www.imy.se" target="_blank" rel="noopener noreferrer" className="text-black underline hover:text-black/70">www.imy.se</a> för mer information.
+                  Vi kan komma att uppdatera denna integritetspolicy för att återspegla förändringar i vår verksamhet eller gällande lagstiftning. Den senaste versionen finns alltid publicerad på vår webbplats.
+                </p>
+                <p className="font-inter text-black/50 text-sm mt-4">
+                  Senast uppdaterad: Januari 2025
                 </p>
               </div>
 
-              {/* Uppdateringar */}
-              <div className="border-2 border-black/10 rounded-2xl p-8">
-                <h2 className="font-sora font-bold text-2xl text-black mb-4">
-                  Ändringar i integritetspolicyn
-                </h2>
-                <p className="font-inter text-black/70 leading-relaxed">
-                  Vi kan komma att uppdatera denna integritetspolicy. Vid väsentliga ändringar informerar vi dig via e-post
-                  eller genom ett meddelande på vår webbplats. Senast uppdaterad: Januari 2025.
+              {/* Contact box */}
+              <div className="bg-black rounded-2xl p-8 text-center">
+                <h3 className="font-sora font-bold text-xl text-white mb-4">
+                  Har du frågor om hur vi behandlar dina personuppgifter?
+                </h3>
+                <p className="font-inter text-white/70 mb-2">
+                  Kontakta oss på <a href="mailto:info@reredo.se" className="text-white underline hover:text-white/80">info@reredo.se</a>
+                </p>
+                <p className="font-inter text-white/70">
+                  eller ring <a href="tel:+46728869501" className="text-white underline hover:text-white/80">+46 72-886 95 01</a>
                 </p>
               </div>
             </div>
