@@ -16,6 +16,7 @@ const BokaKonsultation = lazy(() => import("./pages/BokaKonsultation"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const PricingPackages = lazy(() => import("./pages/PricingPackages"));
+const Integritetspolicy = lazy(() => import("./pages/Integritetspolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Loading component for suspense fallback
@@ -45,6 +46,7 @@ const App = () => (
               <Route path="/priser" element={<PricingPackages />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/integritetspolicy" element={<Integritetspolicy />} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

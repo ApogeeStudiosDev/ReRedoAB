@@ -93,7 +93,6 @@ const VaraTjanster = () => {
     column1: [
       "Fortnox-koppling & digital flödeshantering",
       "Moms- och arbetsgivardeklarationer",
-      "Leverantörsreskontra & kundfakturauppföljning",
       "Årsbokslut & deklaration"
     ],
     column2: [
@@ -256,7 +255,7 @@ const VaraTjanster = () => {
             viewport={{ once: true }}
             className="font-sora font-bold text-4xl md:text-5xl text-white text-center mb-16"
           >
-            Vad ingår
+            Tjänster i urval
           </motion.h2>
           <div className="grid md:grid-cols-2 gap-12">
             <motion.div

@@ -104,7 +104,7 @@ const Footer = () => {
                 <Location01Icon className="w-5 h-5 text-white/60" />
                 <div>
                   <p className="font-inter text-sm text-white/60">Plats</p>
-                  <p className="font-inter text-white">Centrala Göteborg</p>
+                  <p className="font-inter text-white">Baldersgatan 3</p>
                 </div>
               </div>
             </div>
@@ -118,9 +118,13 @@ const Footer = () => {
               ©2025 ReRedo AB. Alla rättigheter förbehållna.
             </p>
             <div className="flex items-center space-x-6 text-sm text-white/60">
-              <span>Org.nr: 559493-0031</span>
+              <span>Org.nr: 559497-7554</span>
+              <span>•</span>
+              <span>Säte: Göteborg</span>
               <span>•</span>
               <span>Godkänd för F-skatt</span>
+              <span>•</span>
+              <Link to="/integritetspolicy" className="hover:text-white transition-colors">Integritetspolicy</Link>
             </div>
           </div>
         </div>

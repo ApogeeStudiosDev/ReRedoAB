@@ -42,7 +42,7 @@ const FAQ = () => {
     },
     {
       question: "Vad händer om Skatteverket gör en revision?",
-      answer: "Vi bistår er fullt ut vid eventuella skatterevisioner. Med vår noggranna dokumentation och digitala spårbarhet är vi väl förberedda att hantera alla typer av granskningar från myndigheter."
+      answer: "Vid en revision från Skatteverket eller annan myndighet finns vi med er i processen. Vi arbetar löpande med dokumentation och digital spårbarhet i enlighet med gällande regelverk, vilket bidrar till att både vi och våra kunder är väl förberedda inför frågor eller granskningar från myndigheter."
     },
     {
       question: "Vilka digitala verktyg använder ni?",
@@ -174,7 +174,7 @@ const FAQ = () => {
               onClick={() => navigate('/kontakta-oss')}
               variant="outline"
               size="lg"
-              className="font-inter font-semibold rounded-full text-base px-8 border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300"
+              className="font-inter font-semibold rounded-full text-base px-8 border-2 border-white text-white bg-transparent hover:bg-white hover:!text-black transition-all duration-300"
             >
               Kontakta oss direkt
             </Button>
