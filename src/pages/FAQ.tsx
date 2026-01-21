@@ -47,10 +47,6 @@ const FAQ = () => {
     {
       question: "Vilka digitala verktyg använder ni?",
       answer: "Vi arbetar främst med Fortnox som är vårt huvudsakliga ekonomiprogram, kompletterat med mobilbaserade lösningar och andra beprövade digitala verktyg för att effektivisera processer och ge er realtidsinsyn i er ekonomi."
-    },
-    {
-      question: "Kan ni hjälpa med både löpande bokföring och löner?",
-      answer: "Ja, löneadministration ingår i vår löpande bokföring. Vi hanterar löner, skatter och arbetsgivaravgifter och ser till att allt rapporteras korrekt till Skatteverket."
     }
   ];
 
