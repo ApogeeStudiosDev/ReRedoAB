@@ -3,10 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ChevronLeft, ChevronRight, Calendar, CheckCircle, Package, X, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle, Package, X, Check, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
-import DateTimeSelector from "@/components/DateTimeSelector";
 import BookingConfirmation from "@/components/BookingConfirmation";
 import type { Database } from "@/integrations/supabase/types";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,10 +33,19 @@ interface BookingFormData {
   phone: string;
   currentSituation: string[];
   challenges: string[];
-  selectedDate: Date | null;
-  selectedTime: string;
   additionalInfo: string;
   selectedPackage?: SelectedPackage | null;
+}
+
+interface FormErrors {
+  companyName?: string;
+  organizationNumber?: string;
+  industry?: string;
+  companySize?: string;
+  contactName?: string;
+  email?: string;
+  currentSituation?: string;
+  challenges?: string;
 }
 
 const BookingForm = () => {
@@ -45,6 +53,7 @@ const BookingForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [submittedData, setSubmittedData] = useState<BookingFormData | null>(null);
+  const [errors, setErrors] = useState<FormErrors>({});
   const { toast } = useToast();
   const [formData, setFormData] = useState<BookingFormData>({
     companyName: "",
@@ -56,8 +65,6 @@ const BookingForm = () => {
     phone: "",
     currentSituation: [],
     challenges: [],
-    selectedDate: null,
-    selectedTime: "",
     additionalInfo: "",
     selectedPackage: null
   });
@@ -85,11 +92,64 @@ const BookingForm = () => {
     });
   };
 
-  const totalSteps = 4;
+  const totalSteps = 3;
   const progress = (currentStep / totalSteps) * 100;
 
+  // Validation functions
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateOrgNumber = (orgNumber: string): boolean => {
+    // Swedish org number format: XXXXXX-XXXX or XXXXXXXXXX
+    const cleanedNumber = orgNumber.replace(/[-\s]/g, '');
+    return /^\d{10}$/.test(cleanedNumber);
+  };
+
+  const validateStep = (step: number): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (step === 1) {
+      if (!formData.companyName.trim()) {
+        newErrors.companyName = "Företagsnamn krävs";
+      }
+      if (!formData.organizationNumber.trim()) {
+        newErrors.organizationNumber = "Organisationsnummer krävs";
+      } else if (!validateOrgNumber(formData.organizationNumber)) {
+        newErrors.organizationNumber = "Ogiltigt format (XXXXXX-XXXX)";
+      }
+      if (!formData.industry.trim()) {
+        newErrors.industry = "Bransch krävs";
+      }
+      if (!formData.companySize) {
+        newErrors.companySize = "Välj företagsstorlek";
+      }
+      if (!formData.contactName.trim()) {
+        newErrors.contactName = "Kontaktperson krävs";
+      }
+      if (!formData.email.trim()) {
+        newErrors.email = "E-post krävs";
+      } else if (!validateEmail(formData.email)) {
+        newErrors.email = "Ogiltig e-postadress";
+      }
+    }
+
+    if (step === 2) {
+      if (formData.currentSituation.length === 0) {
+        newErrors.currentSituation = "Välj minst ett alternativ";
+      }
+      if (formData.challenges.length === 0) {
+        newErrors.challenges = "Välj minst en utmaning";
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleNext = () => {
-    if (currentStep < totalSteps) {
+    if (validateStep(currentStep) && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -102,14 +162,10 @@ const BookingForm = () => {
 
   const handleInputChange = (field: keyof BookingFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleDateChange = (date: Date | null) => {
-    setFormData(prev => ({ ...prev, selectedDate: date }));
-  };
-
-  const handleTimeChange = (time: string) => {
-    setFormData(prev => ({ ...prev, selectedTime: time }));
+    // Clear error when user starts typing
+    if (errors[field as keyof FormErrors]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
   };
 
   const handleMultiSelect = (field: 'currentSituation' | 'challenges', option: string) => {
@@ -130,16 +186,19 @@ const BookingForm = () => {
       }
       return prev;
     });
+    // Clear error when user makes selection
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
   };
 
   const handleSubmit = async () => {
+    if (!validateStep(currentStep)) return;
+
     setIsSubmitting(true);
 
     try {
-      const bookingDateTime = formData.selectedDate && formData.selectedTime
-        ? new Date(formData.selectedDate.toISOString().split('T')[0] + 'T' + formData.selectedTime)
-        : null;
-
+      // 1. Save to Supabase database
       const bookingData: BookingInsert = {
         company_name: formData.companyName,
         organization_number: formData.organizationNumber,
@@ -150,46 +209,53 @@ const BookingForm = () => {
         phone: formData.phone || null,
         current_situation: formData.currentSituation,
         challenges: formData.challenges,
-        booking_date: bookingDateTime?.toISOString() || null,
         additional_info: formData.additionalInfo || null,
         selected_package_id: formData.selectedPackage?.id || null,
         status: 'pending'
       };
 
-      const { error } = await supabase
+      const { error: dbError } = await supabase
         .from('bookings')
         .insert([bookingData]);
 
-      if (error) {
-        console.error('Booking submission error:', error);
-        toast({
-          title: "Fel vid bokning",
-          description: "Ett fel uppstod när vi försökte spara din bokning. Försök igen.",
-          variant: "destructive"
-        });
-        return;
+      if (dbError) {
+        console.error('Database error:', dbError);
+        throw new Error('Kunde inte spara bokningen');
       }
 
-      try {
-        const { error: emailError } = await supabase.functions.invoke('send-booking-confirmation', {
-          body: {
-            email: formData.email,
-            name: formData.contactName,
-            companyName: formData.companyName,
-            bookingDate: bookingDateTime?.toISOString() || null
-          }
-        });
-
-        if (emailError) {
-          console.error('Email send error:', emailError);
+      // 2. Send emails via Edge Function
+      const { error: emailError } = await supabase.functions.invoke('send-booking-confirmation', {
+        body: {
+          email: formData.email,
+          name: formData.contactName,
+          phone: formData.phone,
+          companyName: formData.companyName,
+          organizationNumber: formData.organizationNumber,
+          industry: formData.industry,
+          companySize: formData.companySize,
+          currentSituation: formData.currentSituation,
+          challenges: formData.challenges,
+          additionalInfo: formData.additionalInfo,
+          selectedPackage: formData.selectedPackage ? {
+            name: formData.selectedPackage.name,
+            monthly_price: formData.selectedPackage.monthly_price,
+            company_type: formData.selectedPackage.company_type,
+            package_tier: formData.selectedPackage.package_tier,
+            included_services: formData.selectedPackage.included_services
+          } : null
         }
-      } catch (emailError) {
-        console.error('Email function error:', emailError);
+      });
+
+      if (emailError) {
+        console.error('Email error:', emailError);
+        // Don't throw - booking is saved, just log email error
       }
 
+      // Show confirmation
       setSubmittedData({...formData});
       setShowConfirmation(true);
 
+      // Reset form after delay
       setTimeout(() => {
         setFormData({
           companyName: "",
@@ -201,8 +267,6 @@ const BookingForm = () => {
           phone: "",
           currentSituation: [],
           challenges: [],
-          selectedDate: null,
-          selectedTime: "",
           additionalInfo: "",
           selectedPackage: null
         });
@@ -210,11 +274,11 @@ const BookingForm = () => {
         localStorage.removeItem('selectedPackage');
       }, 500);
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Submission error:', error);
       toast({
         title: "Fel vid bokning",
-        description: "Ett oväntat fel uppstod. Försök igen.",
+        description: error.message || "Ett oväntat fel uppstod. Försök igen.",
         variant: "destructive"
       });
     } finally {
@@ -270,8 +334,11 @@ const BookingForm = () => {
                   value={formData.companyName}
                   onChange={(e) => handleInputChange("companyName", e.target.value)}
                   placeholder="Ditt företags namn"
-                  className="h-12 bg-white border-2 border-black/10 focus:border-black rounded-xl font-inter"
+                  className={`h-12 bg-white border-2 ${errors.companyName ? 'border-red-500' : 'border-black/10'} focus:border-black rounded-xl font-inter`}
                 />
+                {errors.companyName && (
+                  <p className="text-red-500 text-xs mt-1 font-inter">{errors.companyName}</p>
+                )}
               </div>
 
               <div>
@@ -282,9 +349,12 @@ const BookingForm = () => {
                   id="organizationNumber"
                   value={formData.organizationNumber}
                   onChange={(e) => handleInputChange("organizationNumber", e.target.value)}
-                  placeholder="123456-7890"
-                  className="h-12 bg-white border-2 border-black/10 focus:border-black rounded-xl font-inter"
+                  placeholder="XXXXXX-XXXX"
+                  className={`h-12 bg-white border-2 ${errors.organizationNumber ? 'border-red-500' : 'border-black/10'} focus:border-black rounded-xl font-inter`}
                 />
+                {errors.organizationNumber && (
+                  <p className="text-red-500 text-xs mt-1 font-inter">{errors.organizationNumber}</p>
+                )}
               </div>
 
               <div>
@@ -296,8 +366,11 @@ const BookingForm = () => {
                   value={formData.industry}
                   onChange={(e) => handleInputChange("industry", e.target.value)}
                   placeholder="T.ex. IT, handel, konsulting"
-                  className="h-12 bg-white border-2 border-black/10 focus:border-black rounded-xl font-inter"
+                  className={`h-12 bg-white border-2 ${errors.industry ? 'border-red-500' : 'border-black/10'} focus:border-black rounded-xl font-inter`}
                 />
+                {errors.industry && (
+                  <p className="text-red-500 text-xs mt-1 font-inter">{errors.industry}</p>
+                )}
               </div>
 
               <div>
@@ -308,7 +381,7 @@ const BookingForm = () => {
                   id="companySize"
                   value={formData.companySize}
                   onChange={(e) => handleInputChange("companySize", e.target.value)}
-                  className="w-full h-12 rounded-xl border-2 border-black/10 focus:border-black bg-white px-4 font-inter text-sm"
+                  className={`w-full h-12 rounded-xl border-2 ${errors.companySize ? 'border-red-500' : 'border-black/10'} focus:border-black bg-white px-4 font-inter text-sm`}
                 >
                   <option value="">Välj företagsstorlek</option>
                   <option value="1-5">1-5 anställda</option>
@@ -316,6 +389,9 @@ const BookingForm = () => {
                   <option value="21-50">21-50 anställda</option>
                   <option value="51+">51+ anställda</option>
                 </select>
+                {errors.companySize && (
+                  <p className="text-red-500 text-xs mt-1 font-inter">{errors.companySize}</p>
+                )}
               </div>
 
               <div className="border-t border-black/10 pt-6">
@@ -331,8 +407,11 @@ const BookingForm = () => {
                       value={formData.contactName}
                       onChange={(e) => handleInputChange("contactName", e.target.value)}
                       placeholder="Ditt namn"
-                      className="h-12 bg-white border-2 border-black/10 focus:border-black rounded-xl font-inter"
+                      className={`h-12 bg-white border-2 ${errors.contactName ? 'border-red-500' : 'border-black/10'} focus:border-black rounded-xl font-inter`}
                     />
+                    {errors.contactName && (
+                      <p className="text-red-500 text-xs mt-1 font-inter">{errors.contactName}</p>
+                    )}
                   </div>
 
                   <div>
@@ -345,8 +424,11 @@ const BookingForm = () => {
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       placeholder="din@email.se"
-                      className="h-12 bg-white border-2 border-black/10 focus:border-black rounded-xl font-inter"
+                      className={`h-12 bg-white border-2 ${errors.email ? 'border-red-500' : 'border-black/10'} focus:border-black rounded-xl font-inter`}
                     />
+                    {errors.email && (
+                      <p className="text-red-500 text-xs mt-1 font-inter">{errors.email}</p>
+                    )}
                   </div>
 
                   <div>
@@ -420,8 +502,8 @@ const BookingForm = () => {
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-black/60 mt-2 font-inter">
-                  {formData.currentSituation.length}/3 valda
+                <p className={`text-xs mt-2 font-inter ${errors.currentSituation ? 'text-red-500' : 'text-black/60'}`}>
+                  {errors.currentSituation || `${formData.currentSituation.length}/3 valda`}
                 </p>
               </div>
 
@@ -459,8 +541,8 @@ const BookingForm = () => {
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-black/60 mt-2 font-inter">
-                  {formData.challenges.length}/3 valda
+                <p className={`text-xs mt-2 font-inter ${errors.challenges ? 'text-red-500' : 'text-black/60'}`}>
+                  {errors.challenges || `${formData.challenges.length}/3 valda`}
                 </p>
               </div>
             </div>
@@ -474,40 +556,57 @@ const BookingForm = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-          >
-            <DateTimeSelector
-              selectedDate={formData.selectedDate}
-              selectedTime={formData.selectedTime}
-              onDateChange={handleDateChange}
-              onTimeChange={handleTimeChange}
-            />
-          </motion.div>
-        );
-
-      case 4:
-        return (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
             className="space-y-6"
           >
             <div className="text-center">
               <h2 className="font-sora font-bold text-2xl text-black mb-2">
-                Slutför din bokning
+                Granska och skicka
               </h2>
               <p className="font-inter text-black/70 text-sm">
-                {formData.selectedPackage
-                  ? 'Vi diskuterar ditt valda paket och kontaktar er inom 24 timmar för att bekräfta tiden'
-                  : 'Vi kontaktar er inom 24 timmar för att bekräfta tiden'}
+                Vi kontaktar dig inom 24 timmar för att boka en tid
               </p>
             </div>
 
             <div className="space-y-4">
+              {/* Summary */}
+              <div className="bg-black/5 rounded-xl p-4 space-y-3">
+                <h3 className="font-sora font-semibold text-sm text-black">Sammanfattning</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm font-inter">
+                  <span className="text-black/60">Företag:</span>
+                  <span className="text-black font-medium">{formData.companyName}</span>
+                  <span className="text-black/60">Org.nr:</span>
+                  <span className="text-black">{formData.organizationNumber}</span>
+                  <span className="text-black/60">Kontakt:</span>
+                  <span className="text-black">{formData.contactName}</span>
+                  <span className="text-black/60">E-post:</span>
+                  <span className="text-black">{formData.email}</span>
+                  {formData.phone && (
+                    <>
+                      <span className="text-black/60">Telefon:</span>
+                      <span className="text-black">{formData.phone}</span>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Selected Package */}
+              {formData.selectedPackage && (
+                <div className="bg-black rounded-xl p-4">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <Package className="w-5 h-5 text-white" />
+                    <h3 className="font-sora font-semibold text-sm text-white">Valt paket</h3>
+                  </div>
+                  <p className="font-sora font-bold text-lg text-white">{formData.selectedPackage.name}</p>
+                  <p className="text-white/80 text-sm font-inter">
+                    {formData.selectedPackage.monthly_price.toLocaleString('sv-SE')} kr/mån • {formData.selectedPackage.company_type === 'AB' ? 'Aktiebolag' : 'Enskild firma'}
+                  </p>
+                </div>
+              )}
+
+              {/* Additional Info */}
               <div>
                 <Label htmlFor="additionalInfo" className="font-inter font-semibold text-sm mb-2 block text-black">
-                  Ytterligare information (valfritt)
+                  Ytterligare information <span className="text-black/50 font-normal">(valfritt)</span>
                 </Label>
                 <Textarea
                   id="additionalInfo"
@@ -519,40 +618,24 @@ const BookingForm = () => {
                 />
               </div>
 
-              {formData.selectedDate && formData.selectedTime && (
-                <div className="bg-black rounded-xl p-6 border-2 border-black">
-                  <div className="flex items-center justify-center space-x-3 mb-3">
-                    <Calendar className="w-5 h-5 text-white" />
-                    <h3 className="font-sora font-semibold text-base text-white">Bokad tid</h3>
-                  </div>
-                  <p className="font-inter text-sm text-white/90 text-center">
-                    {formData.selectedDate.toLocaleDateString('sv-SE', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })} kl. {formData.selectedTime.slice(0, 5)}
-                  </p>
-                </div>
-              )}
-
-              {formData.selectedPackage && (
-                <div className="bg-black rounded-xl p-6 border-2 border-black">
-                  <div className="flex items-center justify-center space-x-3 mb-3">
-                    <Package className="w-5 h-5 text-white" />
-                    <h3 className="font-sora font-semibold text-base text-white">Valt paket</h3>
-                  </div>
-                  <div className="text-center">
-                    <p className="font-sora font-semibold text-lg text-white">{formData.selectedPackage.name}</p>
-                    <p className="text-2xl font-bold text-white font-sora">
-                      {formData.selectedPackage.monthly_price.toLocaleString('sv-SE')} kr/mån
-                    </p>
-                    <p className="text-xs text-white/70 mt-1 font-inter">
-                      För {formData.selectedPackage.company_type === 'AB' ? 'Aktiebolag' : 'Enskild firma'}
-                    </p>
-                  </div>
-                </div>
-              )}
+              {/* What happens next */}
+              <div className="bg-black/5 rounded-xl p-4">
+                <h3 className="font-sora font-semibold text-sm text-black mb-2">Vad händer nu?</h3>
+                <ul className="space-y-2 text-sm font-inter text-black/70">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-black mt-0.5 flex-shrink-0" />
+                    <span>Vi skickar en bekräftelse till din e-post</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-black mt-0.5 flex-shrink-0" />
+                    <span>Vi kontaktar dig inom 24 timmar för att boka tid</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-black mt-0.5 flex-shrink-0" />
+                    <span>30-45 min kostnadsfri konsultation via Teams</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </motion.div>
         );
@@ -570,8 +653,6 @@ const BookingForm = () => {
       case 2:
         return formData.currentSituation.length > 0 && formData.challenges.length > 0;
       case 3:
-        return formData.selectedDate && formData.selectedTime;
-      case 4:
         return true;
       default:
         return false;
@@ -587,15 +668,15 @@ const BookingForm = () => {
             email: submittedData.email,
             phone: submittedData.phone,
             companyName: submittedData.companyName,
-            bookingDate: submittedData.selectedDate,
-            selectedTime: submittedData.selectedTime,
+            bookingDate: null,
+            selectedTime: "",
             selectedPackage: submittedData.selectedPackage
           }}
           onClose={() => setShowConfirmation(false)}
         />
       )}
 
-      <div className="w-full bg-white border-2 border-black/10 rounded-2xl overflow-hidden">
+      <div className="w-full bg-white border-2 border-black/10 rounded-2xl">
         <div className="p-8 border-b border-black/10">
           <h3 className="font-sora font-bold text-center text-2xl text-black mb-6">
             Boka kostnadsfri konsultation
@@ -634,9 +715,9 @@ const BookingForm = () => {
               <span>Steg {currentStep} av {totalSteps}</span>
               <span>{Math.round(progress)}% klart</span>
             </div>
-            <div className="h-2 bg-black/5 rounded-full overflow-hidden">
+            <div className="h-2 bg-black/5 rounded-full relative">
               <motion.div
-                className="h-full bg-black"
+                className="h-full bg-black rounded-full absolute left-0 top-0"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.3 }}
@@ -676,8 +757,17 @@ const BookingForm = () => {
                 disabled={!isStepValid() || isSubmitting}
                 className="font-inter font-semibold rounded-full bg-black text-white hover:bg-black/90 transition-all duration-300 flex items-center space-x-2"
               >
-                <span>{isSubmitting ? "Skickar..." : "Skicka ansökan"}</span>
-                <CheckCircle className="w-4 h-4" />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Skickar...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Skicka förfrågan</span>
+                    <CheckCircle className="w-4 h-4" />
+                  </>
+                )}
               </Button>
             )}
           </div>

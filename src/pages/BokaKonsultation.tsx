@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import BookingForm from "@/components/BookingForm";
-import { Clock, Shield, Users, Calculator } from "lucide-react";
+import { Clock, Handshake, CheckCircle, Banknote } from "lucide-react";
 import { motion } from "framer-motion";
 
 const BokaKonsultation = () => {
@@ -13,17 +13,17 @@ const BokaKonsultation = () => {
       description: "Digitalt möte på Teams där vi träffas för att lära känna varandra och varandras företag."
     },
     {
-      icon: Shield,
+      icon: Handshake,
       title: "Utan förpliktelser",
       description: "Kostnadsfritt möte utan några förpliktelser eller krav på er sida."
     },
     {
-      icon: Users,
+      icon: CheckCircle,
       title: "Du behöver inte förbereda något",
       description: "Vi står för förberedelsen – ni behöver bara delta"
     },
     {
-      icon: Calculator,
+      icon: Banknote,
       title: "Transparent prissättning",
       description: "Vi diskuterar öppet om priser och lösningar - inga dolda kostnader."
     }
@@ -46,8 +46,12 @@ const BokaKonsultation = () => {
       <SEO
         title="Boka Konsultation - Kostnadsfri Rådgivning"
         description="Boka en kostnadsfri konsultation med ReRedo AB. 30-45 minuters digitalt möte utan förpliktelser. Vi diskuterar dina behov och presenterar skräddarsydda lösningar för din ekonomihantering."
-        keywords="boka konsultation redovisning, kostnadsfri ekonomikonsultation, bokföring rådgivning göteborg, gratis bokföringsmöte, boka redovisningsmöte"
+        keywords="boka konsultation redovisning, kostnadsfri ekonomikonsultation, bokföring rådgivning göteborg, gratis bokföringsmöte, boka redovisningsmöte, gratis konsultation bokföring, ekonomirådgivning"
         canonical="/boka-konsultation"
+        breadcrumbs={[
+          { name: "Hem", url: "/" },
+          { name: "Boka Konsultation", url: "/boka-konsultation" }
+        ]}
       />
       <Navigation />
 

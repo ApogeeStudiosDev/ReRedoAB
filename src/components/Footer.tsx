@@ -1,6 +1,5 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail01Icon, TelephoneIcon, Location01Icon } from "@hugeicons/react";
 import { Link } from "react-router-dom";
-import LogoIcon from "./LogoIcon";
 
 const Footer = () => {
   return (
@@ -9,9 +8,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand Section */}
           <div className="md:col-span-1">
-            <div className="flex items-center space-x-3 mb-6">
-              <LogoIcon className="w-8 h-8 text-white" />
-              <span className="font-sora font-bold text-2xl text-white">ReRedo</span>
+            <div className="flex items-center mb-6">
+              <img src="/reredo-logo.svg" alt="ReRedo" className="h-10 invert" />
             </div>
             <p className="font-inter text-white/70 mb-6 leading-relaxed">
               Digital redovisningsbyrå i Göteborg. Grundad 2024 av Salomo Holmgren med visionen att förenkla ekonomin för företagare.
@@ -87,7 +85,7 @@ const Footer = () => {
             <h3 className="font-sora font-bold text-lg text-white mb-6">Kontakt</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-white/60" />
+                <Mail01Icon className="w-5 h-5 text-white/60" />
                 <div>
                   <p className="font-inter text-sm text-white/60">E-post</p>
                   <p className="font-inter text-white">info@reredo.se</p>
@@ -95,15 +93,15 @@ const Footer = () => {
               </div>
 
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-white/60" />
+                <TelephoneIcon className="w-5 h-5 text-white/60" />
                 <div>
                   <p className="font-inter text-sm text-white/60">Telefon</p>
-                  <p className="font-inter text-white">031-123 456 78</p>
+                  <a href="tel:+46728869501" className="font-inter text-white hover:text-white/80 transition-colors">+46 72-886 95 01</a>
                 </div>
               </div>
 
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-white/60" />
+                <Location01Icon className="w-5 h-5 text-white/60" />
                 <div>
                   <p className="font-inter text-sm text-white/60">Plats</p>
                   <p className="font-inter text-white">Centrala Göteborg</p>
@@ -120,7 +118,7 @@ const Footer = () => {
               ©2025 ReRedo AB. Alla rättigheter förbehållna.
             </p>
             <div className="flex items-center space-x-6 text-sm text-white/60">
-              <span>Org.nr: 559XXX-XXXX</span>
+              <span>Org.nr: 559493-0031</span>
               <span>•</span>
               <span>Godkänd för F-skatt</span>
             </div>

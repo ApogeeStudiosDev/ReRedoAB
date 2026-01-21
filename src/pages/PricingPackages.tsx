@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowRight, ChevronDown } from "lucide-react";
+import { Tick02Icon, ArrowRight01Icon, ArrowDown01Icon } from "@hugeicons/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -14,9 +14,10 @@ const PricingPackages = () => {
 
   const abPackages = [
     {
-      name: "AB Bas",
-      price: "1,200",
-      description: "För det lilla aktiebolaget som vill ha en trygg och enkel ekonomihantering till fast pris. Paketet passar små aktiebolag som vill ha en smidig och pålitlig hantering av bokföring, moms och arbetsgivardeklaration. Jag ser till att redovisningen sköts löpande, så att du kan fokusera på verksamheten.",
+      name: "Bas",
+      price: "1,650",
+      description: "För det lilla aktiebolaget som vill ha en trygg och enkel ekonomihantering till fast pris.",
+      fullDescription: " Paketet passar små aktiebolag som vill ha en smidig och pålitlig hantering av bokföring, moms och arbetsgivardeklaration. Jag ser till att redovisningen sköts löpande, så att du kan fokusera på verksamheten.",
       features: [
         "Löpande bokföring",
         "Momsdeklaration",
@@ -25,35 +26,39 @@ const PricingPackages = () => {
       popular: false
     },
     {
-      name: "AB Standard",
+      name: "Standard",
       price: "2,850",
-      description: "För aktiebolaget som vill ha framförhållning och ordning på siffrorna. Paketet passar aktiebolag som vill ha en helhetslösning där allt flyter på utan att du behöver tänka på deadlines eller årssavslut. Du får mer heltäckande lösning av den löpande redovisningen och påminnelser om viktiga datum – en smidig lösning som sparar både tid och energi.",
+      description: "För aktiebolaget som vill ha framförhållning och ordning på siffrorna.",
+      fullDescription: " Paketet passar aktiebolag som vill ha en helhetslösning där allt flyter på utan att du behöver tänka på deadlines eller årssavslut. Du får mer heltäckande lösning av den löpande redovisningen och påminnelser om viktiga datum – en smidig lösning som sparar både tid och energi.",
       features: [
         "Allt i Bas",
         "Årsbokslut",
         "Inkomstdeklaration",
         "Påminnelser om viktiga datum"
       ],
-      popular: false
+      popular: true
     },
     {
-      name: "AB Professional",
+      name: "Analys",
       price: "4,850",
-      description: "För dig som vill ha insikt och kontroll. Paketet passar företag som vill följa utvecklingen varje månad och fatta beslut baserade på faktiska resultat. Du får löpande rapporter, KPI-uppföljning och kvartalsvisa genomgångar som ger en tydlig bild av hur företaget mår och vart den är på väg.",
+      description: "För dig som vill ha insikt och kontroll.",
+      fullDescription: " Paketet passar företag som vill följa utvecklingen varje månad och fatta beslut baserade på faktiska resultat. Du får löpande rapporter, KPI-uppföljning och kvartalsvisa genomgångar som ger en tydlig bild av hur företaget mår och vart ni är på väg.",
       features: [
         "Allt i Standard",
         "Månadsrapporter",
         "Kvartalsgenomgång",
         "KPI-uppföljning"
       ],
-      popular: true
+      popular: false
     },
     {
-      name: "AB Premium",
-      price: "7,200",
-      description: "För dig som vill styra utvecklingen framåt. Paketet passar växande aktiebolag som vill arbeta mer strategiskt med sin ekonomi. Du får resultat- och likviditetsprognoser, budgetarbete och månadssvisa genomgångar som ger dig full överblick och tydliga beslutsunderlag för nästa steg i företagets utveckling.",
+      name: "Kontroll",
+      price: null,
+      priceText: "Pris vid förfrågan",
+      description: "För dig som vill styra utvecklingen framåt.",
+      fullDescription: " Paketet passar växande aktiebolag som vill arbeta mer strategiskt med sin ekonomi. Du får resultat- och likviditetsprognoser, budgetarbete och månadssvisa genomgångar som ger dig full överblick och tydliga beslutsunderlag för nästa steg i företagets utveckling.",
       features: [
-        "Allt i Professional",
+        "Allt i Analys",
         "Resultat- och Likviditetsprognoser",
         "Budgetering och måluppfyllelse",
         "Månadsgenomgång"
@@ -61,11 +66,13 @@ const PricingPackages = () => {
       popular: false
     },
     {
-      name: "AB Partner",
-      price: "16,800",
-      description: "För dig som vill ta ekonomistyrning till nästa nivå. Paketet passar företag som vill ha en dedikerad ekonomiansvarig med fokus på uppföljning, analys och framåtblickande planering. Du får kontinuerlig rapportering och regelbundna möten där vi fördjupar arbetet med företagets ekonomi och mål.",
+      name: "Partner",
+      price: null,
+      priceText: "Pris vid förfrågan",
+      description: "För dig som vill ta ekonomistyrning till nästa nivå.",
+      fullDescription: " Paketet passar företag som vill ha en dedikerad ekonomiansvarig med fokus på uppföljning, analys och framåtblickande planering. Du får kontinuerlig rapportering och regelbundna möten där vi fördjupar arbetet med företagets ekonomi och mål.",
       features: [
-        "Allt i Professional",
+        "Allt i Analys",
         "Outsourcad ekonomiavdelning",
         "Regelbundna möten",
         "Löpande tillgänglighet",
@@ -77,9 +84,10 @@ const PricingPackages = () => {
 
   const efPackages = [
     {
-      name: "EF Start",
+      name: "Bas",
       price: "700",
-      description: "För dig som vill ha en enkel och trygg start. Paketet passar enskilda firmor som vill ha hjälp med löpande bokföring och moms till fast månadskostnad. Allt hanteras digitalt och smidigt med mobilbaserade lösningar.",
+      description: "För dig som vill ha en enkel och trygg start.",
+      fullDescription: " Paketet passar enskilda firmor som vill ha hjälp med löpande bokföring och moms till fast månadskostnad. Allt hanteras digitalt och smidigt med mobilbaserade lösningar.",
       features: [
         "Löpande bokföring",
         "Momsdeklaration"
@@ -88,29 +96,31 @@ const PricingPackages = () => {
       popular: false
     },
     {
-      name: "EF Växande",
+      name: "Standard",
       price: "1,475",
-      description: "För dig som vill få bättre överblick och struktur. Paketet passar firmor som har kommit en bit på vägen och vill ha mer ordning och framförhållning i ekonomin. Du får helhetslösningen med bokslut och deklaration, samt hjälp att planera skatten på ett enkelt sätt.",
+      description: "För dig som vill få bättre överblick och struktur.",
+      fullDescription: " Paketet passar firmor som har kommit en bit på vägen och vill ha mer ordning och framförhållning i ekonomin. Du får helhetslösningen med bokslut och deklaration, samt hjälp att planera skatten på ett enkelt sätt.",
       features: [
-        "Allt i Start",
+        "Allt i Bas",
         "Årsbokslut & deklaration",
         "Påminnelser om viktiga datum",
         "Enklare skatteplanering"
       ],
-      note: "Gäller aktiebolag med mindre verksamhetsvolym – priset anpassas efter verksamhetens omfattning",
-      popular: false
+      note: "Gäller enskild firma med mindre verksamhetsvolym – priset anpassas efter verksamhetens omfattning",
+      popular: true
     },
     {
-      name: "EF Professionell",
+      name: "Analys",
       price: "2,750",
-      description: "För dig som vill ha full koll på resultat och utveckling. Paketet är för etablerade företag som vill följa verksamheten mer noggrant och planera framåt med tydliga siffror som grund. Du får rapporter, uppföljning och prognoser som ger en tydlig bild av hur företaget utvecklas över tid.",
+      description: "För dig som vill ha full koll på resultat och utveckling.",
+      fullDescription: " Paketet är för etablerade företag som vill följa verksamheten mer noggrant och planera framåt med tydliga siffror som grund. Du får rapporter, uppföljning och prognoser som ger en tydlig bild av hur företaget utvecklas över tid.",
       features: [
-        "Allt i Växande",
+        "Allt i Standard",
         "Månadsrapporter",
         "Kvartalsvis genomgång",
         "Prognoser för skatt och resultat"
       ],
-      note: "Gäller aktiebolag med mindre/normal verksamhetsvolym – priset anpassas efter verksamhetens omfattning",
+      note: "Gäller enskild firma med mindre/normal verksamhetsvolym – priset anpassas efter verksamhetens omfattning",
       popular: false
     }
   ];
@@ -125,8 +135,17 @@ const PricingPackages = () => {
       <SEO
         title="Priser - Baspaket från 700 kr/mån"
         description="Transparenta priser för redovisningstjänster. AB-paket från 1,200 kr/mån, enskild firma från 700 kr/mån. Fasta månadskostnader utan dolda avgifter. Boka kostnadsfri konsultation."
-        keywords="redovisning pris, bokföring kostnad, aktiebolag redovisning pris, enskild firma bokföring pris, redovisningsbyrå göteborg priser, fast månadsavgift redovisning"
+        keywords="redovisning pris, bokföring kostnad, aktiebolag redovisning pris, enskild firma bokföring pris, redovisningsbyrå göteborg priser, fast månadsavgift redovisning, ekonomitjänster pris, bokföring månadspris"
         canonical="/priser"
+        breadcrumbs={[
+          { name: "Hem", url: "/" },
+          { name: "Priser", url: "/priser" }
+        ]}
+        serviceSchema={{
+          name: "Redovisningspaket",
+          description: "Fasta paket för aktiebolag och enskild firma. Löpande bokföring, moms, årsbokslut och ekonomistyrning.",
+          price: "700"
+        }}
       />
       <Navigation />
 
@@ -165,7 +184,7 @@ const PricingPackages = () => {
             className="text-center mb-16"
           >
             <h2 className="font-sora font-bold text-4xl md:text-5xl text-white mb-4">
-              Aktiebolag (AB)
+              Aktiebolag
             </h2>
             <p className="font-inter text-lg text-white/70">
               5 anpassade paket att välja mellan
@@ -193,31 +212,44 @@ const PricingPackages = () => {
                   {pkg.name}
                 </h3>
                 <div className="text-center mb-4">
-                  <span className="font-sora text-4xl font-bold text-white">{pkg.price}</span>
-                  <span className="font-inter text-white/60 ml-1">kr/mån</span>
+                  {pkg.price ? (
+                    <>
+                      <span className="font-sora text-4xl font-bold text-white">{pkg.price}</span>
+                      <span className="font-inter text-white/60 ml-1">kr/mån</span>
+                    </>
+                  ) : (
+                    <span className="font-sora text-2xl font-bold text-white">{pkg.priceText}</span>
+                  )}
                 </div>
 
                 <div className="mb-6">
-                  <p className="font-inter text-white/60 text-sm text-center leading-relaxed line-clamp-2">
+                  <p className="font-inter text-white/60 text-sm text-center leading-relaxed">
                     {pkg.description}
+                    {expandedAB !== index && (
+                      <button
+                        onClick={() => setExpandedAB(index)}
+                        className="ml-1 text-white/50 hover:text-white/80 transition-colors inline"
+                      >
+                        Visa mer
+                      </button>
+                    )}
                   </p>
-                  <button
-                    onClick={() => setExpandedAB(expandedAB === index ? null : index)}
-                    className="mt-2 mx-auto flex items-center gap-1 text-white/50 hover:text-white/80 text-xs transition-colors"
-                  >
-                    {expandedAB === index ? 'Visa mindre' : 'Läs mer'}
-                    <ChevronDown className={`w-3 h-3 transition-transform ${expandedAB === index ? 'rotate-180' : ''}`} />
-                  </button>
                   <AnimatePresence>
                     {expandedAB === index && (
                       <motion.p
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.3 }}
                         className="font-inter text-white/60 text-sm text-center leading-relaxed mt-2 overflow-hidden"
                       >
-                        {pkg.description}
+                        {pkg.fullDescription}
+                        <button
+                          onClick={() => setExpandedAB(null)}
+                          className="ml-1 text-white/50 hover:text-white/80 transition-colors"
+                        >
+                          Visa mindre
+                        </button>
                       </motion.p>
                     )}
                   </AnimatePresence>
@@ -226,7 +258,7 @@ const PricingPackages = () => {
                 <ul className="space-y-3 mb-6 flex-grow">
                   {pkg.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-white/60 flex-shrink-0 mt-0.5" />
+                      <Tick02Icon className="w-5 h-5 text-white/60 flex-shrink-0 mt-0.5" />
                       <span className="font-inter text-white/80 text-sm">{feature}</span>
                     </li>
                   ))}
@@ -254,7 +286,7 @@ const PricingPackages = () => {
             className="text-center mb-16"
           >
             <h2 className="font-sora font-bold text-4xl md:text-5xl text-black mb-4">
-              Enskild Firma (EF)
+              Enskild Firma
             </h2>
             <p className="font-inter text-lg text-black/70">
               3 anpassade paket att välja mellan
@@ -271,6 +303,11 @@ const PricingPackages = () => {
                 viewport={{ once: true }}
                 className="border-2 border-black/10 rounded-2xl p-8 hover:border-black hover:shadow-xl transition-all duration-300 flex flex-col"
               >
+                {pkg.popular && (
+                  <div className="bg-black text-white text-xs font-semibold px-3 py-1 rounded-full mb-4 text-center w-fit mx-auto">
+                    Populärast
+                  </div>
+                )}
                 <h3 className="font-sora font-bold text-2xl text-black mb-2 text-center">
                   {pkg.name}
                 </h3>
@@ -280,26 +317,33 @@ const PricingPackages = () => {
                 </div>
 
                 <div className="mb-6">
-                  <p className="font-inter text-black/60 text-sm text-center leading-relaxed line-clamp-2">
+                  <p className="font-inter text-black/60 text-sm text-center leading-relaxed">
                     {pkg.description}
+                    {expandedEF !== index && (
+                      <button
+                        onClick={() => setExpandedEF(index)}
+                        className="ml-1 text-black/50 hover:text-black/80 transition-colors inline"
+                      >
+                        Visa mer
+                      </button>
+                    )}
                   </p>
-                  <button
-                    onClick={() => setExpandedEF(expandedEF === index ? null : index)}
-                    className="mt-2 mx-auto flex items-center gap-1 text-black/50 hover:text-black/80 text-xs transition-colors"
-                  >
-                    {expandedEF === index ? 'Visa mindre' : 'Läs mer'}
-                    <ChevronDown className={`w-3 h-3 transition-transform ${expandedEF === index ? 'rotate-180' : ''}`} />
-                  </button>
                   <AnimatePresence>
                     {expandedEF === index && (
                       <motion.p
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.3 }}
                         className="font-inter text-black/60 text-sm text-center leading-relaxed mt-2 overflow-hidden"
                       >
-                        {pkg.description}
+                        {pkg.fullDescription}
+                        <button
+                          onClick={() => setExpandedEF(null)}
+                          className="ml-1 text-black/50 hover:text-black/80 transition-colors"
+                        >
+                          Visa mindre
+                        </button>
                       </motion.p>
                     )}
                   </AnimatePresence>
@@ -308,7 +352,7 @@ const PricingPackages = () => {
                 <ul className="space-y-3 mb-4 flex-grow">
                   {pkg.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-black/40 flex-shrink-0 mt-0.5" />
+                      <Tick02Icon className="w-5 h-5 text-black/40 flex-shrink-0 mt-0.5" />
                       <span className="font-inter text-black/80 text-sm">{feature}</span>
                     </li>
                   ))}
@@ -363,7 +407,7 @@ const PricingPackages = () => {
               className="font-inter font-semibold rounded-full text-base px-8 bg-white text-black hover:bg-white/90 transition-all duration-300 group"
             >
               Boka kostnadsfri konsultation
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight01Icon className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </div>

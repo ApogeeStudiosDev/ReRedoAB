@@ -2,7 +2,16 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Monitor, Target, Users, Zap, DollarSign, Smartphone, ArrowDown } from "lucide-react";
+import {
+  ArrowRight01Icon,
+  FileValidationIcon,
+  Analytics02Icon,
+  AnalyticsUpIcon,
+  Idea01Icon,
+  SecurityCheckIcon,
+  Rocket01Icon,
+  ArrowDown01Icon
+} from "@hugeicons/react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -11,32 +20,32 @@ const Index = () => {
 
   const services = [
     {
-      icon: Monitor,
+      icon: FileValidationIcon,
       title: "Komplett ekonomihantering",
       description: "Allt från löpande bokföring, moms och årsredovisning till att ansvara för kundfakturor, leverantörsbetalningar och löner."
     },
     {
-      icon: Target,
+      icon: Analytics02Icon,
       title: "Månatlig styrning – inte bara uppföljning",
       description: "Varje månad får du rapporter och analyser som visar vad som fungerar, vad som kostar mer än det smakar och vad som måste ändras nu – inte om ett år."
     },
     {
-      icon: Users,
+      icon: AnalyticsUpIcon,
       title: "Prognoser och scenarier",
       description: "Vi gör prognoser för resultat, kassaflöde och likviditet. Du slipper gissa – vi visar svart på vitt hur olika beslut påverkar framtiden."
     },
     {
-      icon: Zap,
+      icon: Idea01Icon,
       title: "Strategisk rådgivning",
       description: "Vi är ditt bollplank i avgörande frågor – prissättning, investeringar och expansion. Du får beslutsunderlag för att kunna fatta rätt beslut i tid."
     },
     {
-      icon: DollarSign,
+      icon: SecurityCheckIcon,
       title: "Trygghet och transparens",
       description: "Vi arbetar med fasta paketpris och tydlig kommunikation. Du vet alltid vad som ingår, vad det kostar – och får besked direkt när något kräver din uppmärksamhet."
     },
     {
-      icon: Smartphone,
+      icon: Rocket01Icon,
       title: "Tillväxt på riktigt",
       description: "Småbolag som chansar kör ofta i diket. Vi ser till att du inte behöver gissa. Med rapporter, nyckeltal och prognoser får du styrning och struktur som gör att ditt bolag kan växa med kontroll och precision."
     }
@@ -45,10 +54,15 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="Hem - Digital Redovisningsbyrå i Göteborg"
+        title="Digital Redovisningsbyrå i Göteborg"
         description="Digital redovisningsbyrå i Göteborg. Vi erbjuder löpande bokföring, ekonomistyrning, rapporter och rådgivning för AB och enskilda firmor. Baspaket från 700 kr/mån. Boka kostnadsfri konsultation idag."
-        keywords="redovisningsbyrå göteborg, digital redovisning, ekonomistyrning, bokföring, fortnox redovisning, extern ekonomiavdelning, skatterådgivning, löpande bokföring, aktiebolag redovisning, enskild firma bokföring"
+        keywords="redovisningsbyrå göteborg, digital redovisning, ekonomistyrning, bokföring, fortnox redovisning, extern ekonomiavdelning, skatterådgivning, löpande bokföring, aktiebolag redovisning, enskild firma bokföring, redovisningskonsult, bokföring aktiebolag, ekonomitjänster"
         canonical="/"
+        serviceSchema={{
+          name: "Redovisningstjänster",
+          description: "Komplett ekonomihantering för AB och enskilda firmor. Löpande bokföring, ekonomistyrning, rapporter och rådgivning.",
+          price: "700"
+        }}
       />
       <Navigation />
 
@@ -102,7 +116,7 @@ const Index = () => {
               className="font-inter font-semibold rounded-full text-base px-8 bg-black text-white hover:bg-black/90 transition-all duration-300 group"
             >
               Boka kostnadsfri konsultation
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight01Icon className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
 
@@ -112,7 +126,7 @@ const Index = () => {
             transition={{ duration: 1, delay: 1 }}
             className="mt-20"
           >
-            <ArrowDown className="w-6 h-6 text-black/30 mx-auto animate-bounce" />
+            <ArrowDown01Icon className="w-6 h-6 text-black/30 mx-auto animate-bounce" />
           </motion.div>
         </div>
       </section>
@@ -249,7 +263,7 @@ const Index = () => {
               <h3 className="font-sora font-bold text-2xl text-white mb-3">Jag driver Aktiebolag</h3>
               <p className="font-inter text-white/70 mb-6">5 anpassade paket att välja mellan</p>
               <span className="font-inter font-semibold text-white flex items-center group-hover:translate-x-2 transition-transform">
-                Visa AB-paket <ArrowRight className="ml-2 w-5 h-5" />
+                Visa AB-paket <ArrowRight01Icon className="ml-2 w-5 h-5" />
               </span>
             </motion.button>
             <motion.button
@@ -263,7 +277,7 @@ const Index = () => {
               <h3 className="font-sora font-bold text-2xl text-white mb-3">Jag driver Enskild firma</h3>
               <p className="font-inter text-white/70 mb-6">3 anpassade paket att välja mellan</p>
               <span className="font-inter font-semibold text-white flex items-center group-hover:translate-x-2 transition-transform">
-                Visa EF-paket <ArrowRight className="ml-2 w-5 h-5" />
+                Visa EF-paket <ArrowRight01Icon className="ml-2 w-5 h-5" />
               </span>
             </motion.button>
           </div>

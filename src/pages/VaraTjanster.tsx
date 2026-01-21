@@ -2,7 +2,14 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { Monitor, Target, Users, Zap, ArrowRight, Check } from "lucide-react";
+import {
+  FileValidationIcon,
+  PaymentSuccess02Icon,
+  Analytics02Icon,
+  Calculator01Icon,
+  ArrowRight01Icon,
+  Tick02Icon
+} from "@hugeicons/react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -11,8 +18,8 @@ const VaraTjanster = () => {
 
   const services = [
     {
-      icon: Monitor,
-      title: "Ekonomins grund",
+      icon: FileValidationIcon,
+      title: "Digital Redovisning",
       description: "Vi tar hand om den dagliga ekonomin – helt digitalt och alltid uppdaterad. Du får trygghet i att allt sköts korrekt och i tid.",
       items: [
         "Löpande bokföring i Fortnox",
@@ -23,18 +30,18 @@ const VaraTjanster = () => {
       ]
     },
     {
-      icon: Target,
-      title: "Administration & betalningsflöden",
+      icon: PaymentSuccess02Icon,
+      title: "Affärsstöd & Betalningsflöden",
       description: "Vi avlastar dig från vardagsmomenten så att du kan fokusera på din verksamhet.",
       items: [
         "Förberedda leverantörsbetalningar – du godkänner enkelt med BankID",
         "Fakturahantering (utskick & uppföljning av kundfakturor)",
-        "Struktur och rutiner för löneutbetalningar"
+        "Digitala processer för smidiga löneutbetalningar"
       ]
     },
     {
-      icon: Users,
-      title: "Styrning & analys",
+      icon: Analytics02Icon,
+      title: "Styrning & Analys",
       description: "Här förvandlas siffror till styrning. Vi analyserar nyckeltal, följer upp KPI:er och ger dig beslutsunderlag för att styra företaget framåt.",
       items: [
         "KPI-uppföljning: bruttomarginal, täckningsgrad, kassaflöde, soliditet m.m.",
@@ -46,8 +53,8 @@ const VaraTjanster = () => {
       ]
     },
     {
-      icon: Zap,
-      title: "Skatt & strategi",
+      icon: Calculator01Icon,
+      title: "Skatt & Strategi",
       description: "Vi ser till att du betalar rätt skatt – inte mer. Vi planerar smart, hittar avdrag och ger stöd i komplexa skattefrågor.",
       items: [
         "Skatteplanering för bolag och ägare",
@@ -72,8 +79,8 @@ const VaraTjanster = () => {
     },
     {
       number: "3",
-      title: "Löpande",
-      description: "Bokföring, löner och administration"
+      title: "Arbetsflöde",
+      description: "Redovisning, löner och affärsstöd"
     },
     {
       number: "4",
@@ -87,7 +94,7 @@ const VaraTjanster = () => {
       "Fortnox-koppling & digital flödeshantering",
       "Moms- och arbetsgivardeklarationer",
       "Leverantörsreskontra & kundfakturauppföljning",
-      "Löneadministration & löneutbetalningar"
+      "Årsbokslut & deklaration"
     ],
     column2: [
       "Månatliga rapporter och analyser med nyckeltal",
@@ -109,8 +116,17 @@ const VaraTjanster = () => {
       <SEO
         title="Våra Tjänster - Bokföring & Ekonomistyrning"
         description="Komplett ekonomihantering för AB och enskild firma. Löpande bokföring, moms, årsredovisning, löner, ekonomistyrning och rådgivning. Vi är din externa ekonomiavdelning."
-        keywords="bokföring göteborg, löpande bokföring, ekonomistyrning, årsredovisning, momsredovisning, lönehantering, fortnox bokföring, extern ekonomiavdelning, redovisningskonsult"
+        keywords="bokföring göteborg, löpande bokföring, ekonomistyrning, årsredovisning, momsredovisning, lönehantering, fortnox bokföring, extern ekonomiavdelning, redovisningskonsult, skatterådgivning, bokslut, KPI uppföljning"
         canonical="/vara-tjanster"
+        breadcrumbs={[
+          { name: "Hem", url: "/" },
+          { name: "Våra Tjänster", url: "/vara-tjanster" }
+        ]}
+        serviceSchema={{
+          name: "Ekonomitjänster",
+          description: "Löpande bokföring, administration, styrning & analys samt skatt & strategi för företag.",
+          price: "700"
+        }}
       />
       <Navigation />
 
@@ -126,7 +142,7 @@ const VaraTjanster = () => {
               Våra tjänster
             </h1>
             <div className="font-sora text-3xl md:text-4xl text-black/60 mb-12">
-              Löpande bokföring • Administration • Styrning & analys • Skatt & strategi
+              Digital Redovisning • Affärsstöd • Styrning & Analys • Skatt & Strategi
             </div>
           </motion.div>
 
@@ -136,7 +152,7 @@ const VaraTjanster = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-inter text-xl text-black/70 max-w-3xl mx-auto mb-12 leading-relaxed"
           >
-            Digital ekonomihantering för företag i alla storlekar. Tillsammans förenklar vi det komplexa och ger dig full kontroll över ekonomin.
+            Digital ekonomihantering för det moderna företaget. Tillsammans gör vi det komplexa begripligt och ger dig full kontroll över ekonomin.
           </motion.p>
 
           <motion.div
@@ -150,7 +166,7 @@ const VaraTjanster = () => {
               className="font-inter font-semibold rounded-full text-base px-8 bg-black text-white hover:bg-black/90 transition-all duration-300 group"
             >
               Boka kostnadsfri konsultation
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight01Icon className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </div>
@@ -183,7 +199,7 @@ const VaraTjanster = () => {
                   <ul className="space-y-3">
                     {service.items.map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-white/50 flex-shrink-0 mt-0.5" />
+                        <Tick02Icon className="w-5 h-5 text-white/50 flex-shrink-0 mt-0.5" />
                         <span className="font-inter text-white/80 text-sm leading-relaxed">
                           {item}
                         </span>
@@ -252,7 +268,7 @@ const VaraTjanster = () => {
             >
               {included.column1.map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                  <Tick02Icon className="w-6 h-6 text-white flex-shrink-0 mt-1" />
                   <span className="font-inter text-white/90 text-lg leading-relaxed">
                     {item}
                   </span>
@@ -268,7 +284,7 @@ const VaraTjanster = () => {
             >
               {included.column2.map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                  <Tick02Icon className="w-6 h-6 text-white flex-shrink-0 mt-1" />
                   <span className="font-inter text-white/90 text-lg leading-relaxed">
                     {item}
                   </span>
@@ -323,7 +339,7 @@ const VaraTjanster = () => {
               className="font-inter font-semibold rounded-full text-base px-8 bg-white text-black hover:bg-white/90 transition-all duration-300 group"
             >
               Boka kostnadsfri konsultation
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight01Icon className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </div>

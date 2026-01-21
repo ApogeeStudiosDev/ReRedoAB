@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ArrowDown01Icon, ArrowRight01Icon } from "@hugeicons/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +17,10 @@ const FAQ = () => {
       answer: "Ja, vi arbetar digitalt och har kunder runt om i landet. Alla möten och avstämningar sker smidigt via Teams, telefon eller mejl."
     },
     {
+      question: "Hur byter jag till er från min nuvarande byrå?",
+      answer: "Det är enklare än du tror! Vi hjälper dig med hela övergången så att bytet sker sömlöst utan att störa din verksamhet. Du ger oss bara kontaktuppgifter till din tidigare konsult så sköter vi resten av det tekniska. Vi ser till att dina digitala flöden sätts upp korrekt från start så att du snabbt kan börja njuta av en enklare ekonomivardag."
+    },
+    {
       question: "Hjälper ni till med rådgivning också?",
       answer: "Förutom löpande redovisning bistår vi gärna med rådgivning inom ekonomi, struktur och rutiner. Vi lägger stor vikt vid att du som kund ska förstå siffrorna och känna kontroll över ekonomin."
     },
@@ -26,7 +30,7 @@ const FAQ = () => {
     },
     {
       question: "Hur snabbt kan ni komma igång?",
-      answer: "Vi kan oftast påbörja arbetet inom 1-2 veckor efter att vi kommit överens om uppdraget. För akuta behov kan vi prioritera och komma igång snabbare."
+      answer: "Vi vet att tid är viktigt för dig som företagare. Tack vare våra digitala processer och smidig onboarding är vi oftast igång redan samma vecka. Har du ett brådskande ärende eller en deadline som närmar sig? Hör av dig direkt så gör vi vårt yttersta."
     },
     {
       question: "Arbetar ni med alla typer av företag?",
@@ -35,10 +39,6 @@ const FAQ = () => {
     {
       question: "Vad ingår i den kostnadsfria konsultationen?",
       answer: "Vår kostnadsfria konsultation är ett 30-45 minuters digitalt möte på Teams där vi lär känna varandra och era företag. Vi diskuterar era behov och presenterar skräddarsydda lösningar utan kostnad eller förpliktelser."
-    },
-    {
-      question: "Hur ofta uppdateras bokföringen?",
-      answer: "Vi arbetar med löpande bokföring vilket innebär att era transaktioner hanteras kontinuerligt. Månadsrapporter levereras regelbundet och ni har alltid tillgång till aktuell ekonomisk information via Fortnox."
     },
     {
       question: "Vad händer om Skatteverket gör en revision?",
@@ -57,10 +57,15 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="Vanliga Frågor (FAQ) - ReRedo AB"
+        title="Vanliga Frågor (FAQ) - Redovisning & Bokföring"
         description="Svar på vanliga frågor om våra redovisningstjänster. Läs om priser, onboarding, digitala lösningar, säkerhet och hur vi arbetar. Hittar du inte svaret? Kontakta oss för kostnadsfri konsultation."
-        keywords="faq redovisning, vanliga frågor bokföring, redovisningsbyrå frågor, bokföring kostnad, digital redovisning frågor, fortnox frågor"
+        keywords="faq redovisning, vanliga frågor bokföring, redovisningsbyrå frågor, bokföring kostnad, digital redovisning frågor, fortnox frågor, redovisning pris, ekonomitjänster göteborg"
         canonical="/faq"
+        breadcrumbs={[
+          { name: "Hem", url: "/" },
+          { name: "FAQ", url: "/faq" }
+        ]}
+        faqItems={faqs}
       />
       <Navigation />
 
@@ -108,7 +113,7 @@ const FAQ = () => {
                   <span className="font-sora font-bold text-xl text-black pr-4">
                     {faq.question}
                   </span>
-                  <ChevronDown
+                  <ArrowDown01Icon
                     className={`w-6 h-6 text-black flex-shrink-0 transition-transform duration-300 ${
                       openIndex === index ? 'rotate-180' : ''
                     }`}
@@ -163,7 +168,7 @@ const FAQ = () => {
               className="font-inter font-semibold rounded-full text-base px-8 bg-white text-black hover:bg-white/90 transition-all duration-300 group"
             >
               Boka kostnadsfri konsultation
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight01Icon className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               onClick={() => navigate('/kontakta-oss')}

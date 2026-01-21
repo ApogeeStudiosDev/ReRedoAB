@@ -19,8 +19,8 @@ const KontaktaOss = () => {
     {
       icon: Phone,
       title: "Telefon",
-      value: "031-123 456 78",
-      href: "tel:031123456"
+      value: "+46 72-886 95 01",
+      href: "tel:+46728869501"
     },
     {
       icon: MapPin,
@@ -39,10 +39,14 @@ const KontaktaOss = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEO
-        title="Kontakta Oss - ReRedo AB"
-        description="Kontakta oss för en kostnadsfri konsultation. E-post: info@reredo.se, Telefon: 031-123 456 78. Vi svarar inom 24h och hjälper dig komma igång med din ekonomihantering."
-        keywords="kontakta reredo, redovisningsbyrå kontakt, bokföring göteborg kontakt, kostnadsfri konsultation ekonomi, boka redovisning"
+        title="Kontakta Oss - Redovisningsbyrå Göteborg"
+        description="Kontakta oss för en kostnadsfri konsultation. E-post: info@reredo.se, Telefon: +46 72-886 95 01. Vi svarar inom 24h och hjälper dig komma igång med din ekonomihantering."
+        keywords="kontakta reredo, redovisningsbyrå kontakt, bokföring göteborg kontakt, kostnadsfri konsultation ekonomi, boka redovisning, ekonomikonsultation"
         canonical="/kontakta-oss"
+        breadcrumbs={[
+          { name: "Hem", url: "/" },
+          { name: "Kontakta Oss", url: "/kontakta-oss" }
+        ]}
       />
       <Navigation />
 

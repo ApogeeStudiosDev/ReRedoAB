@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { Heart, Shield, TrendingUp, Zap, ArrowRight } from "lucide-react";
+import { FavouriteIcon, SecurityCheckIcon, AnalyticsUpIcon, FlashIcon, ArrowRight01Icon } from "@hugeicons/react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -11,22 +11,22 @@ const OmOss = () => {
 
   const values = [
     {
-      icon: Heart,
+      icon: FavouriteIcon,
       title: "Alltid vid din sida",
       description: "Vi lär känna din verksamhet på djupet och blir en trygg förlängning av ditt företag."
     },
     {
-      icon: Shield,
+      icon: SecurityCheckIcon,
       title: "Trygg styrning",
       description: "Vi omvandlar ekonomin till tydliga beslutsunderlag – så att du kan växa med kontroll."
     },
     {
-      icon: TrendingUp,
+      icon: AnalyticsUpIcon,
       title: "Tillväxtfokus",
       description: "Vi investerar i våra kunder och deras verksamhet – för att skapa långsiktig framgång tillsammans."
     },
     {
-      icon: Zap,
+      icon: FlashIcon,
       title: "Ekonomi som drivkraft",
       description: "Vi gör ekonomi begriplig, tydlig och användbar – en resurs för dig, aldrig en belastning."
     }
@@ -37,8 +37,12 @@ const OmOss = () => {
       <SEO
         title="Om Oss - Digital Redovisningsbyrå i Göteborg"
         description="ReRedo AB grundades 2024 av Salomo Holmgren, auktoriserad redovisningsekonom. Vi är en modern, digital redovisningsbyrå med fokus på ekonomistyrning och nära kundrelationer."
-        keywords="om reredo, salomo holmgren, redovisningsekonom göteborg, digital redovisningsbyrå, modern ekonomistyrning, redovisning göteborg"
+        keywords="om reredo, salomo holmgren, redovisningsekonom göteborg, digital redovisningsbyrå, modern ekonomistyrning, redovisning göteborg, fortnox partner, ekonomipartner"
         canonical="/om-oss"
+        breadcrumbs={[
+          { name: "Hem", url: "/" },
+          { name: "Om Oss", url: "/om-oss" }
+        ]}
       />
       <Navigation />
 
@@ -67,7 +71,7 @@ const OmOss = () => {
             viewport={{ once: true }}
             className="font-inter text-xl text-black/80 leading-relaxed"
           >
-            ReRedo är en digital redovisningsbyrå belägen i centrala Göteborg, skapad för dig som vill ha ordning och kontroll på företagets ekonomi – oavsett om det handlar om löpande bokföring eller mer djupgående ekonomistyrning.
+            ReRedo är en digital redovisningsbyrå belägen i centrala Göteborg, skapad för dig som vill ha ordning och kontroll på företagets ekonomi – oavsett om det handlar om den löpande redovisningen eller mer djupgående ekonomistyrning.
           </motion.p>
 
           <motion.p
@@ -159,37 +163,6 @@ const OmOss = () => {
         </div>
       </section>
 
-      {/* Team Section - White */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="font-sora font-bold text-4xl md:text-5xl text-black mb-12 text-center"
-          >
-            Vårt team
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="border-2 border-black/10 rounded-2xl p-12 hover:border-black hover:shadow-xl transition-all duration-300 text-center"
-          >
-            <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-black text-white flex items-center justify-center">
-              <span className="font-sora font-bold text-5xl">SH</span>
-            </div>
-            <h3 className="font-sora font-bold text-3xl text-black mb-2">Salomo Holmgren</h3>
-            <p className="font-inter text-lg text-black/70">
-              Grundare & Auktoriserad Redovisningsekonom
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Values Section - Black */}
       <section className="py-24 px-6 bg-black">
         <div className="max-w-6xl mx-auto">
@@ -232,14 +205,14 @@ const OmOss = () => {
       </section>
 
       {/* CTA Section - White */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-32 px-6 bg-white">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="font-sora font-bold text-4xl md:text-5xl text-black mb-8"
+            className="font-sora font-bold text-5xl md:text-6xl lg:text-7xl text-black mb-12 tracking-tight leading-[1.1]"
           >
             Redo att bli en del av ReRedo-familjen?
           </motion.h2>
@@ -252,10 +225,10 @@ const OmOss = () => {
             <Button
               onClick={() => navigate('/boka-konsultation')}
               size="lg"
-              className="font-inter font-semibold rounded-full text-base px-8 bg-black text-white hover:bg-black/90 transition-all duration-300 group"
+              className="font-inter font-semibold rounded-full text-lg px-12 py-6 bg-black text-white hover:bg-black/90 transition-all duration-300 group"
             >
               Boka kostnadsfri konsultation
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight01Icon className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </div>

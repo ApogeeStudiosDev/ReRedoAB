@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import LogoIcon from "@/components/LogoIcon";
-import { Menu, X } from "lucide-react";
+import { Menu01Icon, Cancel01Icon } from "@hugeicons/react";
 
 const navLinks = [
   { label: "Hem", to: "/" },
@@ -24,9 +23,8 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 hover:opacity-70 transition-opacity">
-            <LogoIcon className="w-10 h-10 text-black" />
-            <span className="font-sora font-bold text-xl tracking-tight">ReRedo</span>
+          <Link to="/" className="flex items-center hover:opacity-70 transition-opacity">
+            <img src="/reredo-logo.svg" alt="ReRedo" className="h-12" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -60,7 +58,7 @@ const Navigation = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <Cancel01Icon className="w-6 h-6" /> : <Menu01Icon className="w-6 h-6" />}
           </button>
         </div>
 

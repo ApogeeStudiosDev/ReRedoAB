@@ -26,9 +26,9 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 15%;
 
-    /* Brand colors */
-    --primary: 141 81% 40%;
-    --primary-foreground: 0 0% 98%;
+    /* Brand colors - Black & White theme */
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 15%;
@@ -36,16 +36,16 @@ All colors MUST be HSL.
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    /* Updated Green palette - brighter and more vibrant */
-    --accent: 141 81% 40%;
-    --accent-foreground: 0 0% 15%;
+    /* Accent - Black theme */
+    --accent: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 141 81% 40%;
+    --ring: 0 0% 0%;
 
     --radius: 0.75rem;
 
@@ -150,7 +150,7 @@ All colors MUST be HSL.
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 141 81% 40%;
+    --accent: 0 0% 95%;
     --accent-foreground: 0 0% 10%;
 
     --destructive: 0 62% 30%;
@@ -158,7 +158,7 @@ All colors MUST be HSL.
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 141 81% 40%;
+    --ring: 0 0% 95%;
 
     /* Dark mode glass tokens */
     --fill-opacity: 0.08;
@@ -168,12 +168,12 @@ All colors MUST be HSL.
 
     --sidebar-background: 0 0% 15%;
     --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 141 81% 40%;
+    --sidebar-primary: 0 0% 95%;
     --sidebar-primary-foreground: 0 0% 10%;
     --sidebar-accent: 0 0% 20%;
     --sidebar-accent-foreground: 0 0% 85%;
     --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 141 81% 40%;
+    --sidebar-ring: 0 0% 95%;
   }
 }
 

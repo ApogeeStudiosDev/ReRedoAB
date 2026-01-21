@@ -1,21 +1,29 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "@/components/ScrollToTop";
 import { AuthProvider } from "@/hooks/useAuth";
 import { HelmetProvider } from "react-helmet-async";
-import Index from "./pages/Index";
-import VaraTjanster from "./pages/VaraTjanster";
-import OmOss from "./pages/OmOss";
-import KontaktaOss from "./pages/KontaktaOss";
-import FAQ from "./pages/FAQ";
-import BokaKonsultation from "./pages/BokaKonsultation";
-import AdminLogin from "./pages/AdminLogin";
-import AdminDashboard from "./pages/AdminDashboard";
-import PricingPackages from "./pages/PricingPackages";
 
-import NotFound from "./pages/NotFound";
+// Lazy load pages for better performance
+const Index = lazy(() => import("./pages/Index"));
+const VaraTjanster = lazy(() => import("./pages/VaraTjanster"));
+const OmOss = lazy(() => import("./pages/OmOss"));
+const KontaktaOss = lazy(() => import("./pages/KontaktaOss"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const BokaKonsultation = lazy(() => import("./pages/BokaKonsultation"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const PricingPackages = lazy(() => import("./pages/PricingPackages"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Loading component for suspense fallback
+const PageLoader = () => (
+  <div className="min-h-screen bg-white flex items-center justify-center">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black"></div>
+  </div>
+);
 
 const queryClient = new QueryClient();
 
@@ -23,10 +31,10 @@ const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
+        <Toaster />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/vara-tjanster" element={<VaraTjanster />} />
@@ -41,8 +49,8 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
+          </Suspense>
+        </BrowserRouter>
       </AuthProvider>
     </QueryClientProvider>
   </HelmetProvider>

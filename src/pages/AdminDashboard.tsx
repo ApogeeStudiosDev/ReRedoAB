@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Users, Settings, Mail, LogOut, BarChart3, Clock } from "lucide-react";
+import { Calendar03Icon, UserMultipleIcon, Settings02Icon, Mail01Icon, Logout01Icon, Analytics02Icon, Clock01Icon } from "@hugeicons/react";
 import { useToast } from "@/components/ui/use-toast";
 import { BookingTable } from "@/components/admin/BookingTable";
 import { BookingLimitsTab } from "@/components/admin/BookingLimitsTab";
@@ -117,7 +117,7 @@ const AdminDashboard = () => {
                 onClick={handleSignOut}
                 className="flex items-center space-x-2"
               >
-                <LogOut className="w-4 h-4" />
+                <Logout01Icon className="w-4 h-4" />
                 <span>Logga ut</span>
               </Button>
             </div>
@@ -129,27 +129,27 @@ const AdminDashboard = () => {
         <Tabs defaultValue="overview" className="space-y-6">
           <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="overview" className="flex items-center space-x-2">
-              <BarChart3 className="w-4 h-4" />
+              <Analytics02Icon className="w-4 h-4" />
               <span>Översikt</span>
             </TabsTrigger>
             <TabsTrigger value="bookings" className="flex items-center space-x-2">
-              <Calendar className="w-4 h-4" />
+              <Calendar03Icon className="w-4 h-4" />
               <span>Bokningar</span>
             </TabsTrigger>
             <TabsTrigger value="clients" className="flex items-center space-x-2">
-              <Users className="w-4 h-4" />
+              <UserMultipleIcon className="w-4 h-4" />
               <span>Klienter</span>
             </TabsTrigger>
             <TabsTrigger value="analytics" className="flex items-center space-x-2">
-              <BarChart3 className="w-4 h-4" />
+              <Analytics02Icon className="w-4 h-4" />
               <span>Analys</span>
             </TabsTrigger>
             <TabsTrigger value="limits" className="flex items-center space-x-2">
-              <Settings className="w-4 h-4" />
+              <Settings02Icon className="w-4 h-4" />
               <span>Gränser</span>
             </TabsTrigger>
             <TabsTrigger value="availability" className="flex items-center space-x-2">
-              <Clock className="w-4 h-4" />
+              <Clock01Icon className="w-4 h-4" />
               <span>Tillgänglighet</span>
             </TabsTrigger>
           </TabsList>
@@ -159,7 +159,7 @@ const AdminDashboard = () => {
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center space-x-2 text-lg">
-                    <Users className="w-5 h-5" />
+                    <UserMultipleIcon className="w-5 h-5" />
                     <span>Totala bokningar</span>
                   </CardTitle>
                 </CardHeader>
@@ -171,7 +171,7 @@ const AdminDashboard = () => {
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center space-x-2 text-lg">
-                    <Calendar className="w-5 h-5" />
+                    <Calendar03Icon className="w-5 h-5" />
                     <span>Väntande bokningar</span>
                   </CardTitle>
                 </CardHeader>
@@ -185,7 +185,7 @@ const AdminDashboard = () => {
               <Card>
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center space-x-2 text-lg">
-                    <Mail className="w-5 h-5" />
+                    <Mail01Icon className="w-5 h-5" />
                     <span>Bekräftade bokningar</span>
                   </CardTitle>
                 </CardHeader>

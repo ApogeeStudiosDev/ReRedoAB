@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(npm install)",
+      "Bash(git commit:*)",
+      "Read(//Users/zanderriedelreichel/Desktop/Apogee Studios Sweden AB/PR's/PR2- ReRedo AB/info/**)",
+      "Read(//var/folders/kg/pg_wzq112v7dp002flhrbbbh0000gn/T/TemporaryItems/NSIRD_screencaptureui_jP2c6J/**)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm ls:*)",
+      "Bash(npx depcheck:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(cat:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(npm run build:*)",
+      "Bash(npm audit:*)",
+      "Bash(cd /Users/zanderriedelreichel/Desktop/Apogee Studios Sweden AB/PR''s/PR2- ReRedo AB/reredo-ab-hemsida-main)",
+      "Bash(curl:*)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "supabase"
+  ]
+}
