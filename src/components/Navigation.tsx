@@ -19,12 +19,12 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-70 transition-opacity">
-            <img src="/reredo-logo.svg" alt="ReRedo" className="h-24" />
+            <img src="/reredo-logo.svg" alt="ReRedo" className="h-24 invert" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -35,8 +35,8 @@ const Navigation = () => {
                 to={link.to}
                 className={`font-inter font-medium text-sm transition-colors duration-200 ${
                   isActive(link.to)
-                    ? "text-black font-semibold"
-                    : "text-black/60 hover:text-black"
+                    ? "text-white font-semibold"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
                 {link.label}
@@ -45,7 +45,7 @@ const Navigation = () => {
             <Link to="/boka-konsultation">
               <Button
                 size="sm"
-                className="font-inter font-semibold rounded-full text-sm bg-black text-white hover:bg-black/90 px-6"
+                className="font-inter font-semibold rounded-full text-sm bg-white text-black hover:bg-white/90 px-6"
               >
                 Boka konsultation
               </Button>
@@ -54,7 +54,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-black hover:bg-black/5 rounded-lg transition-colors"
+            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -64,7 +64,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-6 border-t border-black/10">
+          <div className="lg:hidden py-6 border-t border-white/10">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
@@ -73,8 +73,8 @@ const Navigation = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`font-inter font-medium text-base py-2 transition-colors duration-200 ${
                     isActive(link.to)
-                      ? "text-black font-semibold"
-                      : "text-black/60 hover:text-black"
+                      ? "text-white font-semibold"
+                      : "text-white/60 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -83,7 +83,7 @@ const Navigation = () => {
               <Link to="/boka-konsultation" onClick={() => setMobileMenuOpen(false)}>
                 <Button
                   size="sm"
-                  className="w-full font-inter font-semibold rounded-full text-sm bg-black text-white hover:bg-black/90 mt-2"
+                  className="w-full font-inter font-semibold rounded-full text-sm bg-white text-black hover:bg-white/90 mt-2"
                 >
                   Boka konsultation
                 </Button>
