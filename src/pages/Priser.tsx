@@ -31,8 +31,8 @@ const Priser = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-sora font-bold text-6xl md:text-7xl lg:text-8xl text-black mb-8 tracking-tight leading-[1.1]">
-              Priser
+            <h1 className="font-sora font-bold text-5xl md:text-6xl lg:text-7xl text-black mb-8 tracking-tight leading-[1.1]">
+              Rätt pris från start.<br />Inga överraskningar.
             </h1>
           </motion.div>
 
@@ -40,18 +40,9 @@ const Priser = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-inter text-xl md:text-2xl text-black/70 max-w-3xl mx-auto leading-relaxed mb-4"
+            className="font-inter text-lg md:text-xl text-black/70 max-w-3xl mx-auto leading-relaxed"
           >
-            Fasta månadskostnader. Inga dolda avgifter. Full transparens.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-inter text-lg text-black/50 max-w-2xl mx-auto leading-relaxed"
-          >
-            Vi tror på tydlighet och förutsägbarhet. Därför erbjuder vi fasta paket där du vet exakt vad du betalar varje månad – oavsett hur många frågor du har eller hur ofta vi pratar.
+            Vi tror på transparens och förutsägbarhet. Därför arbetar vi med fasta månadspaket som baseras på din verksamhetsvolym. Paket, pris och lösningar skräddarsytt för att passa just ditt företag – du betalar aldrig för mer än du faktiskt behöver.
           </motion.p>
         </div>
       </section>
@@ -120,7 +111,7 @@ const Priser = () => {
                 </h3>
               </div>
               <p className="font-inter text-black/70 text-lg leading-relaxed mb-8">
-                Smidig och prisvärd redovisning för dig som driver enskild firma. Få ordning på ekonomin utan krångel.
+                Smidig och trygg redovisning för dig som driver enskild firma. Få ordning på ekonomin utan krångel.
               </p>
               <div className="flex items-center justify-between">
                 <div>
@@ -170,9 +161,9 @@ const Priser = () => {
               viewport={{ once: true }}
               className="bg-white/5 border border-white/10 rounded-2xl p-6"
             >
-              <h3 className="font-sora font-bold text-xl text-white mb-3">Fråga fritt</h3>
+              <h3 className="font-sora font-bold text-xl text-white mb-3">Anpassning efter volym</h3>
               <p className="font-inter text-white/70">
-                Ring, mejla eller boka möte – utan att oroa dig för att det kostar extra.
+                Ditt pris speglar verksamhetens volym. Är du ett mindre bolag har du en lägre månadskostnad. Växer du så anpassar vi paketet i samråd med dig.
               </p>
             </motion.div>
 

@@ -130,8 +130,7 @@ const PriserAktiebolag = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-inter text-xl text-black/70 max-w-3xl mx-auto leading-relaxed text-center"
           >
-            Att driva aktiebolag innebär hårdare krav på redovisning, deadlines och rapportering.
-            Vi tar hand om allt det där – så att du kan fokusera på att utveckla din verksamhet.
+            Att driva aktiebolag ger stora möjligheter men ställer också högre krav på redovisning, dokumentation och formalia. Vi tar hand om allt det där – du får kontroll på siffrorna och frihet att fokusera på tillväxt.
           </motion.p>
         </div>
       </section>
@@ -160,8 +159,8 @@ const PriserAktiebolag = () => {
                 <p className="font-inter text-white/60 text-sm">Allt sköts via Fortnox. Scanna kvitton med mobilen, godkänn betalningar med BankID.</p>
               </div>
               <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-                <h3 className="font-sora font-semibold text-white mb-2">Fast månadskostnad</h3>
-                <p className="font-inter text-white/60 text-sm">Inga överraskningar. Du vet exakt vad det kostar – oavsett hur mycket vi pratar.</p>
+                <h3 className="font-sora font-semibold text-white mb-2">Anpassning efter volym</h3>
+                <p className="font-inter text-white/60 text-sm">Paketpriserna anpassas efter verksamhetsvolym. Paketpriserna kan därför bli både billigare eller dyrare. Först efter vi kartlagt behov och omfattning så vet du alltid vad du ska förvänta dig – varje gång.</p>
               </div>
               <div className="bg-white/5 border border-white/10 rounded-xl p-5">
                 <h3 className="font-sora font-semibold text-white mb-2">Alltid tillgängliga</h3>
@@ -263,14 +262,14 @@ const PriserAktiebolag = () => {
                   ))}
                 </ul>
                 <Button
-                  onClick={() => handleSelectPackage(pkg.name)}
+                  onClick={() => pkg.price ? handleSelectPackage(pkg.name) : navigate('/kontakta-oss')}
                   className={`w-full font-inter font-semibold rounded-full transition-all duration-300 ${
                     pkg.popular
                       ? 'bg-black text-white hover:bg-black/90'
                       : 'bg-black/5 text-black hover:bg-black hover:text-white'
                   }`}
                 >
-                  Välj paket
+                  {pkg.price ? 'Välj paket' : 'Kontakta oss'}
                 </Button>
               </motion.div>
             ))}

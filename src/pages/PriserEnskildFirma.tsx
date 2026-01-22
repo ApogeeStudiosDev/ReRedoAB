@@ -121,12 +121,12 @@ const PriserEnskildFirma = () => {
             className="text-center"
           >
             <h2 className="font-sora font-bold text-3xl md:text-4xl text-white mb-6">
-              Bokföring som inte kostar skjortan
+              Redovisning utan dyra timarvoden som äter upp vinsten
             </h2>
             <p className="font-inter text-lg text-white/70 leading-relaxed mb-8">
-              Som egenföretagare räknas varje krona. Därför erbjuder vi prisvärda paket
+              Vi vet att varje krona räknas. Därför arbetar vi effektivt och digitalt, och erbjuder prisvärda paket
               som ger dig professionell hjälp utan att det behöver kosta en förmögenhet.
-              Med fast månadskostnad vet du alltid vad det blir – inga överraskningar.
+              Med fasta månadskostnader vet du alltid vad du ska förvänta dig.
             </p>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               <div className="bg-white/5 border border-white/10 rounded-xl p-5">
@@ -139,7 +139,7 @@ const PriserEnskildFirma = () => {
               </div>
               <div className="bg-white/5 border border-white/10 rounded-xl p-5">
                 <h3 className="font-sora font-semibold text-white mb-2">Personlig kontakt</h3>
-                <p className="font-inter text-white/60 text-sm">Du får en dedikerad kontakt som känner din verksamhet och finns tillgänglig när du behöver.</p>
+                <p className="font-inter text-white/60 text-sm">Du får en dedikerad kontakt som känner till din verksamhet och finns tillgänglig att svara på frågor när du behöver det.</p>
               </div>
             </div>
           </motion.div>
@@ -277,7 +277,7 @@ const PriserEnskildFirma = () => {
               <h3 className="font-sora font-semibold text-lg text-black mb-2">Vad menas med "mindre verksamhetsvolym"?</h3>
               <p className="font-inter text-black/70">
                 Det handlar om antalet transaktioner per månad. Har du en mindre verksamhet med
-                få fakturor och kvitton passar baspriserna bra. Vid större volymer anpassar vi priset efter din situation.
+                färre fakturor och kvitton passar baspriserna bra. Vid större volymer anpassar vi priset efter din situation – men då har du sannolikt också råd med en högre månadskostnad.
               </p>
             </motion.div>
 
@@ -304,8 +304,8 @@ const PriserEnskildFirma = () => {
             >
               <h3 className="font-sora font-semibold text-lg text-black mb-2">Hur kommer jag igång?</h3>
               <p className="font-inter text-black/70">
-                Boka en kostnadsfri konsultation så pratar vi igenom din situation och hittar
-                rätt paket. Sedan tar vi hand om övergången – enkelt och smidigt.
+                Boka en kostnadsfri konsultation så går vi igenom din situation och hittar
+                rätt paket. Sedan tar vi hand om övergången.
               </p>
             </motion.div>
           </div>
