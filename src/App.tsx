@@ -15,7 +15,9 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const BokaKonsultation = lazy(() => import("./pages/BokaKonsultation"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
-const PricingPackages = lazy(() => import("./pages/PricingPackages"));
+const Priser = lazy(() => import("./pages/Priser"));
+const PriserAktiebolag = lazy(() => import("./pages/PriserAktiebolag"));
+const PriserEnskildFirma = lazy(() => import("./pages/PriserEnskildFirma"));
 const Integritetspolicy = lazy(() => import("./pages/Integritetspolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -43,7 +45,9 @@ const App = () => (
               <Route path="/kontakta-oss" element={<KontaktaOss />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/boka-konsultation" element={<BokaKonsultation />} />
-              <Route path="/priser" element={<PricingPackages />} />
+              <Route path="/priser" element={<Priser />} />
+              <Route path="/priser/aktiebolag" element={<PriserAktiebolag />} />
+              <Route path="/priser/enskild-firma" element={<PriserEnskildFirma />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/integritetspolicy" element={<Integritetspolicy />} />
