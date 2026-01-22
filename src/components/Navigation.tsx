@@ -24,7 +24,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-70 transition-opacity">
-            <img src="/reredo-logo.svg" alt="ReRedo" className="h-14 invert" />
+            <img src="/reredo-logo.svg" alt="ReRedo" className="h-20 invert" />
           </Link>
 
           {/* Desktop Navigation */}
