@@ -279,7 +279,7 @@ const Integritetspolicy = () => {
                   Vi kan komma att uppdatera denna integritetspolicy för att återspegla förändringar i vår verksamhet eller gällande lagstiftning. Den senaste versionen finns alltid publicerad på vår webbplats.
                 </p>
                 <p className="font-inter text-black/50 text-sm mt-4">
-                  Senast uppdaterad: Januari 2025
+                  Senast uppdaterad: 22 januari 2026
                 </p>
               </div>
 

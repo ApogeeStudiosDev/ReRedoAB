@@ -115,7 +115,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="font-inter text-sm text-white/60">
-              ©2025 ReRedo AB. Alla rättigheter förbehållna.
+              ©2026 ReRedo AB. Alla rättigheter förbehållna.
             </p>
             <div className="flex items-center space-x-6 text-sm text-white/60">
               <span>Org.nr: 559497-7554</span>
