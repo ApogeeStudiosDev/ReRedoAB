@@ -31,8 +31,10 @@ const PriserAktiebolag = () => {
       fullDescription: "Paketet passar aktiebolag som vill ha en helhetslösning där allt flyter på utan att du behöver tänka på deadlines eller årssavslut. Du får mer heltäckande lösning av den löpande redovisningen och påminnelser om viktiga datum – en smidig lösning som sparar både tid och energi.",
       features: [
         "Allt i Bas",
-        "Årsbokslut",
-        "Inkomstdeklaration",
+        "Årsbokslut enligt K2-regelverket",
+        "Årsredovisning",
+        "Inkomstdeklaration (INK2)",
+        "Inkomstdeklaration (K10-bilaga)",
         "Påminnelser om viktiga datum"
       ],
       popular: true

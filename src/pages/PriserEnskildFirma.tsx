@@ -31,9 +31,10 @@ const PriserEnskildFirma = () => {
       fullDescription: "Paketet passar firmor som har kommit en bit på vägen och vill ha mer ordning och framförhållning i ekonomin. Du får helhetslösningen med bokslut och deklaration, samt hjälp att planera skatten på ett enkelt sätt.",
       features: [
         "Allt i Bas",
-        "Årsbokslut & deklaration",
-        "Påminnelser om viktiga datum",
-        "Enklare skatteplanering"
+        "Årsbokslut & NE-bilaga",
+        "Skatt- & inkomstdeklaration",
+        "Enklare skatteplanering",
+        "Påminnelser om viktiga datum"
       ],
       note: "Gäller enskild firma med mindre verksamhetsvolym – priset anpassas efter verksamhetens omfattning",
       popular: true
