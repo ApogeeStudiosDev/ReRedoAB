@@ -223,30 +223,39 @@ const BookingForm = () => {
         throw new Error('Kunde inte spara bokningen');
       }
 
-      // 2. Send emails via Edge Function
-      const { error: emailError } = await supabase.functions.invoke('send-booking-confirmation', {
-        body: {
-          email: formData.email,
-          name: formData.contactName,
-          phone: formData.phone,
-          companyName: formData.companyName,
-          organizationNumber: formData.organizationNumber,
-          industry: formData.industry,
-          companySize: formData.companySize,
-          currentSituation: formData.currentSituation,
-          challenges: formData.challenges,
-          additionalInfo: formData.additionalInfo,
-          selectedPackage: formData.selectedPackage ? {
-            name: formData.selectedPackage.name,
-            monthly_price: formData.selectedPackage.monthly_price,
-            company_type: formData.selectedPackage.company_type,
-            package_tier: formData.selectedPackage.package_tier,
-            included_services: formData.selectedPackage.included_services
-          } : null
-        }
-      });
+      // 2. Send emails via Vercel serverless function
+      try {
+        const emailResponse = await fetch('/api/send-booking-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            name: formData.contactName,
+            phone: formData.phone,
+            companyName: formData.companyName,
+            organizationNumber: formData.organizationNumber,
+            industry: formData.industry,
+            companySize: formData.companySize,
+            currentSituation: formData.currentSituation,
+            challenges: formData.challenges,
+            additionalInfo: formData.additionalInfo,
+            selectedPackage: formData.selectedPackage ? {
+              name: formData.selectedPackage.name,
+              monthly_price: formData.selectedPackage.monthly_price,
+              company_type: formData.selectedPackage.company_type,
+              package_tier: formData.selectedPackage.package_tier,
+              included_services: formData.selectedPackage.included_services
+            } : null
+          }),
+        });
 
-      if (emailError) {
+        if (!emailResponse.ok) {
+          const errorData = await emailResponse.json();
+          console.error('Email error:', errorData);
+        }
+      } catch (emailError) {
         console.error('Email error:', emailError);
         // Don't throw - booking is saved, just log email error
       }
