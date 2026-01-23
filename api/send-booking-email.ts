@@ -62,13 +62,18 @@ END:VEVENT
 END:VCALENDAR`;
 };
 
+// ReRedo logo as inline SVG data URI
+const logoDataUri = `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTIiIGhlaWdodD0iODkiIHZpZXdCb3g9IjAgMCA5MiA4OSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC40ODQyIDEuNTAzNDJDNi43NjAyMiA2LjQ4MzAyIC0xLjIzNDU3IDE4LjQxNTEgMC4xNTYwNTUgMzEuODU1OEMxLjE1MDg1IDQxLjUxOTYgMy4yODEwNiA0NC44NDgxIDE4LjU5MzYgNjAuNzEwMUMyNi4zNTQgNjguNzQzOSAzNS41MTAyIDc4LjM3MDggMzguOTQyNSA4Mi4xMDAyQzQ0LjY5MjUgODguMzUxMSA0NS4zNjQ0IDg4LjgxIDQ3LjU2NzUgODcuOTYwN0M1Mi4wMTAyIDg2LjI0NjQgNTMuNTMxMSA4NS4xMDcgNTMuNTA1IDgzLjQ5MjhDNTMuNDc5IDgxLjg5NDUgMjguMzQzNiA1NC4zMzc5IDE5Ljk2ODYgNDYuNzI2QzEzLjI0OTggNDAuNjIyOSAxMS41MDUgMzcuMTY3NyAxMS40NDc3IDI5LjgzMDJDMTEuNDA2MSAyNC41OTc0IDExLjc5MTUgMjIuOTk5MSAxMy44OCAyOS44MDI0QzE3LjA0NjcgMTQuOTYgMjEuNjQwNCAxMi4wODUxIDI3LjMwNzEgMTEuNDA5OUM0Ny41NTE5IDguOTg4NjUgNTcuMTU2MSAzMy42NDQgNDAuMDUxOSA0NC4xMzA3QzM3LjMwNzEgNDUuODA4MiAzNS4wNTE5IDQ3LjYyMjggMzUuMDM2MyA0OC4xNjA4QzM1LjAwNSA0OS4zNTMgNjMuMDQ2NyA3Ny40OTUxIDY3LjAzMTEgODAuMjY5OEM3MC43NDk4IDgyLjg1OTggNzcuOTk0NiA4NS42ODIgODIuODY0NCA4Ni40NDE2Qzg3LjQ1ODEgODcuMTU5IDg5LjY0NTYgODUuNTM5NSA4OS42NDU2IDgxLjQyNUM4OS42NDU2IDc2Ljg5MzggODguNzkxNSA3NS45MTc5IDg0LjIzOTQgNzUuMjI2OUM3Ni4yMDI5IDc0LjAxMzYgNzIuMTE0NCA3MS40Mzk0IDYxLjY3NjkgNjEuMDI2NkM1Ni4xNzY5IDU1LjUzNTMgNTEuNjc2OSA1MC43NDU2IDUxLjY3NjkgNTAuMzgxNkM1MS42NzY5IDUwLjAxNzYgNTMuMTI0OCA0Ny41NDM3IDU0Ljg5MDQgNDQuODg1MUM2MC40MDYxIDM2LjU4NzUgNjEuNDY4NiAyOC4yMjEzIDU4LjE1MDggMTkuMjQzM0M1Mi44NjQ0IDQuOTM3NDQgMzQuNjY2NSAtMy42Mzk3MSAyMC40ODQyIDEuNTAzNDJaTTU0LjUyMDYgMC43OTY1NjZMNTIuMjcwNiAxLjc2MTg5TDU2LjcwMjkgNi4zMTQyMkM2MC4wMzExIDkuNzQyOTcgNjIuMDQ2NyAxMS4wMTk1IDY0Ljg0MzYgMTEuNDczMkM3MC41OTM2IDEyLjQwMTYgNzYuMDcyNyAxNi43NDgyIDc4LjM5NTYgMjIuMjIzNkM4MC43MjM4IDI3LjcwNDQgODAuOTAwOCAzMS44NjYzIDc5LjAzMTEgMzcuMjM2M0M3Ny4xMyA0Mi42ODU0IDczLjU4ODMgNDcuMDU4NCA2OC4yNzU4IDUwLjUxMzVDNjUuNzY1NCA1Mi4xNDM1IDYzLjcxODYgNTMuOTg0NCA2My43MTg2IDU0LjYwMTZDNjMuNzE4NiA1NS4yMTg4IDY1LjE2NjUgNTcuMTQ5NCA2Ni45NDI1IDU4Ljg5MDJDNjkuOTk5OCA2MS44OTcgNzAuMjkxNSA2MS45ODY2IDcyLjY2MTMgNjAuNzE1NEM3OC4wMzYzIDU3LjgzNTIgODQuOTczOCA1MC4zMDc4IDg3Ljk5OTggNDQuMDgzM0M5MC42NzE3IDM4LjU4NjcgOTEuMDMxMSAzNi45NTE1IDkxLjAxMDIgMzAuMzI2QzkwLjk4OTQgMjQuNTAyNCA5MC40OTk4IDIxLjY5NjEgODguODI3OSAxNy45MDg3Qzg2LjI0NDYgMTIuMDU4NyA3OS4yNjU0IDUuMTQ4NDUgNzMuMTkyNSAyLjQzMTgyQzY4LjI2NTQgMC4yMjE1OSA1Ny45NDc3IC0wLjY4MDQzNiA1NC41MjA2IDAuNzk2NTY2WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+`;
+
+const logoDataUriBlack = `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTIiIGhlaWdodD0iODkiIHZpZXdCb3g9IjAgMCA5MiA4OSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC40ODQyIDEuNTAzNDJDNi43NjAyMiA2LjQ4MzAyIC0xLjIzNDU3IDE4LjQxNTEgMC4xNTYwNTUgMzEuODU1OEMxLjE1MDg1IDQxLjUxOTYgMy4yODEwNiA0NC44NDgxIDE4LjU5MzYgNjAuNzEwMUMyNi4zNTQgNjguNzQzOSAzNS41MTAyIDc4LjM3MDggMzguOTQyNSA4Mi4xMDAyQzQ0LjY5MjUgODguMzUxMSA0NS4zNjQ0IDg4LjgxIDQ3LjU2NzUgODcuOTYwN0M1Mi4wMTAyIDg2LjI0NjQgNTMuNTMxMSA4NS4xMDcgNTMuNTA1IDgzLjQ5MjhDNTMuNDc5IDgxLjg5NDUgMjguMzQzNiA1NC4zMzc5IDE5Ljk2ODYgNDYuNzI2QzEzLjI0OTggNDAuNjIyOSAxMS41MDUgMzcuMTY3NyAxMS40NDc3IDI5LjgzMDJDMTEuNDA2MSAyNC41OTc0IDExLjc5MTUgMjIuOTk5MSAxMy44OCAyOS44MDI0QzE3LjA0NjcgMTQuOTYgMjEuNjQwNCAxMi4wODUxIDI3LjMwNzEgMTEuNDA5OUM0Ny41NTE5IDguOTg4NjUgNTcuMTU2MSAzMy42NDQgNDAuMDUxOSA0NC4xMzA3QzM3LjMwNzEgNDUuODA4MiAzNS4wNTE5IDQ3LjYyMjggMzUuMDM2MyA0OC4xNjA4QzM1LjAwNSA0OS4zNTMgNjMuMDQ2NyA3Ny40OTUxIDY3LjAzMTEgODAuMjY5OEM3MC43NDk4IDgyLjg1OTggNzcuOTk0NiA4NS42ODIgODIuODY0NCA4Ni40NDE2Qzg3LjQ1ODEgODcuMTU5IDg5LjY0NTYgODUuNTM5NSA4OS42NDU2IDgxLjQyNUM4OS42NDU2IDc2Ljg5MzggODguNzkxNSA3NS45MTc5IDg0LjIzOTQgNzUuMjI2OUM3Ni4yMDI5IDc0LjAxMzYgNzIuMTE0NCA3MS40Mzk0IDYxLjY3NjkgNjEuMDI2NkM1Ni4xNzY5IDU1LjUzNTMgNTEuNjc2OSA1MC43NDU2IDUxLjY3NjkgNTAuMzgxNkM1MS42NzY5IDUwLjAxNzYgNTMuMTI0OCA0Ny41NDM3IDU0Ljg5MDQgNDQuODg1MUM2MC40MDYxIDM2LjU4NzUgNjEuNDY4NiAyOC4yMjEzIDU4LjE1MDggMTkuMjQzM0M1Mi44NjQ0IDQuOTM3NDQgMzQuNjY2NSAtMy42Mzk3MSAyMC40ODQyIDEuNTAzNDJaTTU0LjUyMDYgMC43OTY1NjZMNTIuMjcwNiAxLjc2MTg5TDU2LjcwMjkgNi4zMTQyMkM2MC4wMzExIDkuNzQyOTcgNjIuMDQ2NyAxMS4wMTk1IDY0Ljg0MzYgMTEuNDczMkM3MC41OTM2IDEyLjQwMTYgNzYuMDcyNyAxNi43NDgyIDc4LjM5NTYgMjIuMjIzNkM4MC43MjM4IDI3LjcwNDQgODAuOTAwOCAzMS44NjYzIDc5LjAzMTEgMzcuMjM2M0M3Ny4xMyA0Mi42ODU0IDczLjU4ODMgNDcuMDU4NCA2OC4yNzU4IDUwLjUxMzVDNjUuNzY1NCA1Mi4xNDM1IDYzLjcxODYgNTMuOTg0NCA2My43MTg2IDU0LjYwMTZDNjMuNzE4NiA1NS4yMTg4IDY1LjE2NjUgNTcuMTQ5NCA2Ni45NDI1IDU4Ljg5MDJDNjkuOTk5OCA2MS44OTcgNzAuMjkxNSA2MS45ODY2IDcyLjY2MTMgNjAuNzE1NEM3OC4wMzYzIDU3LjgzNTIgODQuOTczOCA1MC4zMDc4IDg3Ljk5OTggNDQuMDgzM0M5MC42NzE3IDM4LjU4NjcgOTEuMDMxMSAzNi45NTE1IDkxLjAxMDIgMzAuMzI2QzkwLjk4OTQgMjQuNTAyNCA5MC40OTk4IDIxLjY5NjEgODguODI3OSAxNy45MDg3Qzg2LjI0NDYgMTIuMDU4NyA3OS4yNjU0IDUuMTQ4NDUgNzMuMTkyNSAyLjQzMTgyQzY4LjI2NTQgMC4yMjE1OSA1Ny45NDc3IC0wLjY4MDQzNiA1NC41MjA2IDAuNzk2NTY2WiIgZmlsbD0iYmxhY2siLz4KPC9zdmc+`;
+
 // Generate user confirmation email HTML
 const generateUserEmailHTML = (data: BookingEmailRequest): string => {
   const packageInfo = data.selectedPackage
-    ? `<div style="background-color: #000; color: #fff; padding: 20px; border-radius: 12px; margin: 20px 0;">
-        <p style="margin: 0 0 8px 0; font-size: 14px; opacity: 0.8;">Valt paket:</p>
-        <p style="margin: 0; font-size: 20px; font-weight: bold;">${data.selectedPackage.name}</p>
-        <p style="margin: 8px 0 0 0; font-size: 16px;">${data.selectedPackage.monthly_price.toLocaleString('sv-SE')} kr/mån • ${data.selectedPackage.company_type === 'AB' ? 'Aktiebolag' : 'Enskild firma'}</p>
+    ? `<div style="background-color: #000; color: #fff; padding: 24px; border-radius: 16px; margin: 28px 0;">
+        <p style="margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.7;">Valt paket</p>
+        <p style="margin: 0; font-size: 22px; font-weight: 700;">${data.selectedPackage.name}</p>
+        <p style="margin: 10px 0 0 0; font-size: 15px; opacity: 0.85;">${data.selectedPackage.monthly_price.toLocaleString('sv-SE')} kr/mån · ${data.selectedPackage.company_type === 'AB' ? 'Aktiebolag' : 'Enskild firma'}</p>
       </div>`
     : '';
 
@@ -79,85 +84,99 @@ const generateUserEmailHTML = (data: BookingEmailRequest): string => {
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
-      <div style="background-color: #ffffff; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; background-color: #000;">
 
-        <div style="text-align: center; margin-bottom: 32px;">
-          <h1 style="color: #000; font-size: 28px; margin: 0;">ReRedo</h1>
-          <p style="color: #666; margin: 8px 0 0 0;">Redovisning & Ekonomi</p>
-        </div>
+      <!-- Black Header -->
+      <div style="background-color: #000; padding: 32px 20px; text-align: center;">
+        <img src="${logoDataUri}" alt="ReRedo" width="46" height="44" style="display: inline-block;" />
+        <p style="color: #fff; font-size: 13px; margin: 12px 0 0 0; opacity: 0.6;">Redovisning & Ekonomi</p>
+      </div>
 
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="width: 64px; height: 64px; background-color: #10b981; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;">
-            <span style="color: white; font-size: 32px;">✓</span>
-          </div>
-        </div>
+      <!-- White Content -->
+      <div style="background-color: #fff; padding: 48px 40px; max-width: 560px; margin: 0 auto;">
 
-        <h2 style="color: #000; text-align: center; margin-bottom: 24px; font-size: 24px;">
+        <h1 style="color: #000; font-size: 28px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.3;">
           Tack för din bokningsförfrågan!
-        </h2>
+        </h1>
 
-        <p style="color: #4a5568; font-size: 16px; line-height: 1.6; margin-bottom: 16px;">
+        <p style="color: #000; font-size: 16px; line-height: 1.7; margin: 0 0 20px 0;">
           Hej ${data.name},
         </p>
 
-        <p style="color: #4a5568; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
-          Vi har mottagit din förfrågan om en kostnadsfri konsultation för <strong>${data.companyName}</strong>.
-          Vi kontaktar dig inom 24 timmar för att boka en lämplig tid.
+        <p style="color: #444; font-size: 16px; line-height: 1.7; margin: 0 0 32px 0;">
+          Vi har mottagit din förfrågan om en kostnadsfri konsultation för <strong style="color: #000;">${data.companyName}</strong>. Vi kontaktar dig inom 24 timmar för att boka en lämplig tid.
         </p>
 
         ${packageInfo}
 
-        <div style="background-color: #f3f4f6; padding: 20px; border-radius: 12px; margin: 24px 0;">
-          <h3 style="color: #000; margin: 0 0 16px 0; font-size: 16px;">Sammanfattning</h3>
-          <table style="width: 100%; font-size: 14px;">
+        <!-- Summary Box -->
+        <div style="background-color: #f8f8f8; padding: 24px; border-radius: 16px; margin: 28px 0;">
+          <h3 style="color: #000; margin: 0 0 20px 0; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Sammanfattning</h3>
+          <table style="width: 100%; font-size: 15px; border-collapse: collapse;">
             <tr>
-              <td style="color: #6b7280; padding: 4px 0;">Företag:</td>
-              <td style="color: #000; padding: 4px 0; text-align: right;">${data.companyName}</td>
+              <td style="color: #666; padding: 8px 0; border-bottom: 1px solid #eee;">Företag</td>
+              <td style="color: #000; padding: 8px 0; text-align: right; font-weight: 500; border-bottom: 1px solid #eee;">${data.companyName}</td>
             </tr>
             <tr>
-              <td style="color: #6b7280; padding: 4px 0;">Org.nr:</td>
-              <td style="color: #000; padding: 4px 0; text-align: right;">${data.organizationNumber}</td>
+              <td style="color: #666; padding: 8px 0; border-bottom: 1px solid #eee;">Org.nr</td>
+              <td style="color: #000; padding: 8px 0; text-align: right; border-bottom: 1px solid #eee;">${data.organizationNumber}</td>
             </tr>
             <tr>
-              <td style="color: #6b7280; padding: 4px 0;">Bransch:</td>
-              <td style="color: #000; padding: 4px 0; text-align: right;">${data.industry}</td>
+              <td style="color: #666; padding: 8px 0; border-bottom: 1px solid #eee;">Bransch</td>
+              <td style="color: #000; padding: 8px 0; text-align: right; border-bottom: 1px solid #eee;">${data.industry}</td>
             </tr>
             <tr>
-              <td style="color: #6b7280; padding: 4px 0;">Storlek:</td>
-              <td style="color: #000; padding: 4px 0; text-align: right;">${data.companySize} anställda</td>
+              <td style="color: #666; padding: 8px 0;">Storlek</td>
+              <td style="color: #000; padding: 8px 0; text-align: right;">${data.companySize} anställda</td>
             </tr>
           </table>
         </div>
 
-        <div style="margin: 24px 0;">
-          <h3 style="color: #000; margin: 0 0 16px 0; font-size: 16px;">Vad händer nu?</h3>
-          <ol style="color: #4a5568; font-size: 14px; line-height: 1.8; padding-left: 20px; margin: 0;">
-            <li>Vi granskar din förfrågan</li>
-            <li>Vi kontaktar dig inom 24 timmar för att boka tid</li>
-            <li>Du får en Teams-länk inför konsultationen</li>
-            <li>30-45 min kostnadsfri genomgång av dina behov</li>
-          </ol>
+        <!-- Next Steps -->
+        <div style="margin: 32px 0;">
+          <h3 style="color: #000; margin: 0 0 20px 0; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Vad händer nu?</h3>
+          <table style="width: 100%; font-size: 15px;">
+            <tr>
+              <td style="color: #000; padding: 10px 0; vertical-align: top; width: 28px; font-weight: 600;">1.</td>
+              <td style="color: #444; padding: 10px 0;">Vi granskar din förfrågan</td>
+            </tr>
+            <tr>
+              <td style="color: #000; padding: 10px 0; vertical-align: top; font-weight: 600;">2.</td>
+              <td style="color: #444; padding: 10px 0;">Vi kontaktar dig inom 24 timmar för att boka tid</td>
+            </tr>
+            <tr>
+              <td style="color: #000; padding: 10px 0; vertical-align: top; font-weight: 600;">3.</td>
+              <td style="color: #444; padding: 10px 0;">Du får en Teams-länk inför konsultationen</td>
+            </tr>
+            <tr>
+              <td style="color: #000; padding: 10px 0; vertical-align: top; font-weight: 600;">4.</td>
+              <td style="color: #444; padding: 10px 0;">30-45 min kostnadsfri genomgång av dina behov</td>
+            </tr>
+          </table>
         </div>
 
-        <div style="border-top: 1px solid #e5e7eb; padding-top: 24px; margin-top: 24px;">
-          <p style="color: #6b7280; font-size: 14px; margin: 0 0 8px 0;">
+        <!-- Contact -->
+        <div style="border-top: 1px solid #eee; padding-top: 28px; margin-top: 32px;">
+          <p style="color: #666; font-size: 14px; margin: 0 0 8px 0;">
             Har du frågor? Kontakta oss:
           </p>
-          <p style="color: #000; font-size: 14px; margin: 0;">
-            <a href="mailto:info@reredo.se" style="color: #000; text-decoration: underline;">info@reredo.se</a>
+          <p style="margin: 0;">
+            <a href="mailto:info@reredo.se" style="color: #000; font-size: 15px; font-weight: 500; text-decoration: none;">info@reredo.se</a>
           </p>
         </div>
 
-        <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
-          <p style="color: #9ca3af; font-size: 12px; margin: 0;">
-            ReRedo AB • Baldersgatan 3, Göteborg • Org.nr 559497-7554
-          </p>
-          <p style="color: #9ca3af; font-size: 12px; margin: 8px 0 0 0;">
-            <a href="https://reredo.se" style="color: #9ca3af;">reredo.se</a>
-          </p>
-        </div>
       </div>
+
+      <!-- Black Footer -->
+      <div style="background-color: #000; padding: 32px 20px; text-align: center;">
+        <p style="color: #666; font-size: 13px; margin: 0 0 8px 0;">
+          ReRedo AB · Baldersgatan 3, Göteborg · Org.nr 559497-7554
+        </p>
+        <p style="margin: 0;">
+          <a href="https://reredo.se" style="color: #888; font-size: 13px; text-decoration: none;">reredo.se</a>
+        </p>
+      </div>
+
     </body>
     </html>
   `;
@@ -167,8 +186,8 @@ const generateUserEmailHTML = (data: BookingEmailRequest): string => {
 const generateAdminEmailHTML = (data: BookingEmailRequest): string => {
   const packageInfo = data.selectedPackage
     ? `<tr>
-        <td style="color: #6b7280; padding: 8px 0; vertical-align: top;">Valt paket:</td>
-        <td style="color: #000; padding: 8px 0;"><strong>${data.selectedPackage.name}</strong> (${data.selectedPackage.monthly_price.toLocaleString('sv-SE')} kr/mån, ${data.selectedPackage.company_type})</td>
+        <td style="color: #666; padding: 12px 0; border-bottom: 1px solid #eee;">Valt paket</td>
+        <td style="color: #000; padding: 12px 0; text-align: right; border-bottom: 1px solid #eee;"><strong>${data.selectedPackage.name}</strong> · ${data.selectedPackage.monthly_price.toLocaleString('sv-SE')} kr/mån · ${data.selectedPackage.company_type}</td>
       </tr>`
     : '';
 
@@ -179,75 +198,99 @@ const generateAdminEmailHTML = (data: BookingEmailRequest): string => {
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
-      <div style="background-color: #ffffff; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; background-color: #000;">
 
-        <div style="background-color: #000; color: #fff; padding: 20px; border-radius: 12px; margin-bottom: 24px;">
-          <h1 style="margin: 0; font-size: 20px;">🔔 Ny bokningsförfrågan</h1>
-          <p style="margin: 8px 0 0 0; opacity: 0.8; font-size: 14px;">${new Date().toLocaleString('sv-SE')}</p>
+      <!-- Black Header -->
+      <div style="background-color: #000; padding: 32px 20px; text-align: center;">
+        <img src="${logoDataUri}" alt="ReRedo" width="46" height="44" style="display: inline-block;" />
+        <p style="color: #fff; font-size: 13px; margin: 12px 0 0 0; opacity: 0.6;">Admin Notification</p>
+      </div>
+
+      <!-- White Content -->
+      <div style="background-color: #fff; padding: 48px 40px; max-width: 560px; margin: 0 auto;">
+
+        <!-- Alert Header -->
+        <div style="background-color: #000; color: #fff; padding: 24px; border-radius: 16px; margin-bottom: 32px;">
+          <h1 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 700;">Ny bokningsförfrågan</h1>
+          <p style="margin: 0; opacity: 0.7; font-size: 14px;">${new Date().toLocaleString('sv-SE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
         </div>
 
-        <h2 style="color: #000; font-size: 18px; margin: 0 0 16px 0;">Företagsinformation</h2>
-        <table style="width: 100%; font-size: 14px; margin-bottom: 24px;">
+        <!-- Company Info -->
+        <h2 style="color: #000; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 16px 0;">Företagsinformation</h2>
+        <table style="width: 100%; font-size: 15px; margin-bottom: 32px; border-collapse: collapse;">
           <tr>
-            <td style="color: #6b7280; padding: 8px 0; width: 140px;">Företagsnamn:</td>
-            <td style="color: #000; padding: 8px 0;"><strong>${data.companyName}</strong></td>
+            <td style="color: #666; padding: 12px 0; border-bottom: 1px solid #eee;">Företagsnamn</td>
+            <td style="color: #000; padding: 12px 0; text-align: right; font-weight: 600; border-bottom: 1px solid #eee;">${data.companyName}</td>
           </tr>
           <tr>
-            <td style="color: #6b7280; padding: 8px 0;">Org.nr:</td>
-            <td style="color: #000; padding: 8px 0;">${data.organizationNumber}</td>
+            <td style="color: #666; padding: 12px 0; border-bottom: 1px solid #eee;">Org.nr</td>
+            <td style="color: #000; padding: 12px 0; text-align: right; border-bottom: 1px solid #eee;">${data.organizationNumber}</td>
           </tr>
           <tr>
-            <td style="color: #6b7280; padding: 8px 0;">Bransch:</td>
-            <td style="color: #000; padding: 8px 0;">${data.industry}</td>
+            <td style="color: #666; padding: 12px 0; border-bottom: 1px solid #eee;">Bransch</td>
+            <td style="color: #000; padding: 12px 0; text-align: right; border-bottom: 1px solid #eee;">${data.industry}</td>
           </tr>
           <tr>
-            <td style="color: #6b7280; padding: 8px 0;">Storlek:</td>
-            <td style="color: #000; padding: 8px 0;">${data.companySize} anställda</td>
+            <td style="color: #666; padding: 12px 0; border-bottom: 1px solid #eee;">Storlek</td>
+            <td style="color: #000; padding: 12px 0; text-align: right; border-bottom: 1px solid #eee;">${data.companySize} anställda</td>
           </tr>
           ${packageInfo}
         </table>
 
-        <h2 style="color: #000; font-size: 18px; margin: 0 0 16px 0;">Kontaktuppgifter</h2>
-        <table style="width: 100%; font-size: 14px; margin-bottom: 24px;">
+        <!-- Contact Info -->
+        <h2 style="color: #000; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 16px 0;">Kontaktuppgifter</h2>
+        <table style="width: 100%; font-size: 15px; margin-bottom: 32px; border-collapse: collapse;">
           <tr>
-            <td style="color: #6b7280; padding: 8px 0; width: 140px;">Kontaktperson:</td>
-            <td style="color: #000; padding: 8px 0;"><strong>${data.name}</strong></td>
+            <td style="color: #666; padding: 12px 0; border-bottom: 1px solid #eee;">Kontaktperson</td>
+            <td style="color: #000; padding: 12px 0; text-align: right; font-weight: 600; border-bottom: 1px solid #eee;">${data.name}</td>
           </tr>
           <tr>
-            <td style="color: #6b7280; padding: 8px 0;">E-post:</td>
-            <td style="color: #000; padding: 8px 0;"><a href="mailto:${data.email}" style="color: #2563eb;">${data.email}</a></td>
+            <td style="color: #666; padding: 12px 0; border-bottom: 1px solid #eee;">E-post</td>
+            <td style="color: #000; padding: 12px 0; text-align: right; border-bottom: 1px solid #eee;"><a href="mailto:${data.email}" style="color: #000; text-decoration: underline;">${data.email}</a></td>
           </tr>
           ${data.phone ? `<tr>
-            <td style="color: #6b7280; padding: 8px 0;">Telefon:</td>
-            <td style="color: #000; padding: 8px 0;"><a href="tel:${data.phone}" style="color: #2563eb;">${data.phone}</a></td>
+            <td style="color: #666; padding: 12px 0;">Telefon</td>
+            <td style="color: #000; padding: 12px 0; text-align: right;"><a href="tel:${data.phone}" style="color: #000; text-decoration: underline;">${data.phone}</a></td>
           </tr>` : ''}
         </table>
 
-        <h2 style="color: #000; font-size: 18px; margin: 0 0 16px 0;">Nuvarande situation</h2>
-        <ul style="color: #4a5568; font-size: 14px; line-height: 1.8; padding-left: 20px; margin: 0 0 24px 0;">
-          ${data.currentSituation.map(item => `<li>${item}</li>`).join('')}
-        </ul>
+        <!-- Current Situation -->
+        <h2 style="color: #000; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 16px 0;">Nuvarande situation</h2>
+        <div style="background-color: #f8f8f8; padding: 20px; border-radius: 12px; margin-bottom: 32px;">
+          ${data.currentSituation.map(item => `<p style="color: #333; font-size: 14px; margin: 0 0 8px 0; padding-left: 16px; position: relative;">• ${item}</p>`).join('')}
+        </div>
 
-        <h2 style="color: #000; font-size: 18px; margin: 0 0 16px 0;">Utmaningar</h2>
-        <ul style="color: #4a5568; font-size: 14px; line-height: 1.8; padding-left: 20px; margin: 0 0 24px 0;">
-          ${data.challenges.map(item => `<li>${item}</li>`).join('')}
-        </ul>
+        <!-- Challenges -->
+        <h2 style="color: #000; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 16px 0;">Utmaningar</h2>
+        <div style="background-color: #f8f8f8; padding: 20px; border-radius: 12px; margin-bottom: 32px;">
+          ${data.challenges.map(item => `<p style="color: #333; font-size: 14px; margin: 0 0 8px 0; padding-left: 16px;">• ${item}</p>`).join('')}
+        </div>
 
         ${data.additionalInfo ? `
-        <h2 style="color: #000; font-size: 18px; margin: 0 0 16px 0;">Ytterligare information</h2>
-        <div style="background-color: #f3f4f6; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
-          <p style="color: #4a5568; font-size: 14px; line-height: 1.6; margin: 0;">${data.additionalInfo}</p>
+        <!-- Additional Info -->
+        <h2 style="color: #000; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 16px 0;">Ytterligare information</h2>
+        <div style="background-color: #f8f8f8; padding: 20px; border-radius: 12px; margin-bottom: 32px;">
+          <p style="color: #333; font-size: 14px; line-height: 1.6; margin: 0;">${data.additionalInfo}</p>
         </div>
         ` : ''}
 
-        <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
-          <a href="mailto:${data.email}?subject=Angående din bokningsförfrågan - ReRedo"
-             style="display: inline-block; background-color: #000; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600;">
-            Svara kunden
+        <!-- Action Button -->
+        <div style="margin-top: 32px;">
+          <a href="mailto:${data.email}?subject=Angående din bokningsförfrågan - ReRedo AB"
+             style="display: inline-block; background-color: #000; color: #fff; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-size: 15px; font-weight: 600;">
+            Svara kunden →
           </a>
         </div>
+
       </div>
+
+      <!-- Black Footer -->
+      <div style="background-color: #000; padding: 32px 20px; text-align: center;">
+        <p style="color: #666; font-size: 13px; margin: 0;">
+          ReRedo AB · Admin Notification
+        </p>
+      </div>
+
     </body>
     </html>
   `;
