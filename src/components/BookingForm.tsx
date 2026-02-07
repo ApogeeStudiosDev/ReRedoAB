@@ -48,6 +48,72 @@ interface FormErrors {
   challenges?: string;
 }
 
+// Available packages for selection
+const availablePackages: SelectedPackage[] = [
+  // Aktiebolag packages
+  {
+    id: 'ab-bas',
+    name: 'Bas (Aktiebolag)',
+    description: 'För det lilla aktiebolaget som vill ha en trygg och enkel ekonomihantering till fast pris.',
+    monthly_price: 1650,
+    company_type: 'AB',
+    package_tier: 'bas',
+    included_services: ['Löpande bokföring', 'Momsdeklaration', 'Arbetsgivardeklaration'],
+    selected_at: ''
+  },
+  {
+    id: 'ab-standard',
+    name: 'Standard (Aktiebolag)',
+    description: 'För aktiebolaget som vill ha framförhållning och ordning på siffrorna.',
+    monthly_price: 2850,
+    company_type: 'AB',
+    package_tier: 'standard',
+    included_services: ['Allt i Bas', 'Årsbokslut enligt K2-regelverket', 'Årsredovisning', 'Inkomstdeklaration (INK2)', 'Inkomstdeklaration (K10-bilaga)', 'Påminnelser om viktiga datum'],
+    selected_at: ''
+  },
+  {
+    id: 'ab-analys',
+    name: 'Analys (Aktiebolag)',
+    description: 'För dig som vill ha insikt och kontroll.',
+    monthly_price: 4850,
+    company_type: 'AB',
+    package_tier: 'analys',
+    included_services: ['Allt i Standard', 'Månadsrapporter', 'Kvartalsgenomgång', 'KPI-uppföljning'],
+    selected_at: ''
+  },
+  // Enskild Firma packages
+  {
+    id: 'ef-bas',
+    name: 'Bas (Enskild firma)',
+    description: 'För dig som vill ha en enkel och trygg start.',
+    monthly_price: 700,
+    company_type: 'EF',
+    package_tier: 'bas',
+    included_services: ['Löpande bokföring', 'Momsdeklaration'],
+    selected_at: ''
+  },
+  {
+    id: 'ef-standard',
+    name: 'Standard (Enskild firma)',
+    description: 'För dig som vill få bättre överblick och struktur.',
+    monthly_price: 1475,
+    company_type: 'EF',
+    package_tier: 'standard',
+    included_services: ['Allt i Bas', 'Årsbokslut & NE-bilaga', 'Skatt- & inkomstdeklaration', 'Enklare skatteplanering', 'Påminnelser om viktiga datum'],
+    selected_at: ''
+  },
+  {
+    id: 'ef-analys',
+    name: 'Analys (Enskild firma)',
+    description: 'För dig som vill ha full koll på resultat och utveckling.',
+    monthly_price: 2750,
+    company_type: 'EF',
+    package_tier: 'analys',
+    included_services: ['Allt i Standard', 'Månadsrapporter', 'Kvartalsvis genomgång', 'Prognoser för skatt och resultat'],
+    selected_at: ''
+  }
+];
+
 const BookingForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -92,6 +158,19 @@ const BookingForm = () => {
     });
   };
 
+  const handlePackageSelect = (packageId: string) => {
+    if (!packageId) {
+      removeSelectedPackage();
+      return;
+    }
+    const selectedPkg = availablePackages.find(pkg => pkg.id === packageId);
+    if (selectedPkg) {
+      const packageData = { ...selectedPkg, selected_at: new Date().toISOString() };
+      localStorage.setItem('selectedPackage', JSON.stringify(packageData));
+      setFormData(prev => ({ ...prev, selectedPackage: packageData }));
+    }
+  };
+
   const totalSteps = 3;
   const progress = (currentStep / totalSteps) * 100;
 
@@ -114,9 +193,7 @@ const BookingForm = () => {
       if (!formData.companyName.trim()) {
         newErrors.companyName = "Företagsnamn krävs";
       }
-      if (!formData.organizationNumber.trim()) {
-        newErrors.organizationNumber = "Organisationsnummer krävs";
-      } else if (!validateOrgNumber(formData.organizationNumber)) {
+      if (formData.organizationNumber.trim() && !validateOrgNumber(formData.organizationNumber)) {
         newErrors.organizationNumber = "Ogiltigt format (XXXXXX-XXXX)";
       }
       if (!formData.industry.trim()) {
@@ -296,21 +373,16 @@ const BookingForm = () => {
   };
 
   const currentSituationOptions = [
-    "Hanterar bokföring internt",
-    "Använder extern bokförare/revisor",
-    "Har egen ekonomiavdelning",
-    "Nystartat företag",
-    "Växande företag med nya behov",
-    "Vill byta från nuvarande lösning"
+    "Vi vill ha hjälp med att starta/komma igång med verksamheten",
+    "Vi söker hjälp med den löpande redovisningen",
+    "Vi behöver analysstöd och bättre ekonomisk överblick",
+    "Jag är osäker och vill diskutera upplägget"
   ];
 
   const challengeOptions = [
-    "Tidskrävande administration",
-    "Otydlig ekonomisk överblick",
-    "Skatteoptimering och planering",
-    "Månadsrapporter och analys",
-    "Kassaflödeshantering",
-    "Regelefterlevnad och compliance"
+    "Internt / jag gör det själv",
+    "Extern redovisningsbyrå",
+    "Nystartat företag"
   ];
 
   const renderStep = () => {
@@ -342,7 +414,7 @@ const BookingForm = () => {
                   id="companyName"
                   value={formData.companyName}
                   onChange={(e) => handleInputChange("companyName", e.target.value)}
-                  placeholder="Ditt företags namn"
+                  placeholder="Företagsnamn (eller planerat namn)"
                   className={`h-12 bg-white border-2 ${errors.companyName ? 'border-red-500' : 'border-black/10'} focus:border-black rounded-xl font-inter`}
                 />
                 {errors.companyName && (
@@ -352,7 +424,7 @@ const BookingForm = () => {
 
               <div>
                 <Label htmlFor="organizationNumber" className="font-inter font-semibold text-sm mb-2 block text-black">
-                  Organisationsnummer *
+                  Organisationsnummer <span className="text-black/50 font-normal">(valfritt)</span>
                 </Label>
                 <Input
                   id="organizationNumber"
@@ -393,10 +465,10 @@ const BookingForm = () => {
                   className={`w-full h-12 rounded-xl border-2 ${errors.companySize ? 'border-red-500' : 'border-black/10'} focus:border-black bg-white px-4 font-inter text-sm`}
                 >
                   <option value="">Välj företagsstorlek</option>
-                  <option value="1-5">1-5 anställda</option>
-                  <option value="6-20">6-20 anställda</option>
-                  <option value="21-50">21-50 anställda</option>
-                  <option value="51+">51+ anställda</option>
+                  <option value="0-1">0-1 anställda</option>
+                  <option value="1-3">1-3 anställda</option>
+                  <option value="4-7">4-7 anställda</option>
+                  <option value="8+">8+ anställda</option>
                 </select>
                 {errors.companySize && (
                   <p className="text-red-500 text-xs mt-1 font-inter">{errors.companySize}</p>
@@ -454,6 +526,61 @@ const BookingForm = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Service/Package Selector */}
+              <div className="border-t border-black/10 pt-6">
+                <h3 className="font-sora font-bold text-lg mb-4 text-black">Intresserad av ett specifikt paket?</h3>
+                <p className="font-inter text-black/60 text-sm mb-4">
+                  Välj ett paket om du redan vet vad du behöver, eller lämna tomt så diskuterar vi det under konsultationen.
+                </p>
+                <div>
+                  <Label htmlFor="packageSelect" className="font-inter font-semibold text-sm mb-2 block text-black">
+                    Tjänst/Paket <span className="text-black/50 font-normal">(valfritt)</span>
+                  </Label>
+                  <select
+                    id="packageSelect"
+                    value={formData.selectedPackage?.id || ''}
+                    onChange={(e) => handlePackageSelect(e.target.value)}
+                    className="w-full h-12 rounded-xl border-2 border-black/10 focus:border-black bg-white px-4 font-inter text-sm"
+                  >
+                    <option value="">Inget paket valt</option>
+                    <optgroup label="Aktiebolag">
+                      {availablePackages.filter(p => p.company_type === 'AB').map(pkg => (
+                        <option key={pkg.id} value={pkg.id}>
+                          {pkg.name} - {pkg.monthly_price.toLocaleString('sv-SE')} kr/mån
+                        </option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Enskild firma">
+                      {availablePackages.filter(p => p.company_type === 'EF').map(pkg => (
+                        <option key={pkg.id} value={pkg.id}>
+                          {pkg.name} - {pkg.monthly_price.toLocaleString('sv-SE')} kr/mån
+                        </option>
+                      ))}
+                    </optgroup>
+                  </select>
+                </div>
+                {formData.selectedPackage && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 bg-black/5 rounded-xl p-4"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <p className="font-sora font-semibold text-sm text-black">{formData.selectedPackage.name}</p>
+                        <p className="font-inter text-xs text-black/60 mt-1">{formData.selectedPackage.description}</p>
+                      </div>
+                      <button
+                        onClick={removeSelectedPackage}
+                        className="text-black/40 hover:text-black transition-colors"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
             </div>
           </motion.div>
         );
@@ -479,7 +606,7 @@ const BookingForm = () => {
             <div className="space-y-6">
               <div>
                 <Label className="font-inter font-semibold mb-3 block text-sm text-black">
-                  Hur hanterar ni ekonomi idag? *
+                  Hur ser er situation ut just nu? *
                 </Label>
                 <div className="space-y-2">
                   {currentSituationOptions.map((option) => (
@@ -518,7 +645,7 @@ const BookingForm = () => {
 
               <div>
                 <Label className="font-inter font-semibold mb-3 block text-sm text-black">
-                  Vilka utmaningar vill ni lösa? *
+                  Hur sköts redovisningen idag? *
                 </Label>
                 <div className="space-y-2">
                   {challengeOptions.map((option) => (
@@ -572,7 +699,7 @@ const BookingForm = () => {
                 Granska och skicka
               </h2>
               <p className="font-inter text-black/70 text-sm">
-                Vi kontaktar dig inom 24 timmar för att boka en tid
+                När vi har tagit emot din förfrågan kontaktar vi dig inom 24 timmar för att boka en tid som passar.
               </p>
             </div>
 
@@ -583,8 +710,12 @@ const BookingForm = () => {
                 <div className="grid grid-cols-2 gap-2 text-sm font-inter">
                   <span className="text-black/60">Företag:</span>
                   <span className="text-black font-medium">{formData.companyName}</span>
-                  <span className="text-black/60">Org.nr:</span>
-                  <span className="text-black">{formData.organizationNumber}</span>
+                  {formData.organizationNumber && (
+                    <>
+                      <span className="text-black/60">Org.nr:</span>
+                      <span className="text-black">{formData.organizationNumber}</span>
+                    </>
+                  )}
                   <span className="text-black/60">Kontakt:</span>
                   <span className="text-black">{formData.contactName}</span>
                   <span className="text-black/60">E-post:</span>
@@ -615,13 +746,13 @@ const BookingForm = () => {
               {/* Additional Info */}
               <div>
                 <Label htmlFor="additionalInfo" className="font-inter font-semibold text-sm mb-2 block text-black">
-                  Ytterligare information <span className="text-black/50 font-normal">(valfritt)</span>
+                  Finns det något särskilt du vill att vi förbereder inför mötet? <span className="text-black/50 font-normal">(valfritt)</span>
                 </Label>
                 <Textarea
                   id="additionalInfo"
                   value={formData.additionalInfo}
                   onChange={(e) => handleInputChange("additionalInfo", e.target.value)}
-                  placeholder="Finns det något specifikt ni vill diskutera?"
+                  placeholder="T.ex. specifika frågor, nuvarande utmaningar eller vad du vill få ut av mötet"
                   rows={4}
                   className="bg-white border-2 border-black/10 focus:border-black rounded-xl resize-none font-inter"
                 />
@@ -637,7 +768,7 @@ const BookingForm = () => {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-black mt-0.5 flex-shrink-0" />
-                    <span>Vi kontaktar dig inom 24 timmar för att boka tid</span>
+                    <span>Vi kontaktar dig inom 24 timmar för att boka en tid som passar</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-black mt-0.5 flex-shrink-0" />
@@ -657,7 +788,7 @@ const BookingForm = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
-        return formData.companyName && formData.organizationNumber && formData.industry &&
+        return formData.companyName && formData.industry &&
                formData.companySize && formData.contactName && formData.email;
       case 2:
         return formData.currentSituation.length > 0 && formData.challenges.length > 0;
